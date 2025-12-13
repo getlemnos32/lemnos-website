@@ -869,6 +869,143 @@
             color: var(--gray);
         }
 
+        /* Two Ways Section */
+        .two-ways {
+            background: var(--black-light);
+            padding: 6rem 4rem;
+        }
+
+        .two-ways-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .two-ways-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .two-ways-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .tier-card {
+            background: var(--black);
+            border: 1px solid var(--gray-dark);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .tier-card:hover {
+            border-color: var(--gray);
+        }
+
+        .tier-card.featured {
+            border-color: var(--lemon);
+            background: linear-gradient(135deg, rgba(232, 212, 77, 0.05), transparent);
+        }
+
+        .tier-badge {
+            position: absolute;
+            top: -12px;
+            right: 24px;
+            background: var(--lemon);
+            color: var(--black);
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.35rem 0.75rem;
+            border-radius: 100px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tier-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--lemon-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .tier-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--lemon);
+        }
+
+        .tier-name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-tagline {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .tier-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .tier-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            color: var(--gray-light);
+        }
+
+        .tier-features li svg {
+            width: 18px;
+            height: 18px;
+            stroke: var(--lemon);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .tier-best-for {
+            background: var(--black-lighter);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: auto;
+        }
+
+        .tier-best-for-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--gray);
+            margin-bottom: 0.35rem;
+        }
+
+        .tier-best-for-text {
+            font-size: 0.85rem;
+            color: var(--white);
+        }
+
+        @media (max-width: 768px) {
+            .two-ways {
+                padding: 4rem 1.5rem;
+            }
+
+            .two-ways-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* CTA Section */
         .cta-section {
             background: var(--black);
@@ -1023,9 +1160,10 @@
             LEMNOS
         </a>
         <div class="nav-links">
-            <a href="#promise">Our Promise</a>
+            <a href="#how-we-work">How We Work</a>
             <a href="#case-study">Case Studies</a>
             <a href="#why-custom">Why Custom</a>
+            <a href="#promise">Our Promise</a>
             <a href="https://calendly.com/nick-getlemnos/30min" class="cta-btn">Book a Call</a>
         </div>
     </nav>
@@ -1043,6 +1181,104 @@
                     </svg>
                 </a>
                 <a href="#case-study" class="btn-secondary">See Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Two Ways to Work With Us -->
+    <section class="two-ways" id="how-we-work">
+        <div class="two-ways-container">
+            <div class="two-ways-header">
+                <div class="section-label">How We Work</div>
+                <h2 class="section-title">Two ways to work with us.</h2>
+                <p class="section-subtitle">Choose the level of privacy and control that fits your business.</p>
+            </div>
+
+            <div class="two-ways-grid">
+                <!-- Standard Tier -->
+                <div class="tier-card">
+                    <div class="tier-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <h3 class="tier-name">Lemnos Standard</h3>
+                    <p class="tier-tagline">Custom AI built for your workflow. We handle everything — you just use it.</p>
+                    
+                    <ul class="tier-features">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Custom AI system built for your exact workflow
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Your data never touches public AI (ChatGPT, etc.)
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            We build, deploy, and manage it for you
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Full confidentiality guaranteed
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Ongoing support & maintenance
+                        </li>
+                    </ul>
+
+                    <div class="tier-best-for">
+                        <div class="tier-best-for-label">Best for</div>
+                        <div class="tier-best-for-text">Most businesses who want custom AI without IT complexity</div>
+                    </div>
+                </div>
+
+                <!-- Private Tier -->
+                <div class="tier-card featured">
+                    <div class="tier-badge">Maximum Control</div>
+                    <div class="tier-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3 class="tier-name">Lemnos Private</h3>
+                    <p class="tier-tagline">Everything in Standard, plus we set up YOUR private cloud. You own everything.</p>
+                    
+                    <ul class="tier-features">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Everything in Standard
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            We set up YOUR private AI infrastructure
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            AI runs on YOUR servers, in YOUR office
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            You own the hardware, software, and keys
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            Zero external data exposure—ever
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                            We hand you the keys (or stay on retainer)
+                        </li>
+                    </ul>
+
+                    <div class="tier-best-for">
+                        <div class="tier-best-for-label">Best for</div>
+                        <div class="tier-best-for-text">Regulated industries, sensitive data, maximum sovereignty</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1482,14 +1718,14 @@
                 LEMNOS
             </div>
             <div class="footer-links">
-                <a href="mailto:nick@getlemnos.ai">nick@getlemnos.ai</a>
+                <a href="/cdn-cgi/l/email-protection#adc3c4cec6edcac8d9c1c8c0c3c2de83ccc4"><span class="__cf_email__" data-cfemail="244a4d474f644341504841494a4b570a454d">[email&#160;protected]</span></a>
                 <a href="tel:+19172757123">(917) 275-7123</a>
             </div>
             <div class="footer-copyright">© 2025 Lemnos. All rights reserved.</div>
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1512,11 +1748,4 @@
         }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
         document.querySelectorAll('.problem-card, .industry-card, .comparison-card, .promise-feature, .case-study-card').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-            observer.observe(el);
-        });
-    </script>
-</body>
-</html>
+  
