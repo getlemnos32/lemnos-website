@@ -3,1749 +3,1057 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lemnos | Custom AI Systems</title>
-    <meta name="description" content="We build custom AI systems that become your competitive advantage. Confidential. Exclusive. Yours.">
+    <title>Lemnos — AI That Works While You Sleep</title>
+    <meta name="description" content="Lemnos deploys autonomous AI agents that run your business 24/7. OpenClaw setup, document intelligence, and custom AI systems for businesses ready to scale.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --lemon: #E8D44D;
-            --lemon-light: #F0E068;
-            --lemon-dim: rgba(232, 212, 77, 0.15);
-            --black: #09090B;
-            --black-light: #111113;
-            --black-lighter: #18181B;
-            --gray-dark: #27272A;
-            --gray: #71717A;
-            --gray-light: #A1A1AA;
-            --white: #FAFAFA;
-            --font-display: 'Syne', sans-serif;
-            --font-body: 'Inter', sans-serif;
+            --lemon-muted: #C4B23E;
+            --lemon-glow: rgba(232, 212, 77, 0.12);
+            --lemon-bright: #F5E663;
+            --black: #0A0A0A;
+            --black-light: #111111;
+            --black-card: #161616;
+            --gray-dark: #2A2A2A;
+            --gray: #555555;
+            --gray-light: #999999;
+            --white: #F0F0F0;
+            --white-dim: #CCCCCC;
+            --green: #4ADE80;
+            --blue: #60A5FA;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: var(--font-body);
+            font-family: 'DM Sans', sans-serif;
             background: var(--black);
             color: var(--white);
             line-height: 1.6;
             overflow-x: hidden;
-            font-weight: 300;
         }
 
-        /* Subtle grain texture */
+        /* Grain overlay */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
             pointer-events: none;
-            opacity: 0.02;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            z-index: 1000;
+            z-index: 9999;
         }
 
-        /* Navigation */
+        /* ---- NAV ---- */
         nav {
             position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
-            padding: 1.5rem 4rem;
+            width: 100%;
+            padding: 1.2rem 3rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(9, 9, 11, 0.8);
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.85);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(232, 212, 77, 0.08);
         }
 
         .logo {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: var(--white);
+            font-family: 'Syne', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--lemon);
+            letter-spacing: -0.5px;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            letter-spacing: -0.02em;
         }
 
-        .logo-symbol {
-            width: 28px;
-            height: 28px;
-            background: var(--lemon);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--black);
-            font-size: 0.9rem;
-            font-weight: 800;
+        .logo span {
+            color: var(--white);
+            font-weight: 400;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-left: 0.8rem;
+            opacity: 0.5;
+            vertical-align: middle;
         }
 
         .nav-links {
             display: flex;
-            gap: 2.5rem;
+            gap: 2rem;
             align-items: center;
         }
 
         .nav-links a {
-            color: var(--gray);
+            color: var(--gray-light);
             text-decoration: none;
             font-size: 0.85rem;
-            font-weight: 400;
-            transition: color 0.3s ease;
-            letter-spacing: 0.01em;
-        }
-
-        .nav-links a:hover {
-            color: var(--white);
-        }
-
-        .cta-btn {
-            background: var(--lemon);
-            color: var(--black);
-            padding: 0.65rem 1.25rem;
-            border-radius: 6px;
-            text-decoration: none;
             font-weight: 500;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            letter-spacing: 0.01em;
+            transition: color 0.3s;
+            letter-spacing: 0.3px;
         }
 
-        .cta-btn:hover {
-            background: var(--lemon-light);
+        .nav-links a:hover { color: var(--lemon); }
+
+        .nav-cta {
+            background: var(--lemon) !important;
+            color: var(--black) !important;
+            padding: 0.6rem 1.4rem;
+            border-radius: 8px;
+            font-weight: 600 !important;
+            transition: all 0.3s !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--lemon-bright) !important;
             transform: translateY(-1px);
         }
 
-        /* Hero Section */
+        /* ---- HERO ---- */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
+            padding: 8rem 4rem 4rem;
             position: relative;
-            padding: 8rem 4rem 6rem;
             overflow: hidden;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            background: radial-gradient(circle, rgba(232, 212, 77, 0.08) 0%, transparent 60%);
+            top: -20%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232, 212, 77, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
             pointer-events: none;
         }
 
         .hero-content {
             max-width: 800px;
-            text-align: center;
             position: relative;
-            z-index: 2;
+            z-index: 1;
         }
 
-        .hero-label {
-            display: inline-block;
-            padding: 0.4rem 0.9rem;
-            background: rgba(232, 212, 77, 0.1);
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--lemon-glow);
             border: 1px solid rgba(232, 212, 77, 0.2);
+            padding: 0.5rem 1rem;
             border-radius: 100px;
-            font-size: 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 500;
             color: var(--lemon);
             margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            font-weight: 500;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge .pulse {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
         }
 
         .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            line-height: 1.1;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -2px;
             margin-bottom: 1.5rem;
-            letter-spacing: -0.03em;
+            animation: fadeInUp 0.8s ease 0.1s both;
         }
 
         .hero h1 .highlight {
             color: var(--lemon);
+            position: relative;
         }
 
-        .hero-subtitle {
-            font-size: 1.1rem;
+        .hero .subtitle {
+            font-size: 1.2rem;
             color: var(--gray-light);
-            max-width: 550px;
-            margin: 0 auto 2.5rem;
+            max-width: 580px;
             line-height: 1.7;
-            font-weight: 300;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
         }
 
-        .hero-cta {
+        .hero-ctas {
             display: flex;
             gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.3s both;
         }
 
         .btn-primary {
-            background: var(--lemon);
-            color: var(--black);
-            padding: 0.9rem 1.75rem;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            background: var(--lemon);
+            color: var(--black);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
         }
 
         .btn-primary:hover {
-            background: var(--lemon-light);
+            background: var(--lemon-bright);
             transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(232, 212, 77, 0.2);
         }
 
         .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             background: transparent;
             color: var(--white);
-            padding: 0.9rem 1.75rem;
-            border-radius: 6px;
+            padding: 1rem 2rem;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 500;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
+            font-size: 1rem;
             border: 1px solid var(--gray-dark);
+            transition: all 0.3s;
         }
 
         .btn-secondary:hover {
             border-color: var(--gray);
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(255,255,255,0.03);
         }
 
-        /* Section Styles */
-        section {
-            padding: 7rem 4rem;
-            position: relative;
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--gray-dark);
+            animation: fadeInUp 0.8s ease 0.4s both;
         }
 
-        .section-label {
-            font-size: 0.7rem;
+        .hero-stat .number {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
             color: var(--lemon);
+        }
+
+        .hero-stat .label {
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            margin-top: 0.3rem;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---- SECTION COMMON ---- */
+        .section-label {
+            font-family: 'Syne', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            letter-spacing: 0.15em;
+            color: var(--lemon);
             margin-bottom: 1rem;
-            font-weight: 500;
         }
 
         .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.75rem, 3.5vw, 2.5rem);
-            font-weight: 600;
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.15;
             margin-bottom: 1rem;
-            letter-spacing: -0.02em;
         }
 
-        .section-subtitle {
+        .section-sub {
+            font-size: 1.05rem;
             color: var(--gray-light);
-            font-size: 1rem;
-            max-width: 500px;
+            max-width: 600px;
             line-height: 1.7;
-            font-weight: 300;
         }
 
-        /* Promise Section */
-        .promise {
+        /* ---- SERVICES ---- */
+        .services {
+            padding: 7rem 4rem;
             background: var(--black-light);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .promise-grid {
+        .services-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .services-header .section-sub {
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--black-card);
+            border: 1px solid var(--gray-dark);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--lemon);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            border-color: rgba(232, 212, 77, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .service-card.featured {
+            border-color: var(--lemon);
+            background: linear-gradient(170deg, rgba(232, 212, 77, 0.06) 0%, var(--black-card) 40%);
+        }
+
+        .service-card.featured::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--lemon-glow);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--lemon);
+            fill: none;
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 1.2rem;
+            right: 1.2rem;
+            background: var(--lemon);
+            color: var(--black);
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.3rem 0.7rem;
+            border-radius: 100px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .service-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            letter-spacing: -0.3px;
+        }
+
+        .service-card p {
+            color: var(--gray-light);
+            font-size: 0.92rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            color: var(--white-dim);
+        }
+
+        .service-features li svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--lemon);
+            flex-shrink: 0;
+        }
+
+        /* ---- OPENCLAW SECTION ---- */
+        .openclaw-section {
+            padding: 7rem 4rem;
+            background: var(--black);
+            position: relative;
+        }
+
+        .openclaw-container {
             max-width: 1100px;
             margin: 0 auto;
+        }
+
+        .openclaw-split {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
 
-        .promise-content {
-            max-width: 480px;
+        .openclaw-text h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
         }
 
-        .promise-features {
+        .openclaw-text h2 .lemon { color: var(--lemon); }
+
+        .openclaw-text > p {
+            color: var(--gray-light);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .openclaw-tiers {
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .promise-feature {
-            display: flex;
             gap: 1rem;
-            align-items: flex-start;
         }
 
-        .promise-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--lemon-dim);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .promise-icon svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--lemon);
-        }
-
-        .promise-feature h4 {
-            font-size: 0.95rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .promise-feature p {
-            font-size: 0.85rem;
-            color: var(--gray);
-            line-height: 1.5;
-        }
-
-        .promise-visual {
-            position: relative;
-        }
-
-        .promise-card {
-            background: var(--black);
-            border: 1px solid rgba(255, 255, 255, 0.08);
+        .oc-tier {
+            background: var(--black-card);
+            border: 1px solid var(--gray-dark);
             border-radius: 12px;
-            padding: 2.5rem;
+            padding: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .oc-tier:hover {
+            border-color: rgba(232, 212, 77, 0.3);
+        }
+
+        .oc-tier-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .oc-tier-name {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .oc-tier-price {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: var(--lemon);
+            font-size: 0.95rem;
+        }
+
+        .oc-tier p {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .openclaw-visual {
             position: relative;
         }
 
-        .promise-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 2rem;
-            right: 2rem;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--lemon), transparent);
-            opacity: 0.5;
+        .terminal-mock {
+            background: #1a1a2e;
+            border: 1px solid #2a2a3e;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
 
-        .promise-quote {
-            font-size: 1.5rem;
-            font-family: var(--font-display);
-            font-weight: 500;
-            line-height: 1.4;
-            margin-bottom: 1.5rem;
-            letter-spacing: -0.01em;
+        .terminal-header {
+            display: flex;
+            gap: 6px;
+            padding: 12px 16px;
+            background: #15152a;
+            border-bottom: 1px solid #2a2a3e;
         }
 
-        .promise-quote .em {
-            color: var(--lemon);
+        .terminal-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
         }
 
-        .promise-attribution {
-            font-size: 0.8rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+        .terminal-dot.red { background: #ff5f56; }
+        .terminal-dot.yellow { background: #ffbd2e; }
+        .terminal-dot.green { background: #27c93f; }
+
+        .terminal-body {
+            padding: 1.5rem;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.78rem;
+            line-height: 1.8;
+            min-height: 300px;
         }
 
-        /* Problem Section */
-        .problem {
-            background: var(--black);
+        .terminal-body .prompt { color: var(--lemon); }
+        .terminal-body .command { color: #e0e0e0; }
+        .terminal-body .output { color: var(--gray-light); }
+        .terminal-body .success { color: var(--green); }
+        .terminal-body .info { color: var(--blue); }
+
+        .terminal-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 16px;
+            background: var(--lemon);
+            animation: blink 1s steps(1) infinite;
+            vertical-align: text-bottom;
         }
 
-        .problem-container {
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* ---- PROMISE ---- */
+        .promise {
+            padding: 7rem 4rem;
+            background: var(--black-light);
+        }
+
+        .promise-container {
             max-width: 1100px;
             margin: 0 auto;
         }
 
-        .problem-header {
+        .promise-header {
             text-align: center;
             margin-bottom: 4rem;
         }
 
-        .problem-header .section-subtitle {
+        .promise-header .section-sub {
             margin: 0 auto;
         }
 
-        .problem-grid {
+        .promise-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.5rem;
         }
 
-        .problem-card {
-            background: var(--black-light);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 1.75rem;
-            transition: all 0.3s ease;
+        .promise-card {
+            text-align: center;
+            padding: 2.5rem 2rem;
+            background: var(--black-card);
+            border: 1px solid var(--gray-dark);
+            border-radius: 16px;
+            transition: all 0.3s;
         }
 
-        .problem-card:hover {
+        .promise-card:hover {
             border-color: rgba(232, 212, 77, 0.2);
-            transform: translateY(-2px);
         }
 
-        .problem-card-icon {
-            width: 36px;
-            height: 36px;
-            background: var(--lemon-dim);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-        }
-
-        .problem-card-icon svg {
-            width: 18px;
-            height: 18px;
+        .promise-card svg {
+            width: 40px;
+            height: 40px;
             stroke: var(--lemon);
+            fill: none;
+            margin-bottom: 1.2rem;
         }
 
-        .problem-card h3 {
-            font-size: 1rem;
-            font-weight: 500;
-            margin-bottom: 0.5rem;
+        .promise-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.7rem;
         }
 
-        .problem-card p {
-            font-size: 0.85rem;
-            color: var(--gray);
+        .promise-card p {
+            color: var(--gray-light);
+            font-size: 0.88rem;
             line-height: 1.6;
         }
 
-        /* Case Study Section */
-        .case-study {
-            background: var(--black-light);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .case-study-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .case-study-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .case-study-intro {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 3rem;
-            padding: 1.5rem;
-            background: rgba(232, 212, 77, 0.05);
-            border: 1px solid rgba(232, 212, 77, 0.1);
-            border-radius: 8px;
-        }
-
-        .case-study-intro p {
-            font-size: 0.9rem;
-            color: var(--gray-light);
-            line-height: 1.7;
-            font-style: italic;
-        }
-
-        .case-study-card {
-            background: var(--black);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        .case-study-card-header {
-            padding: 1.25rem 2rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .client-type {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
-
-        .client-type-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--lemon-dim);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .client-type-icon svg {
-            width: 16px;
-            height: 16px;
-            stroke: var(--lemon);
-        }
-
-        .client-type span {
-            font-size: 0.85rem;
-            color: var(--gray-light);
-        }
-
-        .confidential-badge {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            font-size: 0.7rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .confidential-badge svg {
-            width: 12px;
-            height: 12px;
-            stroke: var(--gray);
-        }
-
-        .case-study-card-body {
-            padding: 2rem;
-        }
-
-        .case-study-section {
-            margin-bottom: 2rem;
-        }
-
-        .case-study-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .case-study-section h4 {
-            font-size: 0.7rem;
-            color: var(--lemon);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 0.75rem;
-            font-weight: 500;
-        }
-
-        .case-study-section p {
-            font-size: 0.9rem;
-            color: var(--gray-light);
-            line-height: 1.7;
-        }
-
-        .case-study-section strong {
-            color: var(--white);
-            font-weight: 500;
-        }
-
-        .features-built {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
-        .feature-tag {
-            font-size: 0.75rem;
-            padding: 0.4rem 0.75rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
-            color: var(--gray-light);
-        }
-
-        .results-row {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            margin-top: 1rem;
-        }
-
-        .result-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .result-before {
-            text-align: center;
-        }
-
-        .result-after {
-            text-align: center;
-        }
-
-        .result-label {
-            font-size: 0.65rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            display: block;
-            margin-bottom: 0.25rem;
-        }
-
-        .result-value {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 600;
-        }
-
-        .result-value.old {
-            color: var(--gray);
-            text-decoration: line-through;
-        }
-
-        .result-value.new {
-            color: var(--lemon);
-        }
-
-        .result-arrow {
-            color: var(--lemon);
-            font-size: 1.25rem;
-        }
-
-        .result-stat {
-            padding: 0.75rem 1.25rem;
-            background: var(--lemon-dim);
-            border-radius: 6px;
-            text-align: center;
-        }
-
-        .result-stat-value {
-            font-family: var(--font-display);
-            font-size: 1.75rem;
-            font-weight: 700;
-            color: var(--lemon);
-        }
-
-        .result-stat-label {
-            font-size: 0.65rem;
-            color: var(--gray);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .case-study-quote {
-            background: rgba(255, 255, 255, 0.02);
-            border-left: 2px solid var(--lemon);
-            padding: 1.25rem 1.5rem;
-            margin-top: 1.5rem;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .case-study-quote blockquote {
-            font-size: 1rem;
-            color: var(--white);
-            font-style: italic;
-            margin-bottom: 0.5rem;
-        }
-
-        .case-study-quote cite {
-            font-size: 0.8rem;
-            color: var(--gray);
-            font-style: normal;
-        }
-
-        /* Why Custom Section */
-        .why-custom {
-            background: var(--black);
-        }
-
-        .why-custom-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .why-custom-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .comparison-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .comparison-card {
-            padding: 2rem;
-            border-radius: 10px;
-        }
-
-        .comparison-card.them {
-            background: var(--black-light);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .comparison-card.us {
-            background: rgba(232, 212, 77, 0.05);
-            border: 1px solid rgba(232, 212, 77, 0.15);
-        }
-
-        .comparison-card-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .comparison-card.us .comparison-card-header {
-            border-bottom-color: rgba(232, 212, 77, 0.15);
-        }
-
-        .comparison-card-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .comparison-card.them .comparison-card-icon {
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .comparison-card.us .comparison-card-icon {
-            background: var(--lemon-dim);
-        }
-
-        .comparison-card.them .comparison-card-icon svg {
-            stroke: var(--gray);
-        }
-
-        .comparison-card.us .comparison-card-icon svg {
-            stroke: var(--lemon);
-        }
-
-        .comparison-card-icon svg {
-            width: 16px;
-            height: 16px;
-        }
-
-        .comparison-card h3 {
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        .comparison-card.them h3 {
-            color: var(--gray);
-        }
-
-        .comparison-card.us h3 {
-            color: var(--lemon);
-        }
-
-        .comparison-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-        }
-
-        .comparison-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            font-size: 0.85rem;
-            line-height: 1.5;
-        }
-
-        .comparison-card.them .comparison-list li {
-            color: var(--gray);
-        }
-
-        .comparison-card.us .comparison-list li {
-            color: var(--gray-light);
-        }
-
-        .comparison-list li svg {
-            width: 16px;
-            height: 16px;
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .comparison-card.them .comparison-list li svg {
-            stroke: var(--gray);
-        }
-
-        .comparison-card.us .comparison-list li svg {
-            stroke: var(--lemon);
-        }
-
-        /* Industries Section */
+        /* ---- WHO WE SERVE ---- */
         .industries {
-            background: var(--black-light);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 7rem 4rem;
+            background: var(--black);
         }
 
         .industries-container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .industries-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
         }
 
-        .industries-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-        }
-
-        .industry-card {
-            background: var(--black);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .industry-card:hover {
-            border-color: rgba(232, 212, 77, 0.2);
-        }
-
-        .industry-card-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--lemon-dim);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1rem;
-        }
-
-        .industry-card-icon svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--lemon);
-        }
-
-        .industry-card h3 {
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin-bottom: 0.35rem;
-        }
-
-        .industry-card p {
-            font-size: 0.75rem;
-            color: var(--gray);
-        }
-
-        /* Two Ways Section */
-        .two-ways {
-            background: var(--black-light);
-            padding: 6rem 4rem;
-        }
-
-        .two-ways-container {
-            max-width: 1100px;
+        .industries-header .section-sub {
             margin: 0 auto;
         }
 
-        .two-ways-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        .industries-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
-        .two-ways-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .tier-card {
-            background: var(--black);
+        .industry-tag {
+            background: var(--black-card);
             border: 1px solid var(--gray-dark);
-            border-radius: 16px;
-            padding: 2.5rem;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .tier-card:hover {
-            border-color: var(--gray);
-        }
-
-        .tier-card.featured {
-            border-color: var(--lemon);
-            background: linear-gradient(135deg, rgba(232, 212, 77, 0.05), transparent);
-        }
-
-        .tier-badge {
-            position: absolute;
-            top: -12px;
-            right: 24px;
-            background: var(--lemon);
-            color: var(--black);
-            font-size: 0.7rem;
-            font-weight: 600;
-            padding: 0.35rem 0.75rem;
+            padding: 0.8rem 1.4rem;
             border-radius: 100px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .tier-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--lemon-dim);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.5rem;
-        }
-
-        .tier-icon svg {
-            width: 24px;
-            height: 24px;
-            stroke: var(--lemon);
-        }
-
-        .tier-name {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .tier-tagline {
-            color: var(--gray);
             font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.5;
+            color: var(--white-dim);
+            transition: all 0.3s;
         }
 
-        .tier-features {
-            list-style: none;
-            margin-bottom: 2rem;
+        .industry-tag:hover {
+            border-color: var(--lemon);
+            color: var(--lemon);
         }
 
-        .tier-features li {
-            display: flex;
-            align-items: flex-start;
-            gap: 0.75rem;
-            padding: 0.5rem 0;
-            font-size: 0.85rem;
-            color: var(--gray-light);
-        }
-
-        .tier-features li svg {
-            width: 18px;
-            height: 18px;
-            stroke: var(--lemon);
-            flex-shrink: 0;
-            margin-top: 2px;
-        }
-
-        .tier-best-for {
-            background: var(--black-lighter);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: auto;
-        }
-
-        .tier-best-for-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--gray);
-            margin-bottom: 0.35rem;
-        }
-
-        .tier-best-for-text {
-            font-size: 0.85rem;
-            color: var(--white);
-        }
-
-        @media (max-width: 768px) {
-            .two-ways {
-                padding: 4rem 1.5rem;
-            }
-
-            .two-ways-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* CTA Section */
-        .cta-section {
-            background: var(--black);
+        /* ---- CTA ---- */
+        .cta {
             padding: 8rem 4rem;
-        }
-
-        .cta-container {
-            max-width: 600px;
-            margin: 0 auto;
             text-align: center;
+            background: var(--black-light);
+            position: relative;
+            overflow: hidden;
         }
 
-        .cta-container .section-title {
-            margin-bottom: 1rem;
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(232, 212, 77, 0.04) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        .cta-container .section-subtitle {
-            margin: 0 auto 2rem;
-        }
-
-        /* Footer */
-        footer {
-            padding: 2.5rem 4rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            background: var(--black);
-        }
-
-        .footer-content {
-            max-width: 1100px;
+        .cta-content {
+            position: relative;
+            z-index: 1;
+            max-width: 650px;
             margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -1.5px;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+        }
+
+        .cta h2 .lemon { color: var(--lemon); }
+
+        .cta p {
+            color: var(--gray-light);
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .cta-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-contact {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+        }
+
+        .cta-contact a {
+            color: var(--lemon);
+            text-decoration: none;
+        }
+
+        .cta-contact a:hover { text-decoration: underline; }
+
+        /* ---- FOOTER ---- */
+        footer {
+            padding: 3rem 4rem;
+            border-top: 1px solid var(--gray-dark);
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .footer-logo {
-            font-family: var(--font-display);
-            font-weight: 700;
-            font-size: 1rem;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .footer-left {
+            font-size: 0.8rem;
+            color: var(--gray);
         }
 
-        .footer-logo .logo-symbol {
-            width: 22px;
-            height: 22px;
-            font-size: 0.7rem;
-        }
-
-        .footer-links {
+        .footer-right {
             display: flex;
             gap: 2rem;
         }
 
-        .footer-links a {
+        .footer-right a {
             color: var(--gray);
             text-decoration: none;
             font-size: 0.8rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
-        .footer-links a:hover {
-            color: var(--white);
+        .footer-right a:hover { color: var(--lemon); }
+
+        /* ---- RESPONSIVE ---- */
+        @media (max-width: 900px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            .hero { padding: 7rem 1.5rem 3rem; }
+            .hero-stats { flex-wrap: wrap; gap: 1.5rem; }
+            .services, .openclaw-section, .promise, .industries, .cta { padding: 4rem 1.5rem; }
+            .services-grid, .promise-grid { grid-template-columns: 1fr; }
+            .openclaw-split { grid-template-columns: 1fr; gap: 2.5rem; }
+            .openclaw-visual { order: -1; }
+            footer { flex-direction: column; gap: 1rem; text-align: center; }
         }
-
-        .footer-copyright {
-            color: var(--gray);
-            font-size: 0.75rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 968px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            section {
-                padding: 4rem 1.5rem;
-            }
-
-            .hero {
-                padding: 6rem 1.5rem 4rem;
-            }
-
-            .promise-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .problem-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .industries-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .results-row {
-                flex-wrap: wrap;
-            }
-
-            .footer-content {
-                flex-direction: column;
-                gap: 1.5rem;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .industries-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content > * {
-            animation: fadeInUp 0.6s ease forwards;
-            opacity: 0;
-        }
-
-        .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-        .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
-        .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
-        .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
     </style>
 </head>
 <body>
+
+    <!-- NAV -->
     <nav>
-        <a href="#" class="logo">
-            <span class="logo-symbol">∞</span>
-            LEMNOS
-        </a>
+        <a href="#" class="logo">LEMNOS <span>AI Operations</span></a>
         <div class="nav-links">
-            <a href="#how-we-work">How We Work</a>
-            <a href="#case-study">Case Studies</a>
-            <a href="#why-custom">Why Custom</a>
+            <a href="#services">Services</a>
+            <a href="#openclaw">OpenClaw</a>
             <a href="#promise">Our Promise</a>
-            <a href="https://calendly.com/nick-getlemnos/30min" class="cta-btn">Book a Call</a>
+            <a href="#industries">Who We Serve</a>
+            <a href="https://calendly.com/getlemnos/intro" target="_blank" class="nav-cta">Book a Call</a>
         </div>
     </nav>
 
+    <!-- HERO -->
     <section class="hero">
         <div class="hero-content">
-            <div class="hero-label">Custom AI Systems</div>
-            <h1>We build <span class="highlight">competitive advantages</span> your competitors will never see coming.</h1>
-            <p class="hero-subtitle">Custom AI and agentic systems, built for your exact workflow. Confidential. Exclusive. Yours.</p>
-            <div class="hero-cta">
-                <a href="https://calendly.com/nick-getlemnos/30min" class="btn-primary">
-                    Schedule a Consultation
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+            <div class="hero-badge">
+                <div class="pulse"></div>
+                Now deploying OpenClaw for businesses
+            </div>
+            <h1>AI that <span class="highlight">actually runs</span> your business.<br>Not just talks about it.</h1>
+            <p class="subtitle">Lemnos deploys autonomous AI agents that work 24/7 — managing operations, generating leads, monitoring markets, and executing workflows while you focus on what matters.</p>
+            <div class="hero-ctas">
+                <a href="https://calendly.com/getlemnos/intro" target="_blank" class="btn-primary">
+                    Book a Free Strategy Call
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
-                <a href="#case-study" class="btn-secondary">See Our Work</a>
+                <a href="#services" class="btn-secondary">See What We Build</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Two Ways to Work With Us -->
-    <section class="two-ways" id="how-we-work">
-        <div class="two-ways-container">
-            <div class="two-ways-header">
-                <div class="section-label">How We Work</div>
-                <h2 class="section-title">Two ways to work with us.</h2>
-                <p class="section-subtitle">Choose the level of privacy and control that fits your business.</p>
-            </div>
-
-            <div class="two-ways-grid">
-                <!-- Standard Tier -->
-                <div class="tier-card">
-                    <div class="tier-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                            <line x1="8" y1="21" x2="16" y2="21"/>
-                            <line x1="12" y1="17" x2="12" y2="21"/>
-                        </svg>
-                    </div>
-                    <h3 class="tier-name">Lemnos Standard</h3>
-                    <p class="tier-tagline">Custom AI built for your workflow. We handle everything — you just use it.</p>
-                    
-                    <ul class="tier-features">
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            Custom AI system built for your exact workflow
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            Your data never touches public AI (ChatGPT, etc.)
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            We build, deploy, and manage it for you
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            Full confidentiality guaranteed
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            Ongoing support & maintenance
-                        </li>
-                    </ul>
-
-                    <div class="tier-best-for">
-                        <div class="tier-best-for-label">Best for</div>
-                        <div class="tier-best-for-text">Most businesses who want custom AI without IT complexity</div>
-                    </div>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="number">24/7</div>
+                    <div class="label">Your AI agents never sleep</div>
                 </div>
-
-                <!-- Private Tier -->
-                <div class="tier-card featured">
-                    <div class="tier-badge">Maximum Control</div>
-                    <div class="tier-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                    </div>
-                    <h3 class="tier-name">Lemnos Private</h3>
-                    <p class="tier-tagline">Everything in Standard, plus we set up YOUR private cloud. You own everything.</p>
-                    
-                    <ul class="tier-features">
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            Everything in Standard
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            We set up YOUR private AI infrastructure
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            AI runs on YOUR servers, in YOUR office
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            You own the hardware, software, and keys
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            Zero external data exposure—ever
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                            We hand you the keys (or stay on retainer)
-                        </li>
-                    </ul>
-
-                    <div class="tier-best-for">
-                        <div class="tier-best-for-label">Best for</div>
-                        <div class="tier-best-for-text">Regulated industries, sensitive data, maximum sovereignty</div>
-                    </div>
+                <div class="hero-stat">
+                    <div class="number">3x</div>
+                    <div class="label">Operational capacity, same team</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="number">&lt; 1 week</div>
+                    <div class="label">From call to live deployment</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Promise Section -->
+    <!-- SERVICES -->
+    <section class="services" id="services">
+        <div class="services-header">
+            <div class="section-label">What We Build</div>
+            <h2 class="section-title">Three ways we put AI to work for you.</h2>
+            <p class="section-sub">Every business is different. We match the right AI approach to your specific workflows, industry, and goals.</p>
+        </div>
+        <div class="services-grid">
+
+            <!-- OpenClaw Deployment -->
+            <div class="service-card featured">
+                <div class="service-badge">Most Popular</div>
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <h3>OpenClaw Deployment</h3>
+                <p>We set up, secure, and configure OpenClaw — the viral open-source AI agent — so it actually runs your business. Not a toy. A digital employee.</p>
+                <ul class="service-features">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Secure cloud or on-premise installation
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Custom skills built for your workflows
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Connected to WhatsApp, Telegram, Slack
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        24/7 autonomous task execution
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Ongoing management &amp; optimization
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Document Intelligence -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                </div>
+                <h3>Document Intelligence</h3>
+                <p>Custom AI systems that read, understand, and act on your documents — blueprints, invoices, contracts, medical records, compliance files.</p>
+                <ul class="service-features">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Automated document processing
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Data extraction &amp; analysis
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Compliance monitoring
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Custom-built for your industry
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Custom AI Systems -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <h3>Custom AI Systems</h3>
+                <p>Bespoke AI solutions that don't exist off-the-shelf. We architect and build the exact system your business needs — no compromises, no generic tools.</p>
+                <ul class="service-features">
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Lead generation &amp; outreach automation
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Market intelligence &amp; competitor monitoring
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Content pipelines &amp; scheduling
+                    </li>
+                    <li>
+                        <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+                        Multi-agent business operating systems
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- OPENCLAW DEEP DIVE -->
+    <section class="openclaw-section" id="openclaw">
+        <div class="openclaw-container">
+            <div class="openclaw-split">
+                <div class="openclaw-text">
+                    <div class="section-label">OpenClaw Specialists</div>
+                    <h2>Everyone's heard of <span class="lemon">OpenClaw.</span><br>Almost nobody can set it up right.</h2>
+                    <p>OpenClaw is the viral AI agent with 140,000+ GitHub stars that can run your entire business from a chat message. But its own maintainers warn it's "too dangerous" for non-technical users. That's where we come in. We handle the installation, security hardening, custom skill development, and ongoing management — so you get the power without the risk.</p>
+                    <div class="openclaw-tiers">
+                        <div class="oc-tier">
+                            <div class="oc-tier-header">
+                                <span class="oc-tier-name">Setup &amp; Go</span>
+                                <span class="oc-tier-price">From $1,500</span>
+                            </div>
+                            <p>Installation, security hardening, 3 core skills, 1 messaging channel, 30-min training. You're live in days.</p>
+                        </div>
+                        <div class="oc-tier">
+                            <div class="oc-tier-header">
+                                <span class="oc-tier-name">Full Deployment</span>
+                                <span class="oc-tier-price">From $3,000</span>
+                            </div>
+                            <p>Everything above + custom skills for your business, multi-channel, scheduled automations, 2 weeks of tuning.</p>
+                        </div>
+                        <div class="oc-tier">
+                            <div class="oc-tier-header">
+                                <span class="oc-tier-name">Managed Service</span>
+                                <span class="oc-tier-price">$500–$1,500/mo</span>
+                            </div>
+                            <p>Ongoing monitoring, skill updates, security patches, monthly optimization. Your AI agent, always improving.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="openclaw-visual">
+                    <div class="terminal-mock">
+                        <div class="terminal-header">
+                            <div class="terminal-dot red"></div>
+                            <div class="terminal-dot yellow"></div>
+                            <div class="terminal-dot green"></div>
+                        </div>
+                        <div class="terminal-body">
+                            <div><span class="prompt">$</span> <span class="command">openclaw gateway --status</span></div>
+                            <div><span class="success">✓ Gateway running on port 18789</span></div>
+                            <div><span class="success">✓ 5 skills active</span></div>
+                            <div><span class="success">✓ WhatsApp connected</span></div>
+                            <div><span class="success">✓ Telegram connected</span></div>
+                            <div style="margin-top:1rem"><span class="prompt">$</span> <span class="command">openclaw agent --message "Morning briefing"</span></div>
+                            <div style="margin-top:0.5rem"><span class="info">🦞 Good morning! Here's your briefing:</span></div>
+                            <div><span class="output">→ 3 new leads identified overnight</span></div>
+                            <div><span class="output">→ Competitor dropped prices 12%</span></div>
+                            <div><span class="output">→ 5 content drafts ready for review</span></div>
+                            <div><span class="output">→ All systems nominal</span></div>
+                            <div style="margin-top:1rem"><span class="prompt">$</span> <span class="terminal-cursor"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROMISE -->
     <section class="promise" id="promise">
-        <div class="promise-grid">
-            <div class="promise-content">
+        <div class="promise-container">
+            <div class="promise-header">
                 <div class="section-label">The Lemnos Promise</div>
                 <h2 class="section-title">Your edge. Protected.</h2>
-                <p class="section-subtitle">When we build for you, it stays yours. We don't resell. We don't talk. Your competitors will never know why you're winning.</p>
-                
-                <div class="promise-features">
-                    <div class="promise-feature">
-                        <div class="promise-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Fully Confidential</h4>
-                            <p>Your system, your data, your secret. We sign NDAs and never discuss client work.</p>
-                        </div>
-                    </div>
-                    <div class="promise-feature">
-                        <div class="promise-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Never Resold</h4>
-                            <p>What we build for you is custom. We don't package it and sell it to your competitors.</p>
-                        </div>
-                    </div>
-                    <div class="promise-feature">
-                        <div class="promise-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                                <circle cx="12" cy="12" r="10"/>
-                                <path d="M12 6v6l4 2"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h4>Lasting Advantage</h4>
-                            <p>While others use the same tools, you operate with a system built only for you.</p>
-                        </div>
-                    </div>
-                </div>
+                <p class="section-sub">We build secret weapons for businesses. That requires absolute trust.</p>
             </div>
-            <div class="promise-visual">
+            <div class="promise-grid">
                 <div class="promise-card">
-                    <p class="promise-quote">"Everyone's using the same <span class="em">off-the-shelf tools</span>. The winners are building <span class="em">secret weapons</span>."</p>
-                    <p class="promise-attribution">— The Lemnos Philosophy</p>
+                    <svg viewBox="0 0 24 24" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                    <h3>Fully Confidential</h3>
+                    <p>Every engagement is covered by NDA. We never discuss your systems, your data, or even that you're a client.</p>
+                </div>
+                <div class="promise-card">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <h3>Never Resold</h3>
+                    <p>What we build for you stays yours. We don't resell custom systems to your competitors. Ever.</p>
+                </div>
+                <div class="promise-card">
+                    <svg viewBox="0 0 24 24" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    <h3>Lasting Advantage</h3>
+                    <p>Everyone's using the same off-the-shelf tools. We build systems that give you an edge they can't buy.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
-    <section class="problem" id="problem">
-        <div class="problem-container">
-            <div class="problem-header">
-                <div class="section-label">The Problem</div>
-                <h2 class="section-title">Same tools. Same limits. Same ceiling.</h2>
-                <p class="section-subtitle">Your competitors are all using the same generic software. That's not a strategy—it's a race to the bottom.</p>
-            </div>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <div class="problem-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
-                    <h3>Hours Lost Daily</h3>
-                    <p>Your team manually processes documents, extracts data, and handles repetitive tasks that should be automated.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                            <line x1="8" y1="21" x2="16" y2="21"/>
-                            <line x1="12" y1="17" x2="12" y2="21"/>
-                        </svg>
-                    </div>
-                    <h3>Generic Software</h3>
-                    <p>Off-the-shelf tools give you 80% of what you need. The 20% that's missing is exactly what would give you an edge.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                    </div>
-                    <h3>Commodity Competition</h3>
-                    <p>When everyone uses the same tools, you're competing on price and luck—not capability.</p>
-                </div>
-                <div class="problem-card">
-                    <div class="problem-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-                            <line x1="12" y1="9" x2="12" y2="13"/>
-                            <line x1="12" y1="17" x2="12.01" y2="17"/>
-                        </svg>
-                    </div>
-                    <h3>Invisible Ceiling</h3>
-                    <p>You can't scale past a certain point because your systems weren't built for your specific growth path.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Case Study Section -->
-    <section class="case-study" id="case-study">
-        <div class="case-study-container">
-            <div class="case-study-header">
-                <div class="section-label">Case Studies</div>
-                <h2 class="section-title">Real results. Real clients.</h2>
-            </div>
-
-            <div class="case-study-intro">
-                <p>Most of our clients prefer to keep their competitive advantage invisible. These clients gave us rare permission to share their stories—so you can see what's possible.</p>
-            </div>
-
-            <!-- Case Study 1: Fire Protection -->
-            <div class="case-study-card" style="margin-bottom: 2rem;">
-                <div class="case-study-card-header">
-                    <div class="client-type">
-                        <div class="client-type-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <span>Fire Protection Contractor</span>
-                    </div>
-                    <div class="confidential-badge">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        </svg>
-                        Shared with permission
-                    </div>
-                </div>
-                <div class="case-study-card-body">
-                    <div class="case-study-section">
-                        <h4>The Challenge</h4>
-                        <p>The owner and his team were spending <strong>6-8 hours per day</strong> manually reading blueprints, counting devices, and running calculations—just to submit a single bid. This left no time for revenue-generating service calls. They were leaving money on the table.</p>
-                    </div>
-
-                    <div class="case-study-section">
-                        <h4>What We Built</h4>
-                        <p>A complete agentic AI system tailored to their exact workflow:</p>
-                        <div class="features-built">
-                            <span class="feature-tag">Bid Platform Scraping</span>
-                            <span class="feature-tag">Auto-Matching Criteria</span>
-                            <span class="feature-tag">Blueprint Analysis</span>
-                            <span class="feature-tag">Device Counting</span>
-                            <span class="feature-tag">Quantity Calculations</span>
-                            <span class="feature-tag">Financial Export</span>
-                            <span class="feature-tag">Bid Documentation</span>
-                        </div>
-                    </div>
-
-                    <div class="case-study-section">
-                        <h4>The Results</h4>
-                        <div class="results-row">
-                            <div class="result-item">
-                                <div class="result-before">
-                                    <span class="result-label">Before</span>
-                                    <span class="result-value old">6-8 hrs</span>
-                                </div>
-                                <span class="result-arrow">→</span>
-                                <div class="result-after">
-                                    <span class="result-label">After</span>
-                                    <span class="result-value new">15 min</span>
-                                </div>
-                            </div>
-                            <div class="result-stat">
-                                <div class="result-stat-value">97%</div>
-                                <div class="result-stat-label">Time Saved</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="case-study-quote">
-                        <blockquote>"This opened up so many more avenues for me and my guys to work on now."</blockquote>
-                        <cite>— Owner, Fire Protection Contractor</cite>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Case Study 2: HR / Sports & Entertainment -->
-            <div class="case-study-card">
-                <div class="case-study-card-header">
-                    <div class="client-type">
-                        <div class="client-type-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                            </svg>
-                        </div>
-                        <span>Head of HR | Major Sports & Entertainment Company</span>
-                    </div>
-                    <div class="confidential-badge">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                        </svg>
-                        Shared with permission
-                    </div>
-                </div>
-                <div class="case-study-card-body">
-                    <div class="case-study-section">
-                        <h4>The Challenge</h4>
-                        <p>He wanted to use AI to navigate employee handbooks, compliance docs, and HR policies—but couldn't. <strong>The data was too sensitive.</strong> His workaround? Manually copying snippets, stripping out confidential information, and pasting what was left into ChatGPT. Tedious. Time-consuming. Still risky.</p>
-                    </div>
-
-                    <div class="case-study-section">
-                        <h4>What We Built</h4>
-                        <p>A private AI system trained entirely on his internal documents:</p>
-                        <div class="features-built">
-                            <span class="feature-tag">Private LLM Environment</span>
-                            <span class="feature-tag">Custom Training on Internal Docs</span>
-                            <span class="feature-tag">HR Policy Search</span>
-                            <span class="feature-tag">Compliance Navigation</span>
-                            <span class="feature-tag">Zero Data Exposure</span>
-                        </div>
-                    </div>
-
-                    <div class="case-study-section">
-                        <h4>The Results</h4>
-                        <div class="results-row">
-                            <div class="result-item">
-                                <div class="result-before">
-                                    <span class="result-label">Before</span>
-                                    <span class="result-value old">25+ hrs/wk</span>
-                                </div>
-                                <span class="result-arrow">→</span>
-                                <div class="result-after">
-                                    <span class="result-label">After</span>
-                                    <span class="result-value new">Instant</span>
-                                </div>
-                            </div>
-                            <div class="result-stat">
-                                <div class="result-stat-value">100%</div>
-                                <div class="result-stat-label">Private & Secure</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="case-study-quote">
-                        <blockquote>"I feel much safer putting company data into this. It saved me precious time I can now spend with family and on other important matters."</blockquote>
-                        <cite>— Head of HR, Major Sports & Entertainment Company</cite>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Why Custom Section -->
-    <section class="why-custom" id="why-custom">
-        <div class="why-custom-container">
-            <div class="why-custom-header">
-                <div class="section-label">Why Custom Wins</div>
-                <h2 class="section-title">Off-the-shelf vs. built-for-you.</h2>
-            </div>
-
-            <div class="comparison-grid">
-                <div class="comparison-card them">
-                    <div class="comparison-card-header">
-                        <div class="comparison-card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                                <line x1="8" y1="21" x2="16" y2="21"/>
-                                <line x1="12" y1="17" x2="12" y2="21"/>
-                            </svg>
-                        </div>
-                        <h3>Generic Tools</h3>
-                    </div>
-                    <ul class="comparison-list">
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            <span>One-size-fits-all features</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            <span>Your competitors use the same tools</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            <span>You adapt to the software's limits</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            <span>Pay for features you'll never use</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            <span>No integration with your real workflow</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="comparison-card us">
-                    <div class="comparison-card-header">
-                        <div class="comparison-card-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                            </svg>
-                        </div>
-                        <h3>Lemnos Custom Build</h3>
-                    </div>
-                    <ul class="comparison-list">
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>Built for your exact workflow</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>Your competitors can't access it</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>The software adapts to you</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>Every feature is one you'll use</span>
-                        </li>
-                        <li>
-                            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><polyline points="20 6 9 17 4 12"/></svg>
-                            <span>Connects to all your existing systems</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Industries Section -->
+    <!-- INDUSTRIES -->
     <section class="industries" id="industries">
         <div class="industries-container">
             <div class="industries-header">
-                <div class="section-label">Industries</div>
-                <h2 class="section-title">If you have documents, we can automate them.</h2>
+                <div class="section-label">Who We Serve</div>
+                <h2 class="section-title">Built for businesses that move fast.</h2>
+                <p class="section-sub">If your industry has documents, workflows, or operations that a human currently handles manually — we can automate it.</p>
             </div>
-
-            <div class="industries-grid">
-                <div class="industry-card">
-                    <div class="industry-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M2 20h20"/>
-                            <path d="M5 20V8.5L12 4l7 4.5V20"/>
-                            <path d="M9 20v-6h6v6"/>
-                        </svg>
-                    </div>
-                    <h3>Construction</h3>
-                    <p>Blueprints, bids, specs, permits</p>
-                </div>
-                <div class="industry-card">
-                    <div class="industry-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                    </div>
-                    <h3>Legal</h3>
-                    <p>Contracts, discovery, compliance</p>
-                </div>
-                <div class="industry-card">
-                    <div class="industry-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <line x1="12" y1="1" x2="12" y2="23"/>
-                            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                        </svg>
-                    </div>
-                    <h3>Accounting</h3>
-                    <p>Invoices, receipts, financials</p>
-                </div>
-                <div class="industry-card">
-                    <div class="industry-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-                            <polyline points="9 22 9 12 15 12 15 22"/>
-                        </svg>
-                    </div>
-                    <h3>Real Estate</h3>
-                    <p>Leases, titles, appraisals</p>
-                </div>
-                <div class="industry-card">
-                    <div class="industry-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                    </div>
-                    <h3>Insurance</h3>
-                    <p>Claims, policies, assessments</p>
-                </div>
-                <div class="industry-card">
-                    <div class="industry-card-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
-                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
-                        </svg>
-                    </div>
-                    <h3>Healthcare</h3>
-                    <p>Records, coding, compliance</p>
-                </div>
+            <div class="industries-tags">
+                <div class="industry-tag">Medical Practices</div>
+                <div class="industry-tag">Security Companies</div>
+                <div class="industry-tag">E-Commerce &amp; Amazon FBA</div>
+                <div class="industry-tag">Law Firms</div>
+                <div class="industry-tag">Construction &amp; Contracting</div>
+                <div class="industry-tag">Health &amp; Supplement Brands</div>
+                <div class="industry-tag">Real Estate</div>
+                <div class="industry-tag">Financial Services</div>
+                <div class="industry-tag">Marketing Agencies</div>
+                <div class="industry-tag">Solo Founders &amp; Startups</div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="contact">
-        <div class="cta-container">
-            <div class="section-label">Get Started</div>
-            <h2 class="section-title">Ready to build your advantage?</h2>
-            <p class="section-subtitle">Schedule a confidential consultation. We'll discuss your workflow and explore what's possible.</p>
-            <a href="https://calendly.com/nick-getlemnos/30min" class="btn-primary">
-                Schedule a Consultation
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                </svg>
-            </a>
+    <!-- CTA -->
+    <section class="cta">
+        <div class="cta-content">
+            <div class="section-label">Ready?</div>
+            <h2>Stop hiring. Start <span class="lemon">deploying.</span></h2>
+            <p>Book a free 30-minute strategy call. We'll map your workflows, identify what to automate first, and show you exactly what an AI agent could do for your business — no pitch, no pressure.</p>
+            <div class="cta-actions">
+                <a href="https://calendly.com/getlemnos/intro" target="_blank" class="btn-primary">
+                    Book Your Free Call
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="/cdn-cgi/l/email-protection#3b555258507b5c5e4f575e56555448155a52" class="btn-secondary">Email Us Directly</a>
+            </div>
+            <p class="cta-contact">
+                <a href="/cdn-cgi/l/email-protection#107e79737b507775647c757d7e7f633e7179"><span class="__cf_email__" data-cfemail="37595e545c775052435b525a59584419565e">[email&#160;protected]</span></a> &nbsp;·&nbsp; <a href="tel:+19172757123">(917) 275-7123</a>
+            </p>
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">
-                <span class="logo-symbol">∞</span>
-                LEMNOS
-            </div>
-            <div class="footer-links">
-                <a href="/cdn-cgi/l/email-protection#adc3c4cec6edcac8d9c1c8c0c3c2de83ccc4"><span class="__cf_email__" data-cfemail="244a4d474f644341504841494a4b570a454d">[email&#160;protected]</span></a>
-                <a href="tel:+19172757123">(917) 275-7123</a>
-            </div>
-            <div class="footer-copyright">© 2025 Lemnos. All rights reserved.</div>
-        </div>
-    </footer>
-
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-
-        // Intersection Observer for fade-in
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-        document.querySelectorAll('.problem-card, .industry-card, .comparison-card, .promise-feature, .case-study-card').forEach(el => {
-  
+        <div class="footer-left">&copy; 2026 Lemnos AI Operations. All rights reserved.</div>
+        <div class="footer-right">
+            <a href="/cdn
