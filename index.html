@@ -1,608 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-P3NXW7PV');</script>
-    <!-- End Google Tag Manager -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lemnos | AI That Works While You Sleep</title>
-    <meta name="description" content="Lemnos deploys autonomous AI agents that work 24/7 — managing operations, generating leads, and executing workflows while you focus on what matters.">
+    <title>Lemnos | Hire Max — Your AI Employee That Never Calls Out Sick</title>
+    <meta name="description" content="Lemnos deploys Max, an autonomous AI employee that sends outreach, manages social media, coordinates with your team, and reports back every morning. 24/7.">
+    <meta property="og:title" content="Lemnos | Hire an AI Employee for Your Business">
+    <meta property="og:description" content="Meet Max — the AI employee that sends 20+ personalized emails/day, manages your social media, and delivers end-of-day reports.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://getlemnos.ai">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Meta Pixel Code — paste your pixel base code here -->
+    <!-- End Meta Pixel Code -->
     <style>
         :root {
-            --lemon: #E8D44D;
-            --lemon-light: #F0E068;
-            --lemon-dim: rgba(232, 212, 77, 0.15);
-            --black: #09090B;
-            --black-light: #111113;
-            --black-lighter: #18181B;
-            --gray-dark: #27272A;
-            --gray: #71717A;
-            --gray-light: #A1A1AA;
-            --white: #FAFAFA;
-            --font-display: 'Syne', sans-serif;
-            --font-body: 'Inter', sans-serif;
+            --black:#09090B;--black-light:#0F0F12;--black-card:#141418;
+            --gold:#E8D44D;--gold-dim:#C4B23E;--gold-glow:rgba(232,212,77,0.12);
+            --white:#FAFAFA;--white-dim:#A1A1AA;--white-muted:#71717A;
+            --green:#22C55E;--red:#EF4444;
+            --border:rgba(255,255,255,0.06);--border-light:rgba(255,255,255,0.1);
+        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        html{scroll-behavior:smooth}
+        body{font-family:'Inter',-apple-system,sans-serif;background:var(--black);color:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+        body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+
+        /* NAV */
+        nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;background:rgba(9,9,11,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+        .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.15em;color:var(--white);text-decoration:none}
+        .nav-links{display:flex;gap:2rem;align-items:center}
+        .nav-links a{color:var(--white-dim);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.02em;transition:color .2s}
+        .nav-links a:hover{color:var(--white)}
+        .nav-cta{background:var(--gold)!important;color:var(--black)!important;padding:.6rem 1.4rem!important;border-radius:6px;font-weight:700!important;font-size:.8rem!important;letter-spacing:.04em;transition:all .2s}
+        .nav-cta:hover{background:var(--gold-dim)!important;transform:translateY(-1px)}
+
+        /* HERO */
+        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2rem 4rem;max-width:1200px;margin:0 auto}
+        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold-glow);border:1px solid rgba(232,212,77,0.2);padding:.4rem 1rem;border-radius:100px;font-size:.78rem;font-weight:600;color:var(--gold);margin-bottom:2rem;width:fit-content;letter-spacing:.03em}
+        .hero-badge .pulse{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
+        .hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,6vw,4.5rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.5rem;max-width:800px}
+        .hero h1 .gold{color:var(--gold)}
+        .hero-sub{font-size:1.15rem;color:var(--white-dim);max-width:620px;line-height:1.7;margin-bottom:2.5rem}
+        .hero-ctas{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:4rem}
+        .btn-primary{background:var(--gold);color:var(--black);padding:.9rem 2rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.95rem;letter-spacing:.02em;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+        .btn-primary:hover{background:var(--gold-dim);transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,212,77,0.2)}
+        .btn-secondary{color:var(--white-dim);text-decoration:none;font-weight:500;font-size:.95rem;padding:.9rem 1.5rem;border:1px solid var(--border-light);border-radius:8px;transition:all .2s}
+        .btn-secondary:hover{color:var(--white);border-color:var(--white-muted)}
+        .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding-top:3rem;border-top:1px solid var(--border)}
+        .stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--gold);letter-spacing:-.02em}
+        .stat-label{font-size:.8rem;color:var(--white-muted);margin-top:.25rem;letter-spacing:.02em}
+
+        /* SECTIONS */
+        section{padding:6rem 2rem;max-width:1200px;margin:0 auto}
+        .section-label{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+        .section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:1.2rem}
+        .section-sub{font-size:1.05rem;color:var(--white-dim);max-width:600px;line-height:1.7}
+        .divider{height:1px;background:var(--border);max-width:1200px;margin:0 auto}
+
+        /* MEET MAX */
+        .meet-max{background:var(--black-light);border:1px solid var(--border);border-radius:16px;padding:3.5rem;margin-top:2rem}
+        .max-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:2.5rem}
+        .max-avatar{width:72px;height:72px;background:linear-gradient(135deg,var(--gold),#B8A030);border-radius:18px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--black);flex-shrink:0}
+        .max-info h3{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700}
+        .max-title{color:var(--gold);font-size:.85rem;font-weight:600;letter-spacing:.03em}
+        .max-status{color:var(--green);font-size:.78rem;font-weight:500;display:flex;align-items:center;gap:.4rem;margin-top:.2rem}
+        .max-status::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block}
+        .max-caps{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+        .mc{display:flex;align-items:flex-start;gap:.8rem;padding:1rem;background:rgba(255,255,255,0.02);border-radius:10px;border:1px solid var(--border)}
+        .mc-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
+        .mc h4{font-size:.9rem;font-weight:600;margin-bottom:.2rem}
+        .mc p{font-size:.8rem;color:var(--white-muted);line-height:1.5}
+
+        /* BEFORE / AFTER */
+        .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+        .ba{padding:2.5rem;border-radius:14px;border:1px solid var(--border)}
+        .ba.before{background:rgba(239,68,68,0.03);border-color:rgba(239,68,68,0.15)}
+        .ba.after{background:var(--gold-glow);border-color:rgba(232,212,77,0.2)}
+        .ba h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem}
+        .ba.before h3{color:var(--red)}.ba.after h3{color:var(--gold)}
+        .ba ul{list-style:none;display:flex;flex-direction:column;gap:.8rem}
+        .ba li{font-size:.88rem;color:var(--white-dim);padding-left:1.5rem;position:relative;line-height:1.5}
+        .ba.before li::before{content:'✕';position:absolute;left:0;color:var(--red);font-weight:700;font-size:.75rem}
+        .ba.after li::before{content:'→';position:absolute;left:0;color:var(--gold);font-weight:700}
+
+        /* SERVICES */
+        .srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+        .srv{background:var(--black-card);border:1px solid var(--border);border-radius:14px;padding:2rem;transition:all .3s}
+        .srv:hover{border-color:rgba(232,212,77,0.2);transform:translateY(-4px)}
+        .srv-icon{font-size:1.8rem;margin-bottom:1rem}
+        .srv h3{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.6rem}
+        .srv>p{font-size:.85rem;color:var(--white-muted);line-height:1.6}
+        .srv ul{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.5rem}
+        .srv li{font-size:.82rem;color:var(--white-dim);padding-left:1.2rem;position:relative}
+        .srv li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:.75rem}
+
+        /* PRICING */
+        .pr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem}
+        .pr{background:var(--black-card);border:1px solid var(--border);border-radius:14px;padding:2rem;display:flex;flex-direction:column;transition:all .3s}
+        .pr:hover{border-color:rgba(232,212,77,0.2)}
+        .pr.feat{border-color:var(--gold);position:relative;background:linear-gradient(135deg,rgba(232,212,77,0.05),transparent)}
+        .pr.feat::before{content:'MOST POPULAR';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);font-size:.65rem;font-weight:800;padding:.25rem .8rem;border-radius:100px;letter-spacing:.1em;white-space:nowrap}
+        .pr h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
+        .pr .pd{font-size:.78rem;color:var(--white-muted);margin-bottom:1.2rem;line-height:1.5;min-height:38px}
+        .pr .pa{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;margin-bottom:.3rem;letter-spacing:-.02em}
+        .pr .pa small{font-size:.85rem;font-weight:400;color:var(--white-muted)}
+        .pr .pn{font-size:.72rem;color:var(--gold);font-weight:600;margin-bottom:1.5rem}
+        .pr ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem;flex-grow:1}
+        .pr li{font-size:.8rem;color:var(--white-dim);padding-left:1.2rem;position:relative;line-height:1.4}
+        .pr li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:.72rem}
+        .pr-btn{display:block;text-align:center;padding:.75rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem;letter-spacing:.02em;transition:all .2s;margin-top:auto}
+        .pr-btn.gold{background:var(--gold);color:var(--black)}
+        .pr-btn.gold:hover{background:var(--gold-dim)}
+        .pr-btn.outline{border:1px solid var(--border-light);color:var(--white)}
+        .pr-btn.outline:hover{border-color:var(--gold);color:var(--gold)}
+
+        /* TERMINAL */
+        .term{background:#0C0C0E;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:3rem;font-family:'SF Mono','Fira Code','Consolas',monospace}
+        .term-bar{padding:.8rem 1rem;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.4rem}
+        .td{width:10px;height:10px;border-radius:50%}.td.r{background:#FF5F57}.td.y{background:#FFBD2E}.td.g{background:#28C840}
+        .term-body{padding:1.5rem;font-size:.82rem;line-height:1.8}
+        .term-body .p{color:var(--gold)}.term-body .c{color:var(--white)}.term-body .o{color:var(--white-muted)}.term-body .s{color:var(--green)}.term-body .h{color:var(--gold)}
+
+        /* TESTIMONIALS */
+        .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+        .test{background:var(--black-card);border:1px solid var(--border);border-radius:14px;padding:2rem}
+        .test blockquote{font-size:.92rem;line-height:1.7;color:var(--white-dim);font-style:italic;margin-bottom:1.2rem}
+        .test .ta{font-size:.82rem;font-weight:600;color:var(--white)}
+        .test .tr{font-size:.75rem;color:var(--white-muted)}
+
+        /* CRED + PROMISE */
+        .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
+        .card3{padding:2rem;background:var(--black-card);border:1px solid var(--border);border-radius:14px}
+        .card3 h4,.card3 h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.5rem;font-size:1rem}
+        .card3 p{font-size:.82rem;color:var(--white-muted);line-height:1.6}
+
+        /* INDUSTRIES */
+        .ind-wrap{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
+        .ind{padding:.5rem 1.2rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:100px;font-size:.82rem;color:var(--white-dim);transition:all .2s;cursor:default}
+        .ind:hover{border-color:var(--gold);color:var(--gold)}
+
+        /* FINAL CTA */
+        .final{text-align:center;padding:8rem 2rem;max-width:700px;margin:0 auto}
+        .final .section-sub{margin:0 auto 2.5rem;text-align:center}
+        .final .cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+
+        /* FOOTER */
+        footer{border-top:1px solid var(--border);padding:3rem 2rem;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+        .fl{font-size:.78rem;color:var(--white-muted)}
+        .fc{display:flex;gap:2rem}
+        .fc a{color:var(--white-dim);text-decoration:none;font-size:.82rem;transition:color .2s}
+        .fc a:hover{color:var(--gold)}
+
+        /* RESPONSIVE */
+        @media(max-width:900px){
+            .hero-stats{grid-template-columns:repeat(2,1fr)}
+            .srv-grid,.test-grid,.grid3{grid-template-columns:1fr}
+            .pr-grid{grid-template-columns:repeat(2,1fr)}
+            .ba-grid{grid-template-columns:1fr}
+            .max-caps{grid-template-columns:1fr}
+            .meet-max{padding:2rem}
+            .nav-links a:not(.nav-cta){display:none}
+        }
+        @media(max-width:600px){
+            .pr-grid{grid-template-columns:1fr}
+            .hero-stats{grid-template-columns:repeat(2,1fr);gap:1rem}
+            footer{flex-direction:column;gap:1rem;text-align:center}
+            .fc{flex-direction:column;gap:.5rem}
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font-body);
-            background: var(--black);
-            color: var(--white);
-            line-height: 1.6;
-            overflow-x: hidden;
-            font-weight: 300;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            opacity: 0.02;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            z-index: 1000;
-        }
-
-        /* ---- NAV ---- */
-        nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 1.25rem 4rem;
-            display: flex; justify-content: space-between; align-items: center;
-            background: rgba(9, 9, 11, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.25rem; font-weight: 700;
-            color: var(--white); text-decoration: none;
-            display: flex; align-items: center; gap: 0.6rem;
-        }
-        .logo-dot {
-            width: 10px; height: 10px; border-radius: 50%;
-            background: var(--lemon);
-            box-shadow: 0 0 12px rgba(232,212,77,0.4);
-        }
-        .nav-links { display: flex; align-items: center; gap: 2rem; }
-        .nav-links a {
-            color: var(--gray-light); text-decoration: none;
-            font-size: 0.875rem; font-weight: 400;
-            transition: color 0.2s;
-        }
-        .nav-links a:hover { color: var(--white); }
-        .nav-cta {
-            background: var(--lemon); color: var(--black);
-            padding: 0.6rem 1.4rem; border-radius: 6px;
-            font-weight: 600; font-size: 0.875rem;
-            text-decoration: none; transition: all 0.2s;
-        }
-        .nav-cta:hover { background: var(--lemon-light); transform: translateY(-1px); }
-
-        /* ---- HERO ---- */
-        .hero {
-            padding: 10rem 4rem 5rem;
-            max-width: 1200px; margin: 0 auto;
-            text-align: center;
-        }
-        .hero-badge {
-            display: inline-block;
-            padding: 0.4rem 1rem; border-radius: 100px;
-            background: var(--lemon-dim);
-            color: var(--lemon);
-            font-size: 0.8rem; font-weight: 500;
-            margin-bottom: 1.5rem;
-            border: 1px solid rgba(232,212,77,0.2);
-        }
-        .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800; line-height: 1.1;
-            letter-spacing: -0.03em;
-            margin-bottom: 1.5rem;
-        }
-        .hero h1 span { color: var(--lemon); }
-        .hero p {
-            font-size: 1.15rem; color: var(--gray-light);
-            max-width: 640px; margin: 0 auto 2.5rem;
-            line-height: 1.7;
-        }
-        .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-        .btn-primary {
-            background: var(--lemon); color: var(--black);
-            padding: 0.9rem 2rem; border-radius: 8px;
-            font-weight: 700; font-size: 1rem;
-            text-decoration: none; transition: all 0.2s;
-            display: inline-flex; align-items: center; gap: 0.5rem;
-        }
-        .btn-primary:hover { background: var(--lemon-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,212,77,0.2); }
-        .btn-secondary {
-            border: 1px solid var(--gray-dark); color: var(--gray-light);
-            padding: 0.9rem 2rem; border-radius: 8px;
-            font-weight: 500; font-size: 1rem;
-            text-decoration: none; transition: all 0.2s;
-            background: transparent;
-        }
-        .btn-secondary:hover { border-color: var(--gray-light); color: var(--white); }
-        .hero-stats {
-            display: flex; justify-content: center; gap: 3rem;
-            margin-top: 4rem; padding-top: 3rem;
-            border-top: 1px solid rgba(255,255,255,0.06);
-        }
-        .stat { text-align: center; }
-        .stat-num {
-            font-family: var(--font-display);
-            font-size: 2rem; font-weight: 700;
-            color: var(--lemon);
-        }
-        .stat-label { font-size: 0.8rem; color: var(--gray); margin-top: 0.3rem; }
-
-        /* ---- SECTIONS ---- */
-        section { padding: 5rem 4rem; max-width: 1200px; margin: 0 auto; }
-        .section-badge {
-            display: inline-block;
-            padding: 0.35rem 0.9rem; border-radius: 100px;
-            background: var(--lemon-dim); color: var(--lemon);
-            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-            letter-spacing: 0.08em; margin-bottom: 1rem;
-        }
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-            font-weight: 700; line-height: 1.15;
-            letter-spacing: -0.02em;
-            margin-bottom: 1rem;
-        }
-        .section-desc {
-            font-size: 1.05rem; color: var(--gray-light);
-            max-width: 600px; line-height: 1.7;
-            margin-bottom: 3rem;
-        }
-
-        /* ---- SERVICES GRID ---- */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-        .service-card {
-            background: var(--black-light);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px; padding: 2rem;
-            transition: all 0.3s;
-            position: relative;
-        }
-        .service-card:hover { border-color: rgba(232,212,77,0.2); transform: translateY(-2px); }
-        .service-card .popular {
-            position: absolute; top: -10px; left: 1.5rem;
-            background: var(--lemon); color: var(--black);
-            padding: 0.2rem 0.7rem; border-radius: 4px;
-            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-        }
-        .service-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem; font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-        .service-card p { color: var(--gray-light); font-size: 0.95rem; margin-bottom: 1.25rem; }
-        .service-card ul { list-style: none; }
-        .service-card li {
-            padding: 0.35rem 0; color: var(--gray-light);
-            font-size: 0.9rem; padding-left: 1.2rem;
-            position: relative;
-        }
-        .service-card li::before {
-            content: '✦'; position: absolute; left: 0;
-            color: var(--lemon); font-size: 0.65rem; top: 0.5rem;
-        }
-
-        /* ---- OPENCLAW / PRICING ---- */
-        .openclaw-section {
-            background: var(--black-light);
-            border-top: 1px solid rgba(255,255,255,0.04);
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-            padding: 5rem 4rem;
-        }
-        .openclaw-inner { max-width: 1200px; margin: 0 auto; }
-        .openclaw-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
-        .pricing-tiers { display: flex; flex-direction: column; gap: 1.5rem; }
-        .pricing-card {
-            background: var(--black-lighter);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px; padding: 1.75rem;
-            transition: all 0.3s;
-        }
-        .pricing-card:hover { border-color: rgba(232,212,77,0.15); }
-        .pricing-card.highlight {
-            border-color: rgba(232,212,77,0.3);
-            box-shadow: 0 0 30px rgba(232,212,77,0.05);
-        }
-        .pricing-card .tier-badge {
-            display: inline-block;
-            padding: 0.2rem 0.6rem; border-radius: 4px;
-            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-            background: var(--lemon); color: var(--black);
-            margin-bottom: 0.5rem;
-        }
-        .pricing-card h4 {
-            font-family: var(--font-display);
-            font-size: 1.15rem; font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-        .pricing-card .price {
-            font-family: var(--font-display);
-            font-size: 1.5rem; font-weight: 700;
-            color: var(--lemon); margin-bottom: 0.25rem;
-        }
-        .pricing-card .price-anchor {
-            font-size: 0.8rem; color: var(--gray);
-            font-style: italic; margin-bottom: 0.5rem;
-        }
-        .pricing-card .desc { color: var(--gray-light); font-size: 0.875rem; line-height: 1.6; }
-        .pricing-card .audit-link {
-            display: inline-block; margin-top: 0.75rem;
-            background: var(--lemon); color: var(--black);
-            padding: 0.6rem 1.2rem; border-radius: 6px;
-            font-weight: 600; font-size: 0.875rem;
-            text-decoration: none; transition: all 0.2s;
-        }
-        .pricing-card .audit-link:hover { background: var(--lemon-light); }
-
-        /* Terminal */
-        .terminal {
-            background: #0D0D0F;
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 12px; padding: 1.5rem;
-            font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
-            font-size: 0.8rem; line-height: 1.8;
-            color: var(--gray-light); overflow-x: auto;
-        }
-        .terminal .prompt { color: var(--lemon); }
-        .terminal .success { color: #34D399; }
-        .terminal .info { color: #60A5FA; }
-
-        /* ---- SOCIAL PROOF ---- */
-        .proof-section { border-top: 1px solid rgba(255,255,255,0.04); }
-        .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .proof-card {
-            background: var(--black-light);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px; padding: 2rem;
-            position: relative;
-        }
-        .proof-card::before {
-            content: '"';
-            font-family: var(--font-display);
-            font-size: 4rem; color: var(--lemon);
-            opacity: 0.2; position: absolute;
-            top: 0.5rem; left: 1.25rem; line-height: 1;
-        }
-        .proof-card blockquote {
-            font-size: 1rem; color: var(--gray-light);
-            line-height: 1.7; margin-bottom: 1rem;
-            font-style: italic; padding-top: 1rem;
-        }
-        .proof-card cite {
-            font-style: normal; font-size: 0.85rem;
-            color: var(--lemon); font-weight: 500;
-        }
-        .proof-industries {
-            text-align: center;
-            font-size: 0.85rem; color: var(--gray);
-            letter-spacing: 0.05em;
-        }
-
-        /* ---- PROMISE ---- */
-        .promise-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .promise-card {
-            background: var(--black-light);
-            border: 1px solid rgba(255,255,255,0.06);
-            border-radius: 12px; padding: 2rem;
-        }
-        .promise-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.15rem; font-weight: 700;
-            margin-bottom: 0.6rem;
-        }
-        .promise-card p { color: var(--gray-light); font-size: 0.95rem; line-height: 1.6; }
-
-        /* ---- INDUSTRIES ---- */
-        .industries-grid {
-            display: flex; flex-wrap: wrap; gap: 0.75rem;
-        }
-        .industry-tag {
-            padding: 0.5rem 1.25rem; border-radius: 100px;
-            border: 1px solid rgba(255,255,255,0.08);
-            font-size: 0.875rem; color: var(--gray-light);
-            transition: all 0.2s;
-        }
-        .industry-tag:hover { border-color: rgba(232,212,77,0.3); color: var(--white); }
-
-        /* ---- FINAL CTA ---- */
-        .final-cta {
-            text-align: center;
-            border-top: 1px solid rgba(255,255,255,0.04);
-            padding: 6rem 4rem;
-        }
-        .final-cta .section-desc { margin: 0 auto 2.5rem; }
-
-        /* ---- FOOTER ---- */
-        footer {
-            padding: 2rem 4rem;
-            border-top: 1px solid rgba(255,255,255,0.04);
-            text-align: center;
-            font-size: 0.8rem; color: var(--gray);
-        }
-        footer a { color: var(--gray-light); text-decoration: none; }
-        footer a:hover { color: var(--white); }
-
-        /* ---- RESPONSIVE ---- */
-        @media (max-width: 900px) {
-            nav { padding: 1rem 1.5rem; }
-            .nav-links { gap: 1rem; }
-            .nav-links a { display: none; }
-            .hero { padding: 8rem 1.5rem 3rem; }
-            section { padding: 3rem 1.5rem; }
-            .openclaw-section { padding: 3rem 1.5rem; }
-            .openclaw-grid { grid-template-columns: 1fr; gap: 2rem; }
-            .hero-stats { gap: 1.5rem; }
-            .hero h1 { font-size: 2.2rem; }
-            .final-cta { padding: 4rem 1.5rem; }
-            footer { padding: 1.5rem; }
-        }
-        @media (max-width: 480px) {
-            .hero-ctas { flex-direction: column; align-items: center; }
-            .btn-primary, .btn-secondary { width: 100%; text-align: center; justify-content: center; }
-            .hero-stats { flex-direction: column; gap: 1rem; }
-        }
+        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+        .anim{animation:fadeUp .6s ease-out forwards;opacity:0}
+        .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}
     </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P3NXW7PV"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
-    <!-- NAV -->
-    <nav>
-        <a href="#" class="logo">
-            <span class="logo-dot"></span>
-            LEMNOS
-        </a>
-        <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#openclaw">OpenClaw</a>
-            <a href="#results">Results</a>
-            <a href="#promise">Our Promise</a>
-            <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="nav-cta">Get AI Audit — $299</a>
-        </div>
-    </nav>
+<nav>
+    <a href="#" class="nav-logo">LEMNOS</a>
+    <div class="nav-links">
+        <a href="#max">Meet Max</a>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#results">Results</a>
+        <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="nav-cta">Get AI Audit — $299</a>
+    </div>
+</nav>
 
-    <!-- HERO -->
-    <div class="hero">
-        <span class="hero-badge">Now deploying AI agents for businesses</span>
-        <h1>AI that actually <span>runs your business.</span> Not just talks about it.</h1>
-        <p>Lemnos deploys autonomous AI agents that work 24/7 — managing operations, generating leads, monitoring markets, and executing workflows while you focus on what matters.</p>
-        <div class="hero-ctas">
-            <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn-primary">Get Your Custom AI Audit — $299 →</a>
-            <a href="https://calendly.com/nick-getlemnos/30min" class="btn-secondary">Or Book a Free Call</a>
+<section class="hero">
+    <div class="hero-badge anim"><span class="pulse"></span>Now deploying AI employees for businesses</div>
+    <h1 class="anim d1">Hire an AI employee that <span class="gold">never calls out sick.</span></h1>
+    <p class="hero-sub anim d2">Meet Max — your autonomous AI agent that sends personalized outreach, manages your social media, coordinates with your team in Slack, and reports back every morning. 24/7. For less than the cost of a part-time VA.</p>
+    <div class="hero-ctas anim d3">
+        <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn-primary">See What Max Can Do — $299 AI Audit →</a>
+        <a href="https://calendly.com/nick-getlemnos/30min" class="btn-secondary">Book a Free Call</a>
+    </div>
+    <div class="hero-stats anim d4">
+        <div><div class="stat-num">24/7</div><div class="stat-label">Max never sleeps</div></div>
+        <div><div class="stat-num">20+</div><div class="stat-label">Personalized emails per day</div></div>
+        <div><div class="stat-num">3x</div><div class="stat-label">Operational output, same team</div></div>
+        <div><div class="stat-num">&lt;48hr</div><div class="stat-label">From call to live deployment</div></div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MEET MAX -->
+<section id="max">
+    <div class="section-label">Your New Employee</div>
+    <div class="section-title">Meet Max.</div>
+    <p class="section-sub">Max doesn't answer questions. He runs operations. Think of him as the employee who handles everything you don't have time for — except he works around the clock and costs a fraction of a hire.</p>
+    <div class="meet-max">
+        <div class="max-header">
+            <div class="max-avatar">M</div>
+            <div class="max-info">
+                <h3>Max</h3>
+                <div class="max-title">AI Operations Agent — Lemnos</div>
+                <div class="max-status">Online — working right now</div>
+            </div>
         </div>
-        <div class="hero-stats">
-            <div class="stat">
-                <div class="stat-num">24/7</div>
-                <div class="stat-label">Your AI agents never sleep</div>
-            </div>
-            <div class="stat">
-                <div class="stat-num">3x</div>
-                <div class="stat-label">Operational capacity, same team</div>
-            </div>
-            <div class="stat">
-                <div class="stat-num">&lt; 1 week</div>
-                <div class="stat-label">From call to live deployment</div>
-            </div>
+        <div class="max-caps">
+            <div class="mc"><div class="mc-icon">📧</div><div><h4>Autonomous Outreach</h4><p>Researches prospects, writes personalized emails, and sends 20+ per day. No templates, no copy-paste.</p></div></div>
+            <div class="mc"><div class="mc-icon">📱</div><div><h4>Social Media Management</h4><p>Posts 3x daily, engages with your audience, replies to comments, builds your brand presence while you sleep.</p></div></div>
+            <div class="mc"><div class="mc-icon">💬</div><div><h4>Team Collaboration</h4><p>Works inside Slack, Teams, or any platform. Your employees can talk to Max directly — he's part of the team.</p></div></div>
+            <div class="mc"><div class="mc-icon">📊</div><div><h4>Daily Reporting</h4><p>End-of-day summaries delivered to your phone. Pipeline status, outreach stats, tasks completed. Every day.</p></div></div>
+            <div class="mc"><div class="mc-icon">🔍</div><div><h4>Market Intelligence</h4><p>Monitors competitors, tracks industry changes, surfaces opportunities before your team knows to look.</p></div></div>
+            <div class="mc"><div class="mc-icon">⚡</div><div><h4>Works From Any App</h4><p>Telegram, iMessage, WhatsApp, Signal — message Max from whatever you already use. No new software.</p></div></div>
         </div>
     </div>
+</section>
 
-    <!-- SERVICES -->
-    <section id="services">
-        <span class="section-badge">What We Build</span>
-        <h2 class="section-title">Three ways we put AI to work for you.</h2>
-        <p class="section-desc">Every business is different. We match the right AI approach to your specific workflows, industry, and goals.</p>
-        <div class="services-grid">
-            <div class="service-card" style="position:relative;">
-                <span class="popular">Most Popular</span>
-                <h3>OpenClaw Deployment</h3>
-                <p>We set up, secure, and configure OpenClaw — the viral open-source AI agent — so it actually runs your business. Not a toy. A digital employee.</p>
-                <ul>
-                    <li>Secure cloud or on-premise installation</li>
-                    <li>Custom skills built for your workflows</li>
-                    <li>Connected to WhatsApp, Telegram, Slack</li>
-                    <li>24/7 autonomous task execution</li>
-                    <li>Ongoing management & optimization</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <h3>Document Intelligence</h3>
-                <p>Custom AI systems that read, understand, and act on your documents — blueprints, invoices, contracts, medical records, compliance files.</p>
-                <ul>
-                    <li>Automated document processing</li>
-                    <li>Data extraction & analysis</li>
-                    <li>Compliance monitoring</li>
-                    <li>Custom-built for your industry</li>
-                </ul>
-            </div>
-            <div class="service-card">
-                <h3>Custom AI Systems</h3>
-                <p>Bespoke AI solutions that don't exist off-the-shelf. We architect and build the exact system your business needs — no compromises, no generic tools.</p>
-                <ul>
-                    <li>Lead generation & outreach automation</li>
-                    <li>Market intelligence & competitor monitoring</li>
-                    <li>Content pipelines & scheduling</li>
-                    <li>Multi-agent business operating systems</li>
-                </ul>
-            </div>
+<div class="divider"></div>
+
+<!-- BEFORE / AFTER -->
+<section>
+    <div class="section-label">The Difference</div>
+    <div class="section-title">Before and after hiring Max.</div>
+    <div class="ba-grid">
+        <div class="ba before">
+            <h3>✕ Before Lemnos</h3>
+            <ul>
+                <li>Manually writing cold emails — 2+ hours every day</li>
+                <li>Forgetting to post on social media for weeks</li>
+                <li>No idea what competitors are doing until it's too late</li>
+                <li>End of day: exhausted, nothing documented</li>
+                <li>Paying $3,000-$5,000/mo for a VA who calls out sick</li>
+                <li>Leads slipping through cracks at 2 AM</li>
+            </ul>
         </div>
-    </section>
-
-    <!-- OPENCLAW + PRICING -->
-    <div class="openclaw-section" id="openclaw">
-        <div class="openclaw-inner">
-            <span class="section-badge">OpenClaw Specialists</span>
-            <h2 class="section-title">Everyone's heard of OpenClaw.<br>Almost nobody can set it up right.</h2>
-            <p class="section-desc">OpenClaw is the #1 open-source AI agent, trusted by 140,000+ developers worldwide, that can run your entire business from a chat message. But its own maintainers warn it's "too dangerous" for non-technical users. That's where we come in. We handle the installation, security hardening, custom skill development, and ongoing management — so you get the power without the risk.</p>
-
-            <div class="openclaw-grid">
-                <div class="pricing-tiers">
-                    <!-- NEW: $299 AUDIT -->
-                    <div class="pricing-card highlight">
-                        <span class="tier-badge">Start Here</span>
-                        <h4>AI Workflow Audit</h4>
-                        <div class="price">$299</div>
-                        <p class="price-anchor">100% credited toward any deployment</p>
-                        <p class="desc">We analyze your entire operation and show you exactly what to automate, what it costs you manually, and what an AI agent deployment looks like for your business. Custom report + 30-minute video walkthrough.</p>
-                        <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="audit-link">Get Your Audit →</a>
-                    </div>
-
-                    <!-- SETUP & GO -->
-                    <div class="pricing-card">
-                        <h4>Setup & Go</h4>
-                        <div class="price">From $1,500</div>
-                        <p class="price-anchor">Replace a $4,000/mo virtual assistant — one-time setup fee</p>
-                        <p class="desc">Installation, security hardening, 3 core skills, 1 messaging channel, 30-min training. You're live in days.</p>
-                    </div>
-
-                    <!-- FULL DEPLOYMENT -->
-                    <div class="pricing-card">
-                        <h4>Full Deployment</h4>
-                        <div class="price">From $3,000</div>
-                        <p class="desc">Everything above + custom skills for your business, multi-channel, scheduled automations, 2 weeks of tuning.</p>
-                    </div>
-
-                    <!-- MANAGED -->
-                    <div class="pricing-card">
-                        <h4>Managed Service</h4>
-                        <div class="price">$500–$1,500/mo</div>
-                        <p class="desc">Ongoing monitoring, skill updates, security patches, monthly optimization. Your AI agent, always improving.</p>
-                    </div>
-                </div>
-
-                <!-- TERMINAL DEMO -->
-                <div class="terminal">
-                    <div><span class="prompt">$</span> openclaw gateway --status</div>
-                    <br>
-                    <div><span class="success">✓</span> Gateway running on port 18789</div>
-                    <div><span class="success">✓</span> 5 skills active</div>
-                    <div><span class="success">✓</span> WhatsApp connected</div>
-                    <div><span class="success">✓</span> Telegram connected</div>
-                    <br>
-                    <div><span class="prompt">$</span> openclaw agent --message "Morning briefing"</div>
-                    <br>
-                    <div><span class="info">🦞</span> Good morning! Here's your briefing:</div>
-                    <br>
-                    <div>&nbsp;&nbsp;<span class="success">→</span> 3 new leads identified overnight</div>
-                    <div>&nbsp;&nbsp;<span class="success">→</span> Competitor dropped prices 12%</div>
-                    <div>&nbsp;&nbsp;<span class="success">→</span> 5 content drafts ready for review</div>
-                    <div>&nbsp;&nbsp;<span class="success">→</span> All systems nominal</div>
-                    <br>
-                    <div><span class="prompt">$</span> <span style="animation: blink 1s infinite;">_</span></div>
-                </div>
-            </div>
+        <div class="ba after">
+            <h3>→ After Lemnos</h3>
+            <ul>
+                <li>20+ personalized, researched emails sent by 10 AM</li>
+                <li>3 social media posts scheduled and engaged daily</li>
+                <li>Competitor moves flagged the moment they happen</li>
+                <li>End-of-day report delivered to your phone — every night</li>
+                <li>Max works 24/7 for a fraction of the cost</li>
+                <li>Every lead captured, responded to, tracked</li>
+            </ul>
         </div>
     </div>
+</section>
 
-    <!-- SOCIAL PROOF -->
-    <section class="proof-section" id="results">
-        <span class="section-badge">Real Results</span>
-        <h2 class="section-title">Trusted by businesses that don't have time to waste.</h2>
-        <p class="section-desc">We've built custom AI systems across healthcare, entertainment, and construction — and every client saw ROI within the first month.</p>
-        <div class="proof-grid">
-            <div class="proof-card">
-                <blockquote>"The system Lemnos built handles what used to take our staff hours every day. We got our time back — and it paid for itself immediately."</blockquote>
-                <cite>— Medical Practice, NJ</cite>
-            </div>
-            <div class="proof-card">
-                <blockquote>"We needed something custom for our industry — off-the-shelf AI wasn't cutting it. Lemnos delivered exactly what we needed and the software saved us real money."</blockquote>
-                <cite>— Executive, Sports & Entertainment Agency</cite>
-            </div>
-            <div class="proof-card">
-                <blockquote>"Saved us money from day one. The software handles tasks that used to require a dedicated person. Couldn't be happier with the result."</blockquote>
-                <cite>— Owner, Construction Company</cite>
-            </div>
-        </div>
-        <p class="proof-industries">Healthcare · Sports & Entertainment · Construction · Security · Legal · E-Commerce</p>
-    </section>
+<div class="divider"></div>
 
-    <!-- PROMISE -->
-    <section id="promise">
-        <span class="section-badge">The Lemnos Promise</span>
-        <h2 class="section-title">Your edge. Protected.</h2>
-        <p class="section-desc">We build secret weapons for businesses. That requires absolute trust.</p>
-        <div class="promise-grid">
-            <div class="promise-card">
-                <h3>Fully Confidential</h3>
-                <p>Every engagement is covered by NDA. We never discuss your systems, your data, or even that you're a client.</p>
-            </div>
-            <div class="promise-card">
-                <h3>Never Resold</h3>
-                <p>What we build for you stays yours. We don't resell custom systems to your competitors. Ever.</p>
-            </div>
-            <div class="promise-card">
-                <h3>Lasting Advantage</h3>
-                <p>Everyone's using the same off-the-shelf tools. We build systems that give you an edge they can't buy.</p>
-            </div>
+<!-- SERVICES -->
+<section id="services">
+    <div class="section-label">What We Build</div>
+    <div class="section-title">Three ways we put AI to work for you.</div>
+    <p class="section-sub">Every business is different. We match the right AI approach to your workflows, industry, and goals.</p>
+    <div class="srv-grid">
+        <div class="srv">
+            <div class="srv-icon">🤖</div>
+            <h3>Hire Max — AI Employee</h3>
+            <p>A fully autonomous AI agent deployed into your business — handling outreach, social, team coordination, and reporting.</p>
+            <ul><li>Custom-built for your workflows</li><li>Connected to your tools and platforms</li><li>Autonomous 24/7 execution</li><li>Works from any messaging app</li><li>Ongoing optimization included</li></ul>
         </div>
-    </section>
-
-    <!-- INDUSTRIES -->
-    <section id="industries">
-        <span class="section-badge">Who We Serve</span>
-        <h2 class="section-title">Built for businesses that move fast.</h2>
-        <p class="section-desc">If your industry has documents, workflows, or operations that a human currently handles manually — we can automate it.</p>
-        <div class="industries-grid">
-            <span class="industry-tag">Medical Practices</span>
-            <span class="industry-tag">Security Companies</span>
-            <span class="industry-tag">E-Commerce & Amazon FBA</span>
-            <span class="industry-tag">Law Firms</span>
-            <span class="industry-tag">Construction & Contracting</span>
-            <span class="industry-tag">Health & Supplement Brands</span>
-            <span class="industry-tag">Real Estate</span>
-            <span class="industry-tag">Financial Services</span>
-            <span class="industry-tag">Marketing Agencies</span>
-            <span class="industry-tag">Solo Founders & Startups</span>
+        <div class="srv">
+            <div class="srv-icon">📄</div>
+            <h3>Document Intelligence</h3>
+            <p>Custom AI that reads, understands, and acts on your documents — invoices, contracts, compliance files, medical records.</p>
+            <ul><li>Automated document processing</li><li>Data extraction &amp; analysis</li><li>Compliance monitoring</li><li>Custom-built for your industry</li></ul>
         </div>
-    </section>
-
-    <!-- FINAL CTA -->
-    <div class="final-cta">
-        <span class="section-badge">Ready?</span>
-        <h2 class="section-title">Stop hiring. Start deploying.</h2>
-        <p class="section-desc">Get a custom AI Workflow Audit for $299 — we'll map your operations, identify what to automate, and show you exactly what an AI agent would do for your business. 100% credited toward any deployment.</p>
-        <div class="hero-ctas">
-            <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn-primary">Get Your AI Audit — $299 →</a>
-            <a href="https://calendly.com/nick-getlemnos/30min" class="btn-secondary">Or Book a Free Call</a>
+        <div class="srv">
+            <div class="srv-icon">⚙️</div>
+            <h3>Custom AI Systems</h3>
+            <p>Bespoke AI solutions that don't exist off-the-shelf. We build the exact system your business needs.</p>
+            <ul><li>Multi-agent business systems</li><li>Lead gen &amp; outreach automation</li><li>Market intelligence pipelines</li><li>Content automation engines</li></ul>
         </div>
-        <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--gray);">
-            <a href="mailto:nick@getlemnos.ai" style="color:var(--gray-light);">nick@getlemnos.ai</a> &nbsp;·&nbsp;
-            <a href="tel:+19172757123" style="color:var(--gray-light);">(917) 275-7123</a>
-        </p>
     </div>
+</section>
 
-    <!-- FOOTER -->
-    <footer>
-        © 2026 Lemnos AI Operations. All rights reserved.
-    </footer>
+<div class="divider"></div>
 
-    <style>
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-    </style>
+<!-- PRICING -->
+<section id="pricing">
+    <div class="section-label">Simple Pricing</div>
+    <div class="section-title">Start small. Scale when you see the ROI.</div>
+    <p class="section-sub">Every dollar from your audit is credited toward deployment. No risk, no waste.</p>
+    <div class="pr-grid">
+        <div class="pr">
+            <h3>AI Quick Scan</h3>
+            <p class="pd">Find out what AI can automate in your business</p>
+            <div class="pa">$299</div>
+            <div class="pn">100% credited toward any deployment</div>
+            <ul><li>Full workflow analysis</li><li>Top 3 automation opportunities</li><li>ROI projection: manual vs. AI cost</li><li>Custom report + 30-min walkthrough</li></ul>
+            <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="pr-btn gold">Get Your Quick Scan →</a>
+        </div>
+        <div class="pr feat">
+            <h3>Deep Audit + Roadmap</h3>
+            <p class="pd">The complete automation blueprint</p>
+            <div class="pa">$1,497</div>
+            <div class="pn">100% credited toward deployment</div>
+            <ul><li>Everything in Quick Scan, plus:</li><li>Department-by-department workflow mapping</li><li>Custom implementation roadmap + timeline</li><li>Priority matrix — what to automate first</li><li>AI competitive analysis for your industry</li><li>Executive-ready presentation</li></ul>
+            <a href="https://calendly.com/nick-getlemnos/30min" class="pr-btn gold">Book Your Deep Audit →</a>
+        </div>
+        <div class="pr">
+            <h3>Hire Max</h3>
+            <p class="pd">Full AI employee deployment</p>
+            <div class="pa">$7,500</div>
+            <div class="pn">All audit fees credited</div>
+            <ul><li>Custom AI agent for YOUR business</li><li>Email, social, CRM, team tools connected</li><li>20+ daily emails, 3+ daily posts</li><li>Team collaboration via Slack/Teams</li><li>End-of-day reporting &amp; pipeline tracking</li><li>2 weeks of tuning &amp; optimization</li></ul>
+            <a href="https://calendly.com/nick-getlemnos/30min" class="pr-btn outline">Talk to Us →</a>
+        </div>
+        <div class="pr">
+            <h3>Managed Operations</h3>
+            <p class="pd">Keep Max running at peak</p>
+            <div class="pa">$997<small>/mo</small></div>
+            <div class="pn">Cancel anytime</div>
+            <ul><li>24/7 monitoring &amp; optimization</li><li>New skills as your business evolves</li><li>Security patches &amp; infrastructure</li><li>Monthly performance reports</li><li>Priority support — direct line</li><li>Quarterly strategy reviews</li></ul>
+            <a href="https://calendly.com/nick-getlemnos/30min" class="pr-btn outline">Get Started →</a>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- TERMINAL -->
+<section>
+    <div class="section-label">See It Live</div>
+    <div class="section-title">This is what Max does. Every day. Autonomously.</div>
+    <div class="term">
+        <div class="term-bar"><span class="td r"></span><span class="td y"></span><span class="td g"></span></div>
+        <div class="term-body">
+            <span class="p">you →</span> <span class="c">"Morning briefing"</span><br><br>
+            <span class="s">Max →</span> <span class="o">Good morning. Here's your briefing:</span><br><br>
+            <span class="o">&nbsp;&nbsp;→ <span class="h">22 outreach emails</span> sent between 8:30-10:10 AM</span><br>
+            <span class="o">&nbsp;&nbsp;→ <span class="h">3 replies</span> received — 2 interested, 1 requesting info</span><br>
+            <span class="o">&nbsp;&nbsp;→ <span class="h">3 social posts</span> published — 47 impressions, 8 engagements</span><br>
+            <span class="o">&nbsp;&nbsp;→ Competitor <span class="h">dropped prices 12%</span> — flagged for review</span><br>
+            <span class="o">&nbsp;&nbsp;→ <span class="h">2 follow-ups</span> queued for tomorrow at 9:30 AM</span><br>
+            <span class="o">&nbsp;&nbsp;→ All systems nominal. Pipeline updated.</span><br><br>
+            <span class="p">you →</span> <span class="c">"Send a cold email to that law firm in Saddle Brook"</span><br><br>
+            <span class="s">Max →</span> <span class="o">Researching Cohn Lifland, Pearlman, Herrmann &amp; Knopf LLP...</span><br>
+            <span class="o">&nbsp;&nbsp;Found: 5 attorneys, practice areas, recent news.</span><br>
+            <span class="o">&nbsp;&nbsp;Draft ready. Personalized to their estate planning practice.</span><br>
+            <span class="o">&nbsp;&nbsp;<span class="h">✓ Sent.</span> Follow-up scheduled for Tuesday.</span>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- RESULTS -->
+<section id="results">
+    <div class="section-label">Real Results</div>
+    <div class="section-title">Trusted by businesses that don't have time to waste.</div>
+    <div class="test-grid">
+        <div class="test">
+            <blockquote>"The system Lemnos built handles what used to take our staff hours every day. We got our time back — and it paid for itself immediately."</blockquote>
+            <div class="ta">Medical Practice</div><div class="tr">Multi-location, New Jersey</div>
+        </div>
+        <div class="test">
+            <blockquote>"We needed something custom for our industry — off-the-shelf AI wasn't cutting it. Lemnos delivered exactly what we needed and it saved us real money."</blockquote>
+            <div class="ta">Executive</div><div class="tr">Sports &amp; Entertainment Agency</div>
+        </div>
+        <div class="test">
+            <blockquote>"Saved us money from day one. The software handles tasks that used to require a dedicated person. Couldn't be happier with the result."</blockquote>
+            <div class="ta">Owner</div><div class="tr">Construction Company</div>
+        </div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY LEMNOS -->
+<section>
+    <div class="section-label">Why Lemnos</div>
+    <div class="section-title">Business operator first. AI builder second.</div>
+    <p class="section-sub">Most AI agencies are engineers pretending to understand business. Lemnos is a business operator who mastered AI. That's why our agents actually run operations — not just demo well.</p>
+    <div class="grid3">
+        <div class="card3"><h4>15 Years Running Businesses</h4><p>Not a developer who watched a YouTube tutorial. We've built, scaled, and operated real companies across healthcare, staffing, and tech. We know what businesses need because we've been in the chair.</p></div>
+        <div class="card3"><h4>Formally Trained in AI</h4><p>Vanderbilt University's Agentic AI program. Google's Prompt Engineering certification. We didn't just pick this up — we studied the systems that make AI agents work in production.</p></div>
+        <div class="card3"><h4>Built on OpenClaw</h4><p>We deploy on the #1 open-source AI agent framework trusted by 140,000+ developers. Our agents are secure, extensible, and built on infrastructure that scales with your business.</p></div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROMISE -->
+<section>
+    <div class="section-label">The Lemnos Promise</div>
+    <div class="section-title">Your edge. Protected.</div>
+    <div class="grid3">
+        <div class="card3"><h3>Fully Confidential</h3><p>Every engagement is covered by NDA. We never discuss your systems, your data, or even that you're a client.</p></div>
+        <div class="card3"><h3>Never Resold</h3><p>What we build for you stays yours. We don't resell custom systems to your competitors. Ever.</p></div>
+        <div class="card3"><h3>Lasting Advantage</h3><p>Everyone's using the same off-the-shelf tools. We build systems that give you an edge they can't buy.</p></div>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- INDUSTRIES -->
+<section>
+    <div class="section-label">Industries</div>
+    <div class="section-title">Built for businesses that move fast.</div>
+    <p class="section-sub">If your industry has documents, workflows, or operations that a human handles manually — we can automate it.</p>
+    <div class="ind-wrap">
+        <span class="ind">Medical Practices</span><span class="ind">Law Firms</span><span class="ind">Accounting &amp; CPA</span>
+        <span class="ind">Security Companies</span><span class="ind">Real Estate</span><span class="ind">Financial Services</span>
+        <span class="ind">Construction &amp; Contracting</span><span class="ind">E-Commerce &amp; Amazon FBA</span>
+        <span class="ind">Health &amp; Supplement Brands</span><span class="ind">Marketing Agencies</span><span class="ind">Solo Founders &amp; Startups</span>
+    </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FINAL CTA -->
+<section class="final">
+    <div class="section-label">Ready?</div>
+    <div class="section-title">Stop hiring. Start deploying.</div>
+    <p class="section-sub">Get a custom AI Workflow Audit for $299 — we'll map your operations, identify what to automate, and show you exactly what Max would do for your business. 100% credited toward any deployment.</p>
+    <div class="cta-btns">
+        <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn-primary">Get Your AI Audit — $299 →</a>
+        <a href="https://calendly.com/nick-getlemnos/30min" class="btn-secondary">Book a Free Call</a>
+    </div>
+</section>
+
+<footer>
+    <div class="fl">© 2026 Lemnos AI Operations. All rights reserved.</div>
+    <div class="fc">
+        <a href="mailto:max@getlemnos.ai">max@getlemnos.ai</a>
+        <a href="tel:+19172757123">(917) 275-7123</a>
+        <a href="https://x.com/GetLemnosAI" target="_blank">@GetLemnosAI</a>
+    </div>
+</footer>
+
 </body>
 </html>
