@@ -3,450 +3,1392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lemnos | Hire Max — Your AI Employee That Never Calls Out Sick</title>
-    <meta name="description" content="Lemnos deploys Max, an autonomous AI employee that sends outreach, manages social media, coordinates with your team, and reports back every morning. 24/7.">
-    <meta property="og:title" content="Lemnos | Hire an AI Employee for Your Business">
-    <meta property="og:description" content="Meet Max — the AI employee that sends 20+ personalized emails/day, manages your social media, and delivers end-of-day reports.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://getlemnos.ai">
+    <title>Lemnos | Autonomous Enterprise Systems & AI Automation</title>
+    <meta name="description" content="Replace your $80k admin overhead for $12k/year. We deploy custom AI systems that handle your outbound sales, social media, and daily operations.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Meta Pixel Code — paste your pixel base code here -->
-    <!-- End Meta Pixel Code -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
         :root {
-            --black:#09090B;--black-light:#0F0F12;--black-card:#141418;
-            --gold:#E8D44D;--gold-dim:#C4B23E;--gold-glow:rgba(232,212,77,0.12);
-            --white:#FAFAFA;--white-dim:#A1A1AA;--white-muted:#71717A;
-            --green:#22C55E;--red:#EF4444;
-            --border:rgba(255,255,255,0.06);--border-light:rgba(255,255,255,0.1);
-        }
-        *{margin:0;padding:0;box-sizing:border-box}
-        html{scroll-behavior:smooth}
-        body{font-family:'Inter',-apple-system,sans-serif;background:var(--black);color:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-        body::before{content:'';position:fixed;top:0;left:0;width:100%;height:100%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
-
-        /* NAV */
-        nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1rem 2rem;background:rgba(9,9,11,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-        .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.4rem;letter-spacing:.15em;color:var(--white);text-decoration:none}
-        .nav-links{display:flex;gap:2rem;align-items:center}
-        .nav-links a{color:var(--white-dim);text-decoration:none;font-size:.85rem;font-weight:500;letter-spacing:.02em;transition:color .2s}
-        .nav-links a:hover{color:var(--white)}
-        .nav-cta{background:var(--gold)!important;color:var(--black)!important;padding:.6rem 1.4rem!important;border-radius:6px;font-weight:700!important;font-size:.8rem!important;letter-spacing:.04em;transition:all .2s}
-        .nav-cta:hover{background:var(--gold-dim)!important;transform:translateY(-1px)}
-
-        /* HERO */
-        .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:8rem 2rem 4rem;max-width:1200px;margin:0 auto}
-        .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--gold-glow);border:1px solid rgba(232,212,77,0.2);padding:.4rem 1rem;border-radius:100px;font-size:.78rem;font-weight:600;color:var(--gold);margin-bottom:2rem;width:fit-content;letter-spacing:.03em}
-        .hero-badge .pulse{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:pulse 2s ease-in-out infinite}
-        @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.5)}}
-        .hero h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,6vw,4.5rem);font-weight:800;line-height:1.08;letter-spacing:-.03em;margin-bottom:1.5rem;max-width:800px}
-        .hero h1 .gold{color:var(--gold)}
-        .hero-sub{font-size:1.15rem;color:var(--white-dim);max-width:620px;line-height:1.7;margin-bottom:2.5rem}
-        .hero-ctas{display:flex;gap:1rem;align-items:center;flex-wrap:wrap;margin-bottom:4rem}
-        .btn-primary{background:var(--gold);color:var(--black);padding:.9rem 2rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.95rem;letter-spacing:.02em;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
-        .btn-primary:hover{background:var(--gold-dim);transform:translateY(-2px);box-shadow:0 8px 30px rgba(232,212,77,0.2)}
-        .btn-secondary{color:var(--white-dim);text-decoration:none;font-weight:500;font-size:.95rem;padding:.9rem 1.5rem;border:1px solid var(--border-light);border-radius:8px;transition:all .2s}
-        .btn-secondary:hover{color:var(--white);border-color:var(--white-muted)}
-        .hero-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;padding-top:3rem;border-top:1px solid var(--border)}
-        .stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--gold);letter-spacing:-.02em}
-        .stat-label{font-size:.8rem;color:var(--white-muted);margin-top:.25rem;letter-spacing:.02em}
-
-        /* SECTIONS */
-        section{padding:6rem 2rem;max-width:1200px;margin:0 auto}
-        .section-label{font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
-        .section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:800;letter-spacing:-.02em;line-height:1.1;margin-bottom:1.2rem}
-        .section-sub{font-size:1.05rem;color:var(--white-dim);max-width:600px;line-height:1.7}
-        .divider{height:1px;background:var(--border);max-width:1200px;margin:0 auto}
-
-        /* MEET MAX */
-        .meet-max{background:var(--black-light);border:1px solid var(--border);border-radius:16px;padding:3.5rem;margin-top:2rem}
-        .max-header{display:flex;align-items:center;gap:1.5rem;margin-bottom:2.5rem}
-        .max-avatar{width:72px;height:72px;background:linear-gradient(135deg,var(--gold),#B8A030);border-radius:18px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:var(--black);flex-shrink:0}
-        .max-info h3{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700}
-        .max-title{color:var(--gold);font-size:.85rem;font-weight:600;letter-spacing:.03em}
-        .max-status{color:var(--green);font-size:.78rem;font-weight:500;display:flex;align-items:center;gap:.4rem;margin-top:.2rem}
-        .max-status::before{content:'';width:6px;height:6px;background:var(--green);border-radius:50%;display:inline-block}
-        .max-caps{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
-        .mc{display:flex;align-items:flex-start;gap:.8rem;padding:1rem;background:rgba(255,255,255,0.02);border-radius:10px;border:1px solid var(--border)}
-        .mc-icon{font-size:1.3rem;flex-shrink:0;margin-top:.1rem}
-        .mc h4{font-size:.9rem;font-weight:600;margin-bottom:.2rem}
-        .mc p{font-size:.8rem;color:var(--white-muted);line-height:1.5}
-
-        /* BEFORE / AFTER */
-        .ba-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
-        .ba{padding:2.5rem;border-radius:14px;border:1px solid var(--border)}
-        .ba.before{background:rgba(239,68,68,0.03);border-color:rgba(239,68,68,0.15)}
-        .ba.after{background:var(--gold-glow);border-color:rgba(232,212,77,0.2)}
-        .ba h3{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;margin-bottom:1.5rem;display:flex;align-items:center;gap:.5rem}
-        .ba.before h3{color:var(--red)}.ba.after h3{color:var(--gold)}
-        .ba ul{list-style:none;display:flex;flex-direction:column;gap:.8rem}
-        .ba li{font-size:.88rem;color:var(--white-dim);padding-left:1.5rem;position:relative;line-height:1.5}
-        .ba.before li::before{content:'✕';position:absolute;left:0;color:var(--red);font-weight:700;font-size:.75rem}
-        .ba.after li::before{content:'→';position:absolute;left:0;color:var(--gold);font-weight:700}
-
-        /* SERVICES */
-        .srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-        .srv{background:var(--black-card);border:1px solid var(--border);border-radius:14px;padding:2rem;transition:all .3s}
-        .srv:hover{border-color:rgba(232,212,77,0.2);transform:translateY(-4px)}
-        .srv-icon{font-size:1.8rem;margin-bottom:1rem}
-        .srv h3{font-family:'Syne',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.6rem}
-        .srv>p{font-size:.85rem;color:var(--white-muted);line-height:1.6}
-        .srv ul{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.5rem}
-        .srv li{font-size:.82rem;color:var(--white-dim);padding-left:1.2rem;position:relative}
-        .srv li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:.75rem}
-
-        /* PRICING */
-        .pr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;margin-top:3rem}
-        .pr{background:var(--black-card);border:1px solid var(--border);border-radius:14px;padding:2rem;display:flex;flex-direction:column;transition:all .3s}
-        .pr:hover{border-color:rgba(232,212,77,0.2)}
-        .pr.feat{border-color:var(--gold);position:relative;background:linear-gradient(135deg,rgba(232,212,77,0.05),transparent)}
-        .pr.feat::before{content:'MOST POPULAR';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--black);font-size:.65rem;font-weight:800;padding:.25rem .8rem;border-radius:100px;letter-spacing:.1em;white-space:nowrap}
-        .pr h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.3rem}
-        .pr .pd{font-size:.78rem;color:var(--white-muted);margin-bottom:1.2rem;line-height:1.5;min-height:38px}
-        .pr .pa{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;margin-bottom:.3rem;letter-spacing:-.02em}
-        .pr .pa small{font-size:.85rem;font-weight:400;color:var(--white-muted)}
-        .pr .pn{font-size:.72rem;color:var(--gold);font-weight:600;margin-bottom:1.5rem}
-        .pr ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem;flex-grow:1}
-        .pr li{font-size:.8rem;color:var(--white-dim);padding-left:1.2rem;position:relative;line-height:1.4}
-        .pr li::before{content:'✓';position:absolute;left:0;color:var(--gold);font-weight:700;font-size:.72rem}
-        .pr-btn{display:block;text-align:center;padding:.75rem;border-radius:8px;text-decoration:none;font-weight:700;font-size:.82rem;letter-spacing:.02em;transition:all .2s;margin-top:auto}
-        .pr-btn.gold{background:var(--gold);color:var(--black)}
-        .pr-btn.gold:hover{background:var(--gold-dim)}
-        .pr-btn.outline{border:1px solid var(--border-light);color:var(--white)}
-        .pr-btn.outline:hover{border-color:var(--gold);color:var(--gold)}
-
-        /* TERMINAL */
-        .term{background:#0C0C0E;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:3rem;font-family:'SF Mono','Fira Code','Consolas',monospace}
-        .term-bar{padding:.8rem 1rem;background:rgba(255,255,255,0.03);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.4rem}
-        .td{width:10px;height:10px;border-radius:50%}.td.r{background:#FF5F57}.td.y{background:#FFBD2E}.td.g{background:#28C840}
-        .term-body{padding:1.5rem;font-size:.82rem;line-height:1.8}
-        .term-body .p{color:var(--gold)}.term-body .c{color:var(--white)}.term-body .o{color:var(--white-muted)}.term-body .s{color:var(--green)}.term-body .h{color:var(--gold)}
-
-        /* TESTIMONIALS */
-        .test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-        .test{background:var(--black-card);border:1px solid var(--border);border-radius:14px;padding:2rem}
-        .test blockquote{font-size:.92rem;line-height:1.7;color:var(--white-dim);font-style:italic;margin-bottom:1.2rem}
-        .test .ta{font-size:.82rem;font-weight:600;color:var(--white)}
-        .test .tr{font-size:.75rem;color:var(--white-muted)}
-
-        /* CRED + PROMISE */
-        .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:3rem}
-        .card3{padding:2rem;background:var(--black-card);border:1px solid var(--border);border-radius:14px}
-        .card3 h4,.card3 h3{font-family:'Syne',sans-serif;font-weight:700;margin-bottom:.5rem;font-size:1rem}
-        .card3 p{font-size:.82rem;color:var(--white-muted);line-height:1.6}
-
-        /* INDUSTRIES */
-        .ind-wrap{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:2rem}
-        .ind{padding:.5rem 1.2rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:100px;font-size:.82rem;color:var(--white-dim);transition:all .2s;cursor:default}
-        .ind:hover{border-color:var(--gold);color:var(--gold)}
-
-        /* FINAL CTA */
-        .final{text-align:center;padding:8rem 2rem;max-width:700px;margin:0 auto}
-        .final .section-sub{margin:0 auto 2.5rem;text-align:center}
-        .final .cta-btns{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
-
-        /* FOOTER */
-        footer{border-top:1px solid var(--border);padding:3rem 2rem;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
-        .fl{font-size:.78rem;color:var(--white-muted)}
-        .fc{display:flex;gap:2rem}
-        .fc a{color:var(--white-dim);text-decoration:none;font-size:.82rem;transition:color .2s}
-        .fc a:hover{color:var(--gold)}
-
-        /* RESPONSIVE */
-        @media(max-width:900px){
-            .hero-stats{grid-template-columns:repeat(2,1fr)}
-            .srv-grid,.test-grid,.grid3{grid-template-columns:1fr}
-            .pr-grid{grid-template-columns:repeat(2,1fr)}
-            .ba-grid{grid-template-columns:1fr}
-            .max-caps{grid-template-columns:1fr}
-            .meet-max{padding:2rem}
-            .nav-links a:not(.nav-cta){display:none}
-        }
-        @media(max-width:600px){
-            .pr-grid{grid-template-columns:1fr}
-            .hero-stats{grid-template-columns:repeat(2,1fr);gap:1rem}
-            footer{flex-direction:column;gap:1rem;text-align:center}
-            .fc{flex-direction:column;gap:.5rem}
+            --gold: #E8D44D;
+            --gold-dim: #C4B23E;
+            --dark: #0A0A0A;
+            --dark-card: #111111;
+            --dark-border: #1E1E1E;
+            --dark-hover: #181818;
+            --white: #FAFAFA;
+            --gray: #888888;
+            --gray-light: #AAAAAA;
+            --green: #50FF78;
+            --red: #FF5050;
+            --font-body: 'DM Sans', sans-serif;
+            --font-display: 'Instrument Serif', serif;
         }
 
-        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-        .anim{animation:fadeUp .6s ease-out forwards;opacity:0}
-        .d1{animation-delay:.1s}.d2{animation-delay:.2s}.d3{animation-delay:.3s}.d4{animation-delay:.4s}
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Grain overlay */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Nav */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.2rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+            background: rgba(10,10,10,0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .nav-logo {
+            font-family: var(--font-body);
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links a:hover { color: var(--white); }
+
+        .nav-links .coming-soon {
+            color: var(--gold-dim);
+            position: relative;
+        }
+
+        .nav-links .coming-soon::after {
+            content: 'SOON';
+            position: absolute;
+            top: -8px;
+            right: -28px;
+            font-size: 0.5rem;
+            background: var(--gold);
+            color: var(--dark);
+            padding: 1px 4px;
+            border-radius: 3px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-cta {
+            background: var(--gold) !important;
+            color: var(--dark) !important;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 700 !important;
+            font-size: 0.8rem !important;
+            transition: all 0.3s;
+        }
+
+        .nav-cta:hover {
+            background: var(--white) !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-devhub {
+            color: var(--gold) !important;
+            border: 1px solid var(--gold);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-weight: 600 !important;
+            transition: all 0.3s;
+        }
+
+        .nav-devhub:hover {
+            background: var(--gold);
+            color: var(--dark) !important;
+        }
+
+        /* Sections */
+        section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 8rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232,212,77,0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease;
+        }
+
+        .hero-badge .dot {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+            animation: fadeUp 0.8s ease 0.1s both;
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--gray-light);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 0.8s ease 0.2s both;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeUp 0.8s ease 0.3s both;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--dark);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            border: 2px solid var(--gold);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid var(--dark-border);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--gray);
+            transform: translateY(-2px);
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 5rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--dark-border);
+            animation: fadeUp 0.8s ease 0.4s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .num {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--gold);
+        }
+
+        .hero-stat .label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-top: 0.3rem;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Meet Max */
+        .meet-max { text-align: center; }
+
+        .section-label {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        .section-subtitle {
+            color: var(--gray-light);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.05rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--gold-dim);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            background: rgba(232, 212, 77, 0.08);
+            border: 1px solid rgba(232, 212, 77, 0.15);
+            color: var(--gold);
+        }
+
+        .feature-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-card p {
+            color: var(--gray);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        /* Before After */
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .ba-card {
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .ba-before {
+            background: linear-gradient(135deg, #1a0a0a, #111);
+            border: 1px solid #2a1515;
+        }
+
+        .ba-after {
+            background: linear-gradient(135deg, #0a1a0a, #111);
+            border: 1px solid #152a15;
+        }
+
+        .ba-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .ba-before h3 { color: var(--red); }
+        .ba-after h3 { color: var(--green); }
+
+        .ba-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .ba-card li {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .ba-before li::before { content: '✕'; position: absolute; left: 0; color: var(--red); }
+        .ba-after li::before { content: '→'; position: absolute; left: 0; color: var(--green); }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            border-color: var(--gold-dim);
+            transform: translateY(-4px);
+        }
+
+        .service-card .icon {
+            font-size: 2rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .service-card p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .service-card li {
+            color: var(--gray-light);
+            font-size: 0.8rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .service-card li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--gold-dim);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+        }
+
+        .pricing-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+        }
+
+        .pricing-card:hover {
+            border-color: var(--gold-dim);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--gold);
+            position: relative;
+        }
+
+        .pricing-card.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--dark);
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card h3 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .pricing-card .desc {
+            color: var(--gray);
+            font-size: 0.75rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .pricing-card .price {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .pricing-card .credit {
+            color: var(--gold);
+            font-size: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex: 1;
+        }
+
+        .pricing-card li {
+            color: var(--gray-light);
+            font-size: 0.78rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .pricing-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-size: 0.7rem;
+        }
+
+        .pricing-card .btn {
+            display: block;
+            text-align: center;
+            padding: 0.7rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .btn-gold {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .btn-gold:hover {
+            background: var(--white);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--dark-border);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        /* Demo */
+        .demo-window {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 700px;
+            margin: 3rem auto 0;
+            font-family: 'DM Sans', monospace;
+            font-size: 0.85rem;
+        }
+
+        .demo-dots {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .demo-dots span {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--dark-border);
+        }
+
+        .demo-dots span:first-child { background: var(--red); }
+        .demo-dots span:nth-child(2) { background: var(--gold); }
+        .demo-dots span:nth-child(3) { background: var(--green); }
+
+        .demo-line {
+            margin-bottom: 0.8rem;
+            line-height: 1.5;
+        }
+
+        .demo-line .user { color: var(--gold); }
+        .demo-line .max { color: var(--green); }
+        .demo-line .detail { color: var(--gray); padding-left: 1rem; display: block; }
+
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .testimonial-card blockquote {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            font-style: italic;
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-card .source {
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+
+        .testimonial-card .source strong {
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* Why Lemnos */
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .why-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .why-card h3 {
+            font-size: 1rem;
+            margin-bottom: 0.8rem;
+            color: var(--gold);
+        }
+
+        .why-card p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Promise */
+        .promise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .promise-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .promise-card .icon { font-size: 2rem; margin-bottom: 1rem; }
+        .promise-card h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .promise-card p { color: var(--gray); font-size: 0.85rem; }
+
+        /* Industries */
+        .industries-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .industries-tags span {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--gray-light);
+            transition: all 0.3s;
+        }
+
+        .industries-tags span:hover {
+            border-color: var(--gold-dim);
+            color: var(--white);
+        }
+
+        /* CTA */
+        .final-cta {
+            text-align: center;
+            padding: 6rem 2rem;
+            position: relative;
+        }
+
+        .final-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(232,212,77,0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .final-cta h2 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            color: var(--gray-light);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--dark-border);
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+
+        footer a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        footer a:hover { color: var(--gold); }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+
+        /* Dev Hub */
+        .devhub-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .devhub-card {
+            background: var(--dark-card);
+            border: 1px solid var(--dark-border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .devhub-card:hover {
+            border-color: var(--gold-dim);
+            transform: translateY(-4px);
+        }
+
+        .devhub-card.live { border-color: var(--green); }
+
+        .devhub-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .badge-live {
+            background: var(--green);
+            color: var(--dark);
+        }
+
+        .badge-soon {
+            background: var(--gold);
+            color: var(--dark);
+        }
+
+        .badge-testing {
+            background: #FF8C00;
+            color: var(--dark);
+        }
+
+        .devhub-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .devhub-card .tagline {
+            color: var(--gold);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .devhub-card .description {
+            color: var(--gray-light);
+            font-size: 0.85rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .devhub-card .price {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .devhub-card .price .free { color: var(--green); }
+
+        .devhub-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--gray);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .devhub-card ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .devhub-card li {
+            color: var(--gray-light);
+            font-size: 0.8rem;
+            padding-left: 1.2rem;
+            position: relative;
+        }
+
+        .devhub-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold-dim);
+        }
+
+        .devhub-card .requirements li::before {
+            content: '⚙';
+        }
+
+        .devhub-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            background: rgba(80,255,120,0.1);
+            border: 1px solid rgba(80,255,120,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .devhub-card .btn {
+            display: block;
+            text-align: center;
+            padding: 0.8rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+            margin-top: auto;
+        }
+
+        .devhub-disclaimer {
+            text-align: center;
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-top: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .devhub-grid { grid-template-columns: 1fr; }
+            .nav-links a:not(.nav-devhub):not(.nav-cta) { display: none; }
+            .nav-links { gap: 0.8rem; }
+            .hero-stats { grid-template-columns: repeat(2, 1fr); }
+            .features-grid, .services-grid, .testimonials-grid, .why-grid, .promise-grid { grid-template-columns: 1fr; }
+            .before-after { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            section { padding: 4rem 1.5rem; }
+        }
     </style>
 </head>
 <body>
 
+<!-- Nav -->
 <nav>
-    <a href="#" class="nav-logo">LEMNOS</a>
+    <a href="#" class="nav-logo">Lemnos</a>
     <div class="nav-links">
-        <a href="#max">Meet Max</a>
+        <a href="#max">The System</a>
         <a href="#services">Services</a>
         <a href="#pricing">Pricing</a>
         <a href="#results">Results</a>
+        <a href="#devhub" class="nav-devhub">Developer Hub</a>
         <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="nav-cta">Get AI Audit — $299</a>
     </div>
 </nav>
 
+<!-- Hero -->
 <section class="hero">
-    <div class="hero-badge anim"><span class="pulse"></span>Now deploying AI employees for businesses</div>
-    <h1 class="anim d1">Hire an AI employee that <span class="gold">never calls out sick.</span></h1>
-    <p class="hero-sub anim d2">Meet Max — your autonomous AI agent that sends personalized outreach, manages your social media, coordinates with your team in Slack, and reports back every morning. 24/7. For less than the cost of a part-time VA.</p>
-    <div class="hero-ctas anim d3">
-        <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn-primary">See What Max Can Do — $299 AI Audit →</a>
+    <div class="hero-badge">
+        <span class="dot"></span>
+        System Status: Online & Deploying
+    </div>
+
+    <h1>Replace your $80k admin overhead for <em>$12k/year.</em></h1>
+
+    <p>We deploy custom AI systems that run your outbound sales, manage your social media, and handle your daily reporting. No sick days, no context switching, and an 85% reduction in operational costs.</p>
+
+    <div class="hero-ctas">
+        <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn-primary">Get Your AI Audit — $299 →</a>
         <a href="https://calendly.com/nick-getlemnos/30min" class="btn-secondary">Book a Free Call</a>
     </div>
-    <div class="hero-stats anim d4">
-        <div><div class="stat-num">24/7</div><div class="stat-label">Max never sleeps</div></div>
-        <div><div class="stat-num">20+</div><div class="stat-label">Personalized emails per day</div></div>
-        <div><div class="stat-num">3x</div><div class="stat-label">Operational output, same team</div></div>
-        <div><div class="stat-num">&lt;48hr</div><div class="stat-label">From call to live deployment</div></div>
-    </div>
-</section>
 
-<div class="divider"></div>
-
-<!-- MEET MAX -->
-<section id="max">
-    <div class="section-label">Your New Employee</div>
-    <div class="section-title">Meet Max.</div>
-    <p class="section-sub">Max doesn't answer questions. He runs operations. Think of him as the employee who handles everything you don't have time for — except he works around the clock and costs a fraction of a hire.</p>
-    <div class="meet-max">
-        <div class="max-header">
-            <div class="max-avatar">M</div>
-            <div class="max-info">
-                <h3>Max</h3>
-                <div class="max-title">AI Operations Agent — Lemnos</div>
-                <div class="max-status">Online — working right now</div>
-            </div>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="num">24/7</div>
+            <div class="label">Max never sleeps</div>
         </div>
-        <div class="max-caps">
-            <div class="mc"><div class="mc-icon">📧</div><div><h4>Autonomous Outreach</h4><p>Researches prospects, writes personalized emails, and sends 20+ per day. No templates, no copy-paste.</p></div></div>
-            <div class="mc"><div class="mc-icon">📱</div><div><h4>Social Media Management</h4><p>Posts 3x daily, engages with your audience, replies to comments, builds your brand presence while you sleep.</p></div></div>
-            <div class="mc"><div class="mc-icon">💬</div><div><h4>Team Collaboration</h4><p>Works inside Slack, Teams, or any platform. Your employees can talk to Max directly — he's part of the team.</p></div></div>
-            <div class="mc"><div class="mc-icon">📊</div><div><h4>Daily Reporting</h4><p>End-of-day summaries delivered to your phone. Pipeline status, outreach stats, tasks completed. Every day.</p></div></div>
-            <div class="mc"><div class="mc-icon">🔍</div><div><h4>Market Intelligence</h4><p>Monitors competitors, tracks industry changes, surfaces opportunities before your team knows to look.</p></div></div>
-            <div class="mc"><div class="mc-icon">⚡</div><div><h4>Works From Any App</h4><p>Telegram, iMessage, WhatsApp, Signal — message Max from whatever you already use. No new software.</p></div></div>
+        <div class="hero-stat">
+            <div class="num">$0.04</div>
+            <div class="label">Per completed task</div>
+        </div>
+        <div class="hero-stat">
+            <div class="num">85%</div>
+            <div class="label">Admin cost reduction</div>
+        </div>
+        <div class="hero-stat">
+            <div class="num"><48hr</div>
+            <div class="label">From call to deployment</div>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
+<!-- Meet Max -->
+<section id="max" class="meet-max">
+    <div class="section-label">The Automation Engine</div>
+    <h2 class="section-title">This is Max.</h2>
+    <p class="section-subtitle">Max isn't a chatbot. He is a customized automation engine designed to run your most expensive business bottlenecks. Whether it's outbound sales, daily administrative workflows, or social media distribution, Max is the infrastructure that handles the work you shouldn't be doing — 24/7, without the overhead.</p>
 
-<!-- BEFORE / AFTER -->
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon">→</div>
+            <h3>Autonomous Outreach</h3>
+            <p>Researches prospects, writes personalized emails, and sends them on your behalf. No templates, no copy-paste. Every email is tailored to the recipient.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">◉</div>
+            <h3>Social Media Management</h3>
+            <p>Posts daily, engages with your audience, replies to comments, and builds your brand presence while you sleep.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⟡</div>
+            <h3>Team Collaboration</h3>
+            <p>Works inside Slack, Teams, or any platform. Your employees can talk to Max directly — he's part of the team.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">◈</div>
+            <h3>Daily Reporting</h3>
+            <p>End-of-day summaries delivered to your phone. Pipeline status, outreach stats, tasks completed. Every single day.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⬡</div>
+            <h3>Market Intelligence</h3>
+            <p>Monitors competitors, tracks industry changes, and surfaces opportunities before your team knows to look.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">⚙</div>
+            <h3>Works From Any App</h3>
+            <p>Telegram, iMessage, WhatsApp, Signal — message Max from whatever you already use. No new software to learn.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Before / After -->
 <section>
-    <div class="section-label">The Difference</div>
-    <div class="section-title">Before and after hiring Max.</div>
-    <div class="ba-grid">
-        <div class="ba before">
+    <div class="section-label" style="text-align:center;">The Difference</div>
+    <h2 class="section-title" style="text-align:center;">Before and after hiring Max.</h2>
+
+    <div class="before-after">
+        <div class="ba-card ba-before">
             <h3>✕ Before Lemnos</h3>
             <ul>
-                <li>Manually writing cold emails — 2+ hours every day</li>
+                <li>Manually writing outreach emails — hours every day</li>
                 <li>Forgetting to post on social media for weeks</li>
                 <li>No idea what competitors are doing until it's too late</li>
                 <li>End of day: exhausted, nothing documented</li>
-                <li>Paying $3,000-$5,000/mo for a VA who calls out sick</li>
+                <li>Paying $80K+/year in admin overhead that could be automated</li>
                 <li>Leads slipping through cracks at 2 AM</li>
             </ul>
         </div>
-        <div class="ba after">
+        <div class="ba-card ba-after">
             <h3>→ After Lemnos</h3>
             <ul>
-                <li>20+ personalized, researched emails sent by 10 AM</li>
-                <li>3 social media posts scheduled and engaged daily</li>
+                <li>Personalized, researched outreach running before you wake up</li>
+                <li>Social media posts scheduled and engaged daily</li>
                 <li>Competitor moves flagged the moment they happen</li>
                 <li>End-of-day report delivered to your phone — every night</li>
-                <li>Max works 24/7 for a fraction of the cost</li>
+                <li>The system runs 24/7 at 85% less than a human hire</li>
                 <li>Every lead captured, responded to, tracked</li>
             </ul>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- SERVICES -->
+<!-- Services -->
 <section id="services">
-    <div class="section-label">What We Build</div>
-    <div class="section-title">Three ways we put AI to work for you.</div>
-    <p class="section-sub">Every business is different. We match the right AI approach to your workflows, industry, and goals.</p>
-    <div class="srv-grid">
-        <div class="srv">
-            <div class="srv-icon">🤖</div>
-            <h3>Hire Max — AI Employee</h3>
-            <p>A fully autonomous AI agent deployed into your business — handling outreach, social, team coordination, and reporting.</p>
-            <ul><li>Custom-built for your workflows</li><li>Connected to your tools and platforms</li><li>Autonomous 24/7 execution</li><li>Works from any messaging app</li><li>Ongoing optimization included</li></ul>
+    <div class="section-label" style="text-align:center;">What We Build</div>
+    <h2 class="section-title" style="text-align:center;">Three ways we put AI to work for you.</h2>
+    <p class="section-subtitle">Every business is different. We match the right AI approach to your workflows, industry, and goals.</p>
+
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="icon" style="font-size:1.5rem;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(232,212,77,0.08);border:1px solid rgba(232,212,77,0.15);color:var(--gold);">M</div>
+            <h3>Deploy Max — Autonomous System</h3>
+            <p>A fully autonomous system deployed into your business — handling outreach, social media, team coordination, and daily reporting at a fraction of the cost of a human hire.</p>
+            <ul>
+                <li>Custom-built for your workflows</li>
+                <li>Connected to your tools and platforms</li>
+                <li>Autonomous 24/7 execution</li>
+                <li>Works from any messaging app</li>
+                <li>Ongoing optimization included</li>
+            </ul>
         </div>
-        <div class="srv">
-            <div class="srv-icon">📄</div>
+        <div class="service-card">
+            <div class="icon" style="font-size:1.5rem;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(232,212,77,0.08);border:1px solid rgba(232,212,77,0.15);color:var(--gold);">◇</div>
             <h3>Document Intelligence</h3>
             <p>Custom AI that reads, understands, and acts on your documents — invoices, contracts, compliance files, medical records.</p>
-            <ul><li>Automated document processing</li><li>Data extraction &amp; analysis</li><li>Compliance monitoring</li><li>Custom-built for your industry</li></ul>
+            <ul>
+                <li>Automated document processing</li>
+                <li>Data extraction & analysis</li>
+                <li>Compliance monitoring</li>
+                <li>Custom-built for your industry</li>
+            </ul>
         </div>
-        <div class="srv">
-            <div class="srv-icon">⚙️</div>
+        <div class="service-card">
+            <div class="icon" style="font-size:1.5rem;width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;background:rgba(232,212,77,0.08);border:1px solid rgba(232,212,77,0.15);color:var(--gold);">⟐</div>
             <h3>Custom AI Systems</h3>
             <p>Bespoke AI solutions that don't exist off-the-shelf. We build the exact system your business needs.</p>
-            <ul><li>Multi-agent business systems</li><li>Lead gen &amp; outreach automation</li><li>Market intelligence pipelines</li><li>Content automation engines</li></ul>
+            <ul>
+                <li>Multi-agent business systems</li>
+                <li>Lead gen & outreach automation</li>
+                <li>Market intelligence pipelines</li>
+                <li>Content automation engines</li>
+            </ul>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PRICING -->
+<!-- Pricing -->
 <section id="pricing">
-    <div class="section-label">Simple Pricing</div>
-    <div class="section-title">Start small. Scale when you see the ROI.</div>
-    <p class="section-sub">Every dollar from your audit is credited toward deployment. No risk, no waste.</p>
-    <div class="pr-grid">
-        <div class="pr">
+    <div class="section-label" style="text-align:center;">Simple Pricing</div>
+    <h2 class="section-title" style="text-align:center;">Start small. Scale when you see the ROI.</h2>
+    <p class="section-subtitle">Every dollar from your audit is credited toward deployment. No risk, no waste.</p>
+
+    <div class="pricing-grid">
+        <div class="pricing-card">
             <h3>AI Quick Scan</h3>
-            <p class="pd">Find out what AI can automate in your business</p>
-            <div class="pa">$299</div>
-            <div class="pn">100% credited toward any deployment</div>
-            <ul><li>Full workflow analysis</li><li>Top 3 automation opportunities</li><li>ROI projection: manual vs. AI cost</li><li>Custom report + 30-min walkthrough</li></ul>
-            <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="pr-btn gold">Get Your Quick Scan →</a>
+            <div class="desc">Find out what to automate first</div>
+            <div class="price">$299</div>
+            <div class="credit">100% credited toward deployment</div>
+            <ul>
+                <li>Full workflow analysis</li>
+                <li>Top 3 automation opportunities</li>
+                <li>ROI projection: manual vs. AI cost</li>
+                <li>Custom report + 30-min walkthrough</li>
+            </ul>
+            <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn btn-gold">Get Your Quick Scan →</a>
         </div>
-        <div class="pr feat">
+        <div class="pricing-card">
             <h3>Deep Audit + Roadmap</h3>
-            <p class="pd">The complete automation blueprint</p>
-            <div class="pa">$1,497</div>
-            <div class="pn">100% credited toward deployment</div>
-            <ul><li>Everything in Quick Scan, plus:</li><li>Department-by-department workflow mapping</li><li>Custom implementation roadmap + timeline</li><li>Priority matrix — what to automate first</li><li>AI competitive analysis for your industry</li><li>Executive-ready presentation</li></ul>
-            <a href="https://calendly.com/nick-getlemnos/30min" class="pr-btn gold">Book Your Deep Audit →</a>
+            <div class="desc">The complete automation blueprint</div>
+            <div class="price">$1,497</div>
+            <div class="credit">100% credited toward deployment</div>
+            <ul>
+                <li>Everything in Quick Scan, plus:</li>
+                <li>Department-by-department mapping</li>
+                <li>Custom implementation roadmap</li>
+                <li>Priority matrix — what to automate first</li>
+                <li>AI competitive analysis</li>
+                <li>Executive-ready presentation</li>
+            </ul>
+            <a href="https://calendly.com/nick-getlemnos/30min" class="btn btn-outline">Book Your Deep Audit →</a>
         </div>
-        <div class="pr">
-            <h3>Hire Max</h3>
-            <p class="pd">Full AI employee deployment</p>
-            <div class="pa">$7,500</div>
-            <div class="pn">All audit fees credited</div>
-            <ul><li>Custom AI agent for YOUR business</li><li>Email, social, CRM, team tools connected</li><li>20+ daily emails, 3+ daily posts</li><li>Team collaboration via Slack/Teams</li><li>End-of-day reporting &amp; pipeline tracking</li><li>2 weeks of tuning &amp; optimization</li></ul>
-            <a href="https://calendly.com/nick-getlemnos/30min" class="pr-btn outline">Talk to Us →</a>
+        <div class="pricing-card featured">
+            <h3>Deploy Max</h3>
+            <div class="desc">Full Autonomous System Deployment</div>
+            <div class="price">$7,500</div>
+            <div class="credit">All audit fees credited</div>
+            <ul>
+                <li>Custom AI agent for YOUR business</li>
+                <li>Email, social, CRM, team tools connected</li>
+                <li>Autonomous daily outreach</li>
+                <li>Team collaboration via Slack/Teams</li>
+                <li>End-of-day reporting & tracking</li>
+                <li>2 weeks of tuning & optimization</li>
+            </ul>
+            <a href="https://calendly.com/nick-getlemnos/30min" class="btn btn-gold">Talk to Us →</a>
         </div>
-        <div class="pr">
+        <div class="pricing-card">
             <h3>Managed Operations</h3>
-            <p class="pd">Keep Max running at peak</p>
-            <div class="pa">$997<small>/mo</small></div>
-            <div class="pn">Cancel anytime</div>
-            <ul><li>24/7 monitoring &amp; optimization</li><li>New skills as your business evolves</li><li>Security patches &amp; infrastructure</li><li>Monthly performance reports</li><li>Priority support — direct line</li><li>Quarterly strategy reviews</li></ul>
-            <a href="https://calendly.com/nick-getlemnos/30min" class="pr-btn outline">Get Started →</a>
+            <div class="desc">Keep Max running at peak</div>
+            <div class="price">$997<span style="font-size:1rem;color:var(--gray)">/mo</span></div>
+            <div class="credit">Cancel anytime</div>
+            <ul>
+                <li>24/7 monitoring & optimization</li>
+                <li>New skills as your business evolves</li>
+                <li>Security patches & infrastructure</li>
+                <li>Monthly performance reports</li>
+                <li>Priority support — direct line</li>
+                <li>Quarterly strategy reviews</li>
+            </ul>
+            <a href="https://calendly.com/nick-getlemnos/30min" class="btn btn-outline">Get Started →</a>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- TERMINAL -->
+<!-- Demo -->
 <section>
-    <div class="section-label">See It Live</div>
-    <div class="section-title">This is what Max does. Every day. Autonomously.</div>
-    <div class="term">
-        <div class="term-bar"><span class="td r"></span><span class="td y"></span><span class="td g"></span></div>
-        <div class="term-body">
-            <span class="p">you →</span> <span class="c">"Morning briefing"</span><br><br>
-            <span class="s">Max →</span> <span class="o">Good morning. Here's your briefing:</span><br><br>
-            <span class="o">&nbsp;&nbsp;→ <span class="h">22 outreach emails</span> sent between 8:30-10:10 AM</span><br>
-            <span class="o">&nbsp;&nbsp;→ <span class="h">3 replies</span> received — 2 interested, 1 requesting info</span><br>
-            <span class="o">&nbsp;&nbsp;→ <span class="h">3 social posts</span> published — 47 impressions, 8 engagements</span><br>
-            <span class="o">&nbsp;&nbsp;→ Competitor <span class="h">dropped prices 12%</span> — flagged for review</span><br>
-            <span class="o">&nbsp;&nbsp;→ <span class="h">2 follow-ups</span> queued for tomorrow at 9:30 AM</span><br>
-            <span class="o">&nbsp;&nbsp;→ All systems nominal. Pipeline updated.</span><br><br>
-            <span class="p">you →</span> <span class="c">"Send a cold email to that law firm in Saddle Brook"</span><br><br>
-            <span class="s">Max →</span> <span class="o">Researching Cohn Lifland, Pearlman, Herrmann &amp; Knopf LLP...</span><br>
-            <span class="o">&nbsp;&nbsp;Found: 5 attorneys, practice areas, recent news.</span><br>
-            <span class="o">&nbsp;&nbsp;Draft ready. Personalized to their estate planning practice.</span><br>
-            <span class="o">&nbsp;&nbsp;<span class="h">✓ Sent.</span> Follow-up scheduled for Tuesday.</span>
+    <div class="section-label" style="text-align:center;">See It Live</div>
+    <h2 class="section-title" style="text-align:center;">This is what Max does. Every day. Autonomously.</h2>
+
+    <div class="demo-window">
+        <div class="demo-dots"><span></span><span></span><span></span></div>
+        <div class="demo-line"><span class="user">you →</span> "Morning briefing"</div>
+        <div class="demo-line">
+            <span class="max">Max →</span> Good morning. Here's your briefing:
+            <span class="detail">→ Outreach emails sent between 8:30-10:10 AM — all personalized</span>
+            <span class="detail">→ 3 replies received — 2 interested, 1 requesting info</span>
+            <span class="detail">→ Social posts published — 47 impressions, 8 engagements</span>
+            <span class="detail">→ Competitor dropped prices 12% — flagged for review</span>
+            <span class="detail">→ Follow-ups queued for tomorrow at 9:30 AM</span>
+            <span class="detail">→ All systems nominal. Pipeline updated.</span>
+        </div>
+        <div class="demo-line" style="margin-top:1.2rem;"><span class="user">you →</span> "Send a cold email to that law firm in Saddle Brook"</div>
+        <div class="demo-line">
+            <span class="max">Max →</span> Researching Cohn Lifland, Pearlman, Herrmann & Knopf LLP...
+            <span class="detail">Found: 5 attorneys, practice areas, recent news.</span>
+            <span class="detail">Draft ready. Personalized to their estate planning practice.</span>
+            <span class="detail">✓ Sent. Follow-up scheduled for Tuesday.</span>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- RESULTS -->
+<!-- Testimonials -->
 <section id="results">
-    <div class="section-label">Real Results</div>
-    <div class="section-title">Trusted by businesses that don't have time to waste.</div>
-    <div class="test-grid">
-        <div class="test">
+    <div class="section-label" style="text-align:center;">Real Results</div>
+    <h2 class="section-title" style="text-align:center;">Trusted by businesses that don't have time to waste.</h2>
+
+    <div class="testimonials-grid" style="margin-top:3rem;">
+        <div class="testimonial-card">
             <blockquote>"The system Lemnos built handles what used to take our staff hours every day. We got our time back — and it paid for itself immediately."</blockquote>
-            <div class="ta">Medical Practice</div><div class="tr">Multi-location, New Jersey</div>
+            <div class="source"><strong>Medical Practice</strong><br>Multi-location, New Jersey</div>
         </div>
-        <div class="test">
+        <div class="testimonial-card">
             <blockquote>"We needed something custom for our industry — off-the-shelf AI wasn't cutting it. Lemnos delivered exactly what we needed and it saved us real money."</blockquote>
-            <div class="ta">Executive</div><div class="tr">Sports &amp; Entertainment Agency</div>
+            <div class="source"><strong>Executive</strong><br>Sports & Entertainment Agency</div>
         </div>
-        <div class="test">
+        <div class="testimonial-card">
             <blockquote>"Saved us money from day one. The software handles tasks that used to require a dedicated person. Couldn't be happier with the result."</blockquote>
-            <div class="ta">Owner</div><div class="tr">Construction Company</div>
+            <div class="source"><strong>Owner</strong><br>Construction Company</div>
         </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- WHY LEMNOS -->
+<!-- Why Lemnos -->
 <section>
-    <div class="section-label">Why Lemnos</div>
-    <div class="section-title">Business operator first. AI builder second.</div>
-    <p class="section-sub">Most AI agencies are engineers pretending to understand business. Lemnos is a business operator who mastered AI. That's why our agents actually run operations — not just demo well.</p>
-    <div class="grid3">
-        <div class="card3"><h4>15 Years in Business Ops</h4><p>Not a developer who watched a YouTube tutorial. We've built, scaled, and operated real companies. We know what businesses need because we've been in the chair making the decisions.</p></div>
-        <div class="card3"><h4>AI Engineers + Exec-Level Ops</h4><p>Our AI engineers work directly with executive-level business operators. That sync doesn't exist at other agencies — and it's why our agents actually run operations, not just demo well.</p></div>
-        <div class="card3"><h4>Built on OpenClaw</h4><p>We deploy on the #1 open-source AI agent framework trusted by 140,000+ developers. Our agents are secure, extensible, and built on infrastructure that scales with your business.</p></div>
+    <div class="section-label" style="text-align:center;">Why Lemnos</div>
+    <h2 class="section-title" style="text-align:center;">Business operator first. AI builder second.</h2>
+    <p class="section-subtitle">Most AI agencies are engineers pretending to understand business. Lemnos is a business operator who mastered AI. That's why our agents actually run operations — not just demo well.</p>
+
+    <div class="why-grid">
+        <div class="why-card">
+            <h3>15 Years in Business Ops</h3>
+            <p>Not a developer who watched a YouTube tutorial. We've built, scaled, and operated real companies. We know what businesses need because we've been in the chair making the decisions.</p>
+        </div>
+        <div class="why-card">
+            <h3>AI Engineers + Exec-Level Ops</h3>
+            <p>Our AI engineers work directly with executive-level business operators. That sync doesn't exist at other agencies — and it's why our agents actually run operations, not just demo well.</p>
+        </div>
+        <div class="why-card">
+            <h3>Built on OpenClaw</h3>
+            <p>We deploy on the #1 open-source AI agent framework trusted by 140,000+ developers. Our agents are secure, extensible, and built on infrastructure that scales with your business.</p>
+        </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- PROMISE -->
+<!-- Promise -->
 <section>
-    <div class="section-label">The Lemnos Promise</div>
-    <div class="section-title">Your edge. Protected.</div>
-    <div class="grid3">
-        <div class="card3"><h3>Fully Confidential</h3><p>Every engagement is covered by NDA. We never discuss your systems, your data, or even that you're a client.</p></div>
-        <div class="card3"><h3>Never Resold</h3><p>What we build for you stays yours. We don't resell custom systems to your competitors. Ever.</p></div>
-        <div class="card3"><h3>Lasting Advantage</h3><p>Everyone's using the same off-the-shelf tools. We build systems that give you an edge they can't buy.</p></div>
+    <div class="section-label" style="text-align:center;">The Lemnos Promise</div>
+    <h2 class="section-title" style="text-align:center;">Your edge. Protected.</h2>
+
+    <div class="promise-grid" style="margin-top:3rem;">
+        <div class="promise-card">
+            <div class="icon" style="font-size:1.5rem;color:var(--gold);">◆</div>
+            <h3>Fully Confidential</h3>
+            <p>Every engagement is covered by NDA. We never discuss your systems, your data, or even that you're a client.</p>
+        </div>
+        <div class="promise-card">
+            <div class="icon" style="font-size:1.5rem;color:var(--gold);">◆</div>
+            <h3>Never Resold</h3>
+            <p>What we build for you stays yours. We don't resell custom systems to your competitors. Ever.</p>
+        </div>
+        <div class="promise-card">
+            <div class="icon" style="font-size:1.5rem;color:var(--gold);">◆</div>
+            <h3>Lasting Advantage</h3>
+            <p>Everyone's using the same off-the-shelf tools. We build systems that give you an edge they can't buy.</p>
+        </div>
     </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- INDUSTRIES -->
+<!-- Industries -->
 <section>
-    <div class="section-label">Industries</div>
-    <div class="section-title">Built for businesses that move fast.</div>
-    <p class="section-sub">If your industry has documents, workflows, or operations that a human handles manually — we can automate it.</p>
-    <div class="ind-wrap">
-        <span class="ind">Medical Practices</span><span class="ind">Law Firms</span><span class="ind">Accounting &amp; CPA</span>
-        <span class="ind">Security Companies</span><span class="ind">Real Estate</span><span class="ind">Financial Services</span>
-        <span class="ind">Construction &amp; Contracting</span><span class="ind">E-Commerce &amp; Amazon FBA</span>
-        <span class="ind">Health &amp; Supplement Brands</span><span class="ind">Marketing Agencies</span><span class="ind">Solo Founders &amp; Startups</span>
+    <div class="section-label" style="text-align:center;">Industries</div>
+    <h2 class="section-title" style="text-align:center;">Built for businesses that move fast.</h2>
+    <p class="section-subtitle">If your industry has documents, workflows, or operations that a human handles manually — we can automate it.</p>
+
+    <div class="industries-tags">
+        <span>Medical Practices</span>
+        <span>Law Firms</span>
+        <span>Accounting & CPA</span>
+        <span>Security Companies</span>
+        <span>Real Estate</span>
+        <span>Financial Services</span>
+        <span>Construction & Contracting</span>
+        <span>E-Commerce & Amazon FBA</span>
+        <span>Health & Supplement Brands</span>
+        <span>Marketing Agencies</span>
+        <span>Solo Founders & Startups</span>
     </div>
 </section>
 
-<div class="divider"></div>
+<!-- Developer Hub -->
+<section id="devhub">
+    <div class="section-label" style="text-align:center;">Developer Hub</div>
+    <h2 class="section-title" style="text-align:center;">Tools we built. Now available to you.</h2>
+    <p class="section-subtitle">Everything below is built from our own production systems. Same code that runs Max. No wrappers, no fluff — raw architecture.</p>
 
-<!-- FINAL CTA -->
-<section class="final">
-    <div class="section-label">Ready?</div>
-    <div class="section-title">Stop hiring. Start deploying.</div>
-    <p class="section-sub">Get a custom AI Workflow Audit for $299 — we'll map your operations, identify what to automate, and show you exactly what Max would do for your business. 100% credited toward any deployment.</p>
-    <div class="cta-btns">
+    <div class="devhub-grid">
+        <!-- Cost Guard -->
+        <div class="devhub-card live">
+            <span class="devhub-badge badge-live">LIVE</span>
+            <h3>Lemnos Cost Guard</h3>
+            <div class="tagline">AI Agent Budget Controller</div>
+            <div class="devhub-stat">116+ downloads</div>
+            <div class="description">Real-time API cost tracking, context bloat detection, and budget enforcement for OpenClaw agents. Born from our own $70-in-5-days bleed — we fixed it and packaged the solution.</div>
+            <div class="price"><span class="free">FREE</span></div>
+            <div class="devhub-label">What you get:</div>
+            <ul>
+                <li>Per-task cost logging with fully-loaded calculations</li>
+                <li>Budget guardrails — alerts and auto-throttle</li>
+                <li>Context bloat detection (input-to-output ratio monitoring)</li>
+                <li>Model routing suggestions for cost optimization</li>
+            </ul>
+            <div class="devhub-label">Requirements:</div>
+            <ul class="requirements">
+                <li>OpenClaw agent deployment</li>
+                <li>Anthropic API key</li>
+            </ul>
+            <a href="https://clawhub.ai/skills/lemnos-cost-guard" class="btn btn-gold">Get it on ClawHub →</a>
+        </div>
+
+        <!-- B2B Sniper -->
+        <div class="devhub-card">
+            <span class="devhub-badge badge-testing">IN TESTING</span>
+            <h3>The Lemnos B2B Sniper</h3>
+            <div class="tagline">Deliverability-Optimized Revenue Engine</div>
+            <div class="description">The exact Python architecture we use to scrape active job boards, bypass Google Workspace spam filters, and automate highly targeted outbound sales. Currently running in production for Lemnos — converting job postings into qualified leads at $0.04 per task.</div>
+            <div class="price">$149</div>
+            <div class="devhub-label">What you get:</div>
+            <ul>
+                <li>Raw Python scripts for job board lead extraction</li>
+                <li>Apify scraping configurations (Indeed, ZipRecruiter)</li>
+                <li>Hunter.io email verification logic</li>
+                <li>LLM prompt architecture for sniper email generation</li>
+                <li>SPF/DKIM/DMARC setup guide for 10/10 deliverability</li>
+                <li>Domain warmup ramp schedule</li>
+            </ul>
+            <div class="devhub-label">Requirements:</div>
+            <ul class="requirements">
+                <li>Bring your own Apify API key</li>
+                <li>Bring your own Hunter.io API key</li>
+                <li>Managed Google Workspace environment</li>
+                <li>Server for deployment (DigitalOcean, AWS, etc.)</li>
+            </ul>
+            <a href="#" class="btn btn-outline" style="pointer-events:none;opacity:0.6;">Coming Soon — Join Waitlist</a>
+        </div>
+
+        <!-- Social Engine -->
+        <div class="devhub-card">
+            <span class="devhub-badge badge-soon">COMING SOON</span>
+            <h3>The Omnichannel Social Engine</h3>
+            <div class="tagline">Autonomous Content Distribution Pipeline</div>
+            <div class="description">Our internal social media architecture, packaged for deployment. Connects your AI agent to the Postiz API, allowing it to autonomously draft, schedule, and track analytics across X, LinkedIn, Reddit, and 25+ other platforms from a single terminal.</div>
+            <div class="price">$99</div>
+            <div class="devhub-label">What you get:</div>
+            <ul>
+                <li>Python deployment scripts for multi-platform posting</li>
+                <li>Postiz API routing logic and configuration</li>
+                <li>AI News Radar content drafting prompts</li>
+                <li>Approval workflow — you click "approve", the code does the rest</li>
+            </ul>
+            <div class="devhub-label">Requirements:</div>
+            <ul class="requirements">
+                <li>Server configuration</li>
+                <li>Postiz API integration</li>
+                <li>LLM API keys (Anthropic or OpenAI)</li>
+            </ul>
+            <a href="#" class="btn btn-outline" style="pointer-events:none;opacity:0.6;">Coming Soon — Join Waitlist</a>
+        </div>
+    </div>
+
+    <p class="devhub-disclaimer">These are the same tools running in production at Lemnos right now. The B2B Sniper is currently in live testing — sending verified outreach to businesses across the US daily. When it ships, you get the exact codebase. No black boxes.<br><br><strong style="color:var(--gray-light);">Don't want to build it yourself?</strong> That's what <a href="#pricing" style="color:var(--gold);text-decoration:none;">Deploy Max</a> is for. We deploy and manage everything for you.</p>
+</section>
+
+<!-- Final CTA -->
+<section class="final-cta">
+    <h2 class="section-title">Stop hiring. Start automating.</h2>
+    <p>Get a custom AI Workflow Audit for $299 — we'll map your operations, identify what to automate, and show you exactly how much you'd save deploying Max. 100% credited toward any deployment.</p>
+    <div class="hero-ctas">
         <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn-primary">Get Your AI Audit — $299 →</a>
         <a href="https://calendly.com/nick-getlemnos/30min" class="btn-secondary">Book a Free Call</a>
     </div>
 </section>
 
+<!-- Footer -->
 <footer>
-    <div class="fl">© 2026 Lemnos AI Operations. All rights reserved.</div>
-    <div class="fc">
-        <a href="mailto:max@getlemnos.ai">max@getlemnos.ai</a>
+    <div class="footer-links">
+        <a href="#devhub">Developer Hub</a>
+        <a href="/cdn-cgi/l/email-protection#c7a9aea4ac87a0a2b3aba2aaa9a8b4e9a6ae"><span class="__cf_email__" data-cfemail="2c42454f476c4b495840494142435f024d45">[email&#160;protected]</span></a>
         <a href="tel:+19172757123">(917) 275-7123</a>
-        <a href="https://x.com/GetLemnosAI" target="_blank">@GetLemnosAI</a>
-    </div>
-</footer>
-
-</body>
-</html>
+        <a href="https://x.com
