@@ -27,7 +27,6 @@
             --gray-light: #AAAAAA;
             --green: #50FF78;
             --red: #FF5050;
-            --blue: #0D9488;
             --font-body: 'DM Sans', sans-serif;
             --font-display: 'Instrument Serif', serif;
         }
@@ -333,9 +332,9 @@
         }
 
         .feature-icon.blue {
-            background: rgba(77, 166, 232, 0.08);
-            border: 1px solid rgba(77, 166, 232, 0.15);
-            color: var(--blue);
+            background: rgba(232, 212, 77, 0.08);
+            border: 1px solid rgba(232, 212, 77, 0.15);
+            color: var(--gold);
         }
 
         .feature-card h3 {
@@ -352,9 +351,9 @@
 
         /* Medical Section — Primary/Hero Treatment */
         .medical-section {
-            background: linear-gradient(180deg, rgba(13,148,136,0.04) 0%, transparent 100%);
-            border-top: 1px solid rgba(13,148,136,0.15);
-            border-bottom: 1px solid rgba(13,148,136,0.15);
+            background: linear-gradient(180deg, rgba(255,80,80,0.03) 0%, transparent 100%);
+            border-top: 1px solid rgba(255,80,80,0.12);
+            border-bottom: 1px solid rgba(255,80,80,0.12);
         }
 
         .medical-section-inner {
@@ -365,22 +364,22 @@
         }
 
         .medical-section .section-label {
-            color: var(--blue);
+            color: var(--red);
         }
 
         .medical-section .section-title em {
             font-style: italic;
-            color: var(--blue);
+            color: var(--red);
         }
 
         .medical-section .features-grid .feature-icon {
-            background: rgba(77, 166, 232, 0.08);
-            border: 1px solid rgba(77, 166, 232, 0.15);
-            color: var(--blue);
+            background: rgba(232, 212, 77, 0.08);
+            border: 1px solid rgba(232, 212, 77, 0.15);
+            color: var(--gold);
         }
 
         .medical-section .feature-card:hover {
-            border-color: rgba(13,148,136,0.4);
+            border-color: var(--gold-dim);
         }
 
         .medical-compliance {
@@ -397,7 +396,7 @@
         }
 
         .btn-blue {
-            background: var(--blue);
+            background: var(--gold);
             color: var(--dark);
             padding: 1rem 2.5rem;
             border-radius: 8px;
@@ -405,19 +404,20 @@
             font-weight: 700;
             font-size: 0.95rem;
             transition: all 0.3s;
-            border: 2px solid var(--blue);
+            border: 2px solid var(--gold);
             display: inline-block;
         }
 
         .btn-blue:hover {
             background: transparent;
-            color: var(--blue);
+            color: var(--gold);
             transform: translateY(-2px);
         }
 
         /* Insurance Verification Section */
         .insurance-section {
-            background: linear-gradient(135deg, rgba(13,148,136,0.06) 0%, rgba(13,148,136,0.02) 100%);
+            background: linear-gradient(135deg, rgba(232,212,77,0.04) 0%, rgba(232,212,77,0.01) 100%);
+            border: 1px solid rgba(255,80,80,0.12);
             border-radius: 20px;
             padding: 5rem 4rem;
             max-width: 1200px;
@@ -453,7 +453,7 @@
 
         .insurance-check {
             background: var(--dark-card);
-            border: 1px solid rgba(13,148,136,0.2);
+            border: 1px solid rgba(232,212,77,0.15);
             border-radius: 10px;
             padding: 1.2rem 1.5rem;
             display: flex;
@@ -462,7 +462,7 @@
         }
 
         .insurance-check .check-icon {
-            color: var(--blue);
+            color: var(--gold);
             font-weight: 700;
             font-size: 1rem;
             flex-shrink: 0;
@@ -1164,7 +1164,7 @@
     <div class="insurance-section">
         <div class="insurance-inner">
             <div>
-                <div class="section-label" style="color: var(--blue);">Insurance Verification</div>
+                <div class="section-label" style="color: var(--red);">Insurance Verification</div>
                 <h2>Stop Losing Patients to Insurance Confusion.</h2>
                 <p>Your AI verifies coverage in real-time — on the call, before the appointment is booked. The patient hears their plan is active, the doctor is in-network, and their copay amount. No more front desk phone tag with insurance companies. No more surprise bills. No more cancellations from coverage confusion.</p>
                 <p style="margin-top: 1.2rem;">Connects to every major clearinghouse. Works with every payer in the country.</p>
