@@ -27,7 +27,7 @@
             --gray-light: #AAAAAA;
             --green: #50FF78;
             --red: #FF5050;
-            --blue: #4DA6E8;
+            --blue: #0D9488;
             --font-body: 'DM Sans', sans-serif;
             --font-display: 'Instrument Serif', serif;
         }
@@ -352,9 +352,9 @@
 
         /* Medical Section — Primary/Hero Treatment */
         .medical-section {
-            background: linear-gradient(180deg, rgba(77,166,232,0.04) 0%, transparent 100%);
-            border-top: 1px solid rgba(77,166,232,0.15);
-            border-bottom: 1px solid rgba(77,166,232,0.15);
+            background: linear-gradient(180deg, rgba(13,148,136,0.04) 0%, transparent 100%);
+            border-top: 1px solid rgba(13,148,136,0.15);
+            border-bottom: 1px solid rgba(13,148,136,0.15);
         }
 
         .medical-section-inner {
@@ -380,7 +380,7 @@
         }
 
         .medical-section .feature-card:hover {
-            border-color: rgba(77,166,232,0.4);
+            border-color: rgba(13,148,136,0.4);
         }
 
         .medical-compliance {
@@ -417,7 +417,7 @@
 
         /* Insurance Verification Section */
         .insurance-section {
-            background: linear-gradient(135deg, rgba(77,166,232,0.06) 0%, rgba(77,166,232,0.02) 100%);
+            background: linear-gradient(135deg, rgba(13,148,136,0.06) 0%, rgba(13,148,136,0.02) 100%);
             border-radius: 20px;
             padding: 5rem 4rem;
             max-width: 1200px;
@@ -453,7 +453,7 @@
 
         .insurance-check {
             background: var(--dark-card);
-            border: 1px solid rgba(77,166,232,0.2);
+            border: 1px solid rgba(13,148,136,0.2);
             border-radius: 10px;
             padding: 1.2rem 1.5rem;
             display: flex;
@@ -691,8 +691,11 @@
         /* Pricing */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .pricing-card {
@@ -1081,7 +1084,7 @@
 
     <div class="hero-ctas">
         <a href="https://calendly.com/nick-getlemnos/30min" class="btn-primary">Book a Call →</a>
-        <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn-secondary">Get AI Audit — $299</a>
+        <a href="#medical" class="btn-secondary">See What We Build</a>
     </div>
 
     <div class="hero-stats">
@@ -1326,64 +1329,36 @@
 <!-- ============================================================ -->
 <section id="pricing">
     <div class="section-label" style="text-align:center;">Simple Pricing</div>
-    <h2 class="section-title" style="text-align:center;">Start small. Scale when you see the ROI.</h2>
-    <p class="section-subtitle">Every dollar from your audit is credited toward deployment. No risk, no waste.</p>
+    <h2 class="section-title" style="text-align:center;">Two numbers. No surprises.</h2>
+    <p class="section-subtitle">One setup fee to build and deploy. One monthly fee to keep it running at peak. That's it.</p>
 
     <div class="pricing-grid">
-        <div class="pricing-card">
-            <h3>AI Quick Scan</h3>
-            <div class="desc">Find out what to automate first</div>
-            <div class="price">$299</div>
-            <div class="credit">100% credited toward deployment</div>
-            <ul>
-                <li>Full workflow analysis</li>
-                <li>Top 3 automation opportunities</li>
-                <li>ROI projection: manual vs. AI cost</li>
-                <li>Custom report + 30-min walkthrough</li>
-            </ul>
-            <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn btn-gold">Get Your Quick Scan →</a>
-        </div>
-        <div class="pricing-card">
-            <h3>Deep Audit + Roadmap</h3>
-            <div class="desc">The complete automation blueprint</div>
-            <div class="price">$1,497</div>
-            <div class="credit">100% credited toward deployment</div>
-            <ul>
-                <li>Everything in Quick Scan, plus:</li>
-                <li>Department-by-department mapping</li>
-                <li>Custom implementation roadmap</li>
-                <li>Priority matrix — what to automate first</li>
-                <li>AI competitive analysis</li>
-                <li>Executive-ready presentation</li>
-            </ul>
-            <a href="https://calendly.com/nick-getlemnos/30min" class="btn btn-outline">Book Your Deep Audit →</a>
-        </div>
         <div class="pricing-card featured">
             <h3>Deploy Max</h3>
             <div class="desc">Full Autonomous System Deployment</div>
-            <div class="price">$7,500</div>
-            <div class="credit">All audit fees credited</div>
+            <div class="price">$10,000</div>
+            <div class="credit">One-time setup fee</div>
             <ul>
-                <li>Custom AI agent for YOUR business</li>
+                <li>Custom AI agent built for YOUR business</li>
                 <li>Email, CRM, calendar, team tools connected</li>
                 <li>Autonomous 24/7 execution</li>
-                <li>Full audit log + kill switch</li>
+                <li>Full audit log + kill switch included</li>
                 <li>End-of-day reporting &amp; tracking</li>
-                <li>2 weeks of tuning &amp; optimization</li>
+                <li>2 weeks of supervised tuning &amp; optimization</li>
             </ul>
-            <a href="https://calendly.com/nick-getlemnos/30min" class="btn btn-gold">Talk to Us →</a>
+            <a href="https://calendly.com/nick-getlemnos/30min" class="btn btn-gold">Book a Call →</a>
         </div>
         <div class="pricing-card">
             <h3>Managed Operations</h3>
-            <div class="desc">Keep Max running at peak</div>
-            <div class="price">$997<span style="font-size:1rem;color:var(--gray)">/mo</span></div>
+            <div class="desc">Ongoing — Max runs, you grow</div>
+            <div class="price">$1,000<span style="font-size:1rem;color:var(--gray)">/mo</span></div>
             <div class="credit">Cancel anytime</div>
             <ul>
                 <li>24/7 monitoring &amp; optimization</li>
-                <li>New skills as your business evolves</li>
+                <li>New skills added as your business evolves</li>
                 <li>Security patches &amp; infrastructure</li>
                 <li>Monthly performance reports</li>
-                <li>Priority support — direct line</li>
+                <li>Priority support — direct line to Nick</li>
                 <li>Quarterly strategy reviews</li>
             </ul>
             <a href="https://calendly.com/nick-getlemnos/30min" class="btn btn-outline">Get Started →</a>
@@ -1616,10 +1591,9 @@
 <!-- ============================================================ -->
 <section class="final-cta">
     <h2 class="section-title">Stop hiring. Start automating.</h2>
-    <p>Get a custom AI Workflow Audit for $299 — we'll map your operations, identify what to automate, and show you exactly how much you'd save deploying Max. 100% credited toward any deployment.</p>
+    <p>$10,000 to deploy. $1,000/month to run. vs an $80K salary you're about to post for. The math is straightforward. The call takes 15 minutes.</p>
     <div class="hero-ctas">
         <a href="https://calendly.com/nick-getlemnos/30min" class="btn-primary">Book a Call →</a>
-        <a href="https://buy.stripe.com/7sY6oIb8s9jx1Uc1XtcQU01" class="btn-secondary">Get AI Audit — $299</a>
     </div>
 </section>
 
