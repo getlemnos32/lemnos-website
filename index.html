@@ -171,7 +171,7 @@
 
         /* MEDICAL */
         .medical-wrap { background: var(--bg-alt); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-        .compliance { margin-top: 2.5rem; font-size: .82rem; color: var(--light); font-style: italic; text-align: center; }
+        .compliance { margin-top: 2.5rem; font-size: 1rem; font-weight: 700; color: var(--black); text-align: center; letter-spacing: 0.01em; }
 
         /* INSURANCE */
         .ins-box { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
@@ -244,6 +244,7 @@
         }
         .p-card h3 { font-size: 1.05rem; margin-bottom: .3rem; }
         .p-card .desc { color: var(--muted); font-size: .8rem; margin-bottom: 1.5rem; }
+        .p-card .starting { font-size: .72rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: .2rem; display: block; }
         .p-card .price { font-family: var(--font-serif); font-size: 2.6rem; color: var(--black); margin-bottom: .25rem; }
         .p-card .note { color: var(--light); font-size: .78rem; margin-bottom: 1.8rem; }
         .p-card ul { list-style: none; display: flex; flex-direction: column; gap: .6rem; margin-bottom: 1.8rem; flex: 1; }
@@ -599,13 +600,14 @@
         <span class="label">Simple Pricing</span>
         <h2>Two numbers. No surprises.</h2>
         <span class="rule"></span>
-        <p class="sub tc">One setup fee to build and deploy. One monthly fee to keep it running at peak. That's it.</p>
+        <p class="sub tc">One setup fee to build and deploy. One monthly fee to keep it running at peak. Price scales with the scope of your operation.</p>
         <div class="pricing-grid">
             <div class="p-card feat">
                 <h3>Deploy Max</h3>
                 <div class="desc">Full Autonomous System Deployment</div>
-                <div class="price">$10,000</div>
-                <div class="note">One-time setup fee</div>
+                <span class="starting">Starting at</span>
+                <div class="price">$8,900</div>
+                <div class="note">One-time setup fee — scales with scope</div>
                 <ul>
                     <li><span class="p-icon" data-icon-xs="check"></span>Custom AI agent built for YOUR business</li>
                     <li><span class="p-icon" data-icon-xs="check"></span>Email, CRM, calendar, team tools connected</li>
@@ -619,7 +621,8 @@
             <div class="p-card">
                 <h3>Managed Operations</h3>
                 <div class="desc">Ongoing — Max runs, you grow</div>
-                <div class="price">$1,000<span style="font-size:1.1rem;color:var(--light)">/mo</span></div>
+                <span class="starting">Starting at</span>
+                <div class="price">$799<span style="font-size:1.1rem;color:var(--light)">/mo</span></div>
                 <div class="note">Cancel anytime</div>
                 <ul>
                     <li><span class="p-icon" data-icon-xs="check"></span>24/7 monitoring &amp; optimization</li>
@@ -810,7 +813,7 @@
 <div class="cta-wrap">
     <div class="wrap narrow tc">
         <h2>Stop hiring. Start automating.</h2>
-        <p>$10,000 to deploy. $1,000/month to run. vs an $80K salary you're about to post for. The math is straightforward. The call takes 15 minutes.</p>
+        <p>Starting at $8,900 to deploy. $799/month to run. vs an $80K salary you're about to post for. The math is straightforward. The call takes 15 minutes.</p>
         <a href="https://calendly.com/nick-getlemnos/30min" class="btn-red">Book a Call</a>
     </div>
 </div>
