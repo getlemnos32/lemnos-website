@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Onboarding — Lemnos AI</title>
+    <meta name="description" content="Custom AI agent workflow intake for medical practices. Confidential and HIPAA-protected.">
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --blue:       #2563EB;
+            --blue-dark:  #1D4ED8;
+            --blue-light: #EFF6FF;
+            --blue-border:rgba(37,99,235,0.18);
+            --black:      #1a1a2e;
+            --body:       #374151;
+            --muted:      #6B7280;
+            --light:      #9CA3AF;
+            --border:     #E5E7EB;
+            --bg:         #FFFFFF;
+            --bg-alt:     #F8F9FA;
+            --font:       'DM Sans', sans-serif;
+            --serif:      'DM Serif Display', serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--body);
+            font-size: 1rem;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ────────────────────────────────────── */
+        nav {
+            position: sticky; top: 0; z-index: 100;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 2rem; height: 60px;
+            background: rgba(255,255,255,0.97);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            color: var(--black);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+        .nav-back {
+            display: flex; align-items: center; gap: .4rem;
+            font-size: .82rem; color: var(--muted);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .nav-back:hover { color: var(--blue); }
+        .nav-back svg { flex-shrink: 0; }
+
+        /* ── HEADER ─────────────────────────────────── */
+        .form-header {
+            text-align: center;
+            padding: 3.5rem 2rem 2.5rem;
+            border-bottom: 1px solid var(--border);
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .form-badge {
+            display: inline-flex; align-items: center; gap: .4rem;
+            background: var(--blue-light);
+            color: var(--blue);
+            font-size: .7rem; font-weight: 700;
+            letter-spacing: .08em; text-transform: uppercase;
+            padding: .3rem .75rem; border-radius: 20px;
+            margin-bottom: 1.25rem;
+        }
+        .form-badge svg { flex-shrink: 0; }
+        .form-header h1 {
+            font-family: var(--serif);
+            font-size: 2rem;
+            color: var(--black);
+            letter-spacing: -0.02em;
+            margin-bottom: .75rem;
+            line-height: 1.2;
+        }
+        .form-header p {
+            color: var(--muted);
+            font-size: .95rem;
+            line-height: 1.7;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .hipaa-note {
+            display: inline-flex; align-items: center; gap: .4rem;
+            margin-top: 1rem;
+            font-size: .78rem; color: var(--muted);
+        }
+        .hipaa-note svg { color: var(--blue); flex-shrink: 0; }
+
+        /* ── LAYOUT ─────────────────────────────────── */
+        .form-wrap {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 3rem 2rem 5rem;
+        }
+
+        /* ── PROGRESS ───────────────────────────────── */
+        .progress-bar {
+            width: 100%;
+            height: 3px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--blue);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.4s ease;
+        }
+        .progress-label {
+            font-size: .72rem;
+            color: var(--muted);
+            text-align: right;
+            margin-top: .4rem;
+        }
+
+        /* ── SECTIONS ───────────────────────────────── */
+        .form-section {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .form-section:last-of-type {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        .section-label {
+            font-size: .68rem;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: .5rem;
+        }
+        .section-title {
+            font-family: var(--serif);
+            font-size: 1.4rem;
+            color: var(--black);
+            letter-spacing: -0.02em;
+            margin-bottom: .35rem;
+        }
+        .section-note {
+            font-size: .82rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        /* ── FIELDS ─────────────────────────────────── */
+        .field-group {
+            margin-bottom: 1.5rem;
+        }
+        .field-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        @media (max-width: 600px) {
+            .field-row { grid-template-columns: 1fr; }
+        }
+        label {
+            display: block;
+            font-size: .82rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-bottom: .4rem;
+        }
+        label .req {
+            color: var(--blue);
+            margin-left: 2px;
+        }
+        label .opt {
+            font-weight: 400;
+            color: var(--light);
+            font-size: .75rem;
+            margin-left: 4px;
+        }
+        .field-hint {
+            font-size: .75rem;
+            color: var(--muted);
+            margin-top: .3rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        select,
+        textarea {
+            width: 100%;
+            padding: .7rem 1rem;
+            font-family: var(--font);
+            font-size: .88rem;
+            color: var(--black);
+            background: var(--bg);
+            border: 1.5px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+        }
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--light);
+        }
+        textarea {
+            resize: vertical;
+            min-height: 110px;
+            line-height: 1.6;
+        }
+        select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+
+        /* ── RADIO / CHECKBOX ───────────────────────── */
+        .radio-group,
+        .check-group {
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+            margin-top: .2rem;
+        }
+        .radio-group.inline,
+        .check-group.inline {
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: .5rem;
+        }
+        .radio-item,
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            cursor: pointer;
+        }
+        .radio-item input[type="radio"],
+        .check-item input[type="checkbox"] {
+            width: 16px; height: 16px;
+            min-width: 16px;
+            accent-color: var(--blue);
+            cursor: pointer;
+            margin: 0; padding: 0;
+            border: none;
+            box-shadow: none;
+        }
+        .radio-item label,
+        .check-item label {
+            margin: 0;
+            font-weight: 400;
+            font-size: .88rem;
+            color: var(--body);
+            cursor: pointer;
+        }
+
+        /* Pill-style radio for short options */
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin-top: .2rem;
+        }
+        .pill-group input[type="radio"] {
+            display: none;
+        }
+        .pill-group label {
+            padding: .4rem 1rem;
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            font-size: .82rem;
+            font-weight: 500;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all 0.15s;
+            margin: 0;
+        }
+        .pill-group input[type="radio"]:checked + label {
+            border-color: var(--blue);
+            background: var(--blue-light);
+            color: var(--blue);
+        }
+
+        /* ── SUBMIT AREA ────────────────────────────── */
+        .submit-section {
+            margin-top: 3rem;
+            padding-top: 2.5rem;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+        .submit-section p {
+            font-size: .8rem;
+            color: var(--muted);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+        .btn-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--blue);
+            color: #fff;
+            font-family: var(--font);
+            font-size: .95rem;
+            font-weight: 600;
+            padding: .9rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.15s;
+            text-decoration: none;
+        }
+        .btn-submit:hover {
+            background: var(--blue-dark);
+            transform: translateY(-1px);
+        }
+        .btn-submit:active { transform: translateY(0); }
+        .btn-submit:disabled {
+            opacity: .6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .submit-note {
+            font-size: .74rem;
+            color: var(--light);
+            margin-top: .75rem;
+        }
+
+        /* ── SUCCESS STATE ──────────────────────────── */
+        .success-screen {
+            display: none;
+            text-align: center;
+            padding: 5rem 2rem;
+            max-width: 560px;
+            margin: 0 auto;
+        }
+        .success-screen.show { display: block; }
+        .success-icon {
+            width: 56px; height: 56px;
+            background: var(--blue-light);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--blue);
+        }
+        .success-screen h2 {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            color: var(--black);
+            margin-bottom: 1rem;
+        }
+        .success-screen p {
+            color: var(--muted);
+            font-size: .95rem;
+            line-height: 1.7;
+        }
+        .success-screen a {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--blue);
+            font-size: .85rem;
+            text-decoration: none;
+        }
+        .success-screen a:hover { text-decoration: underline; }
+
+        /* ── FOOTER ─────────────────────────────────── */
+        .form-footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: .75rem;
+            color: var(--light);
+        }
+        .form-footer a { color: var(--muted); text-decoration: none; }
+        .form-footer a:hover { color: var(--blue); }
+
+        /* ── UTILITY ─────────────────────────────────── */
+        .skip-note {
+            display: inline-block;
+            background: var(--bg-alt);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: .5rem 1rem;
+            font-size: .78rem;
+            color: var(--muted);
+            margin-bottom: 1.75rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <a href="https://getlemnos.ai" class="nav-logo">Lemnos</a>
+    <a href="https://getlemnos.ai" class="nav-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back to site
+    </a>
+</nav>
+
+<!-- HEADER -->
+<div class="form-header">
+    <div class="form-badge">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+        Custom Agent Workflow
+    </div>
+    <h1>Lemnos AI — Client Onboarding</h1>
+    <p>This helps us design and deploy your custom AI agent for your practice. Takes about 5 minutes. Everything shared is confidential and HIPAA-protected.</p>
+    <div class="hipaa-note">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Confidential &amp; HIPAA-protected
+    </div>
+</div>
+
+<!-- FORM WRAP -->
+<div class="form-wrap">
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <div class="progress-label" id="progressLabel">Section 1 of 7</div>
+
+    <!-- SUCCESS SCREEN -->
+    <div class="success-screen" id="successScreen">
+        <div class="success-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h2>You're in.</h2>
+        <p>Thank you! Our team will review your answers and reach out within 48 hours to schedule your deployment kickoff call. Welcome to Lemnos AI.</p>
+        <a href="https://getlemnos.ai">← Return to getlemnos.ai</a>
+    </div>
+
+    <!-- FORM -->
+    <form id="onboardingForm"
+          action="https://formsubmit.co/nick@getlemnos.ai"
+          method="POST"
+          novalidate>
+
+        <!-- Formsubmit config -->
+        <input type="hidden" name="_subject" value="New Lemnos AI Client Onboarding Submission">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://getlemnos.ai/onboarding?submitted=1">
+
+        <!-- ─── SECTION 1 — PRACTICE INFORMATION ─── -->
+        <div class="form-section" id="sec1">
+            <div class="section-label">Section 1</div>
+            <div class="section-title">Practice Information</div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="practiceName">Practice Name <span class="req">*</span></label>
+                    <input type="text" id="practiceName" name="Practice Name" required placeholder="e.g. Bergen Family Dental">
+                </div>
+                <div class="field-group">
+                    <label for="contactName">Primary Contact Name <span class="req">*</span></label>
+                    <input type="text" id="contactName" name="Primary Contact Name" required placeholder="Full name">
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="contactEmail">Primary Contact Email <span class="req">*</span></label>
+                    <input type="email" id="contactEmail" name="Primary Contact Email" required placeholder="you@yourpractice.com">
+                </div>
+                <div class="field-group">
+                    <label for="contactPhone">Primary Contact Phone <span class="req">*</span></label>
+                    <input type="tel" id="contactPhone" name="Primary Contact Phone" required placeholder="(201) 555-0100">
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label for="address">Practice Address <span class="opt">(list all locations if multiple)</span></label>
+                <textarea id="address" name="Practice Address" rows="2" placeholder="e.g. 123 Main St, Hackensack, NJ 07601&#10;456 Oak Ave, Paramus, NJ 07652"></textarea>
+            </div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="specialty">Specialty <span class="req">*</span></label>
+                    <select id="specialty" name="Specialty" required>
+                        <option value="" disabled selected>Select specialty</option>
+                        <option>Cardiology</option>
+                        <option>General / Family Medicine</option>
+                        <option>Internal Medicine</option>
+                        <option>Dental — General</option>
+                        <option>Dental — Orthodontics</option>
+                        <option>Dental — Oral Surgery</option>
+                        <option>Dental — Periodontology</option>
+                        <option>Dental — Endodontics</option>
+                        <option>Dental — Pediatric</option>
+                        <option>Dental — Cosmetic</option>
+                        <option>Orthopedic</option>
+                        <option>Dermatology</option>
+                        <option>OB/GYN</option>
+                        <option>Pediatrics</option>
+                        <option>Mental Health / Psychiatry</option>
+                        <option>Ophthalmology</option>
+                        <option>Physical Therapy</option>
+                        <option>Chiropractic</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="providers">How many providers at your practice?</label>
+                    <input type="text" id="providers" name="Number of Providers" placeholder="e.g. 3">
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label for="adminStaff">How many front desk / administrative staff?</label>
+                <input type="text" id="adminStaff" name="Front Desk Staff Count" placeholder="e.g. 2 full-time, 1 part-time">
+            </div>
+        </div>
+
+        <!-- ─── SECTION 2 — PHONE & TECHNOLOGY ─── -->
+        <div class="form-section" id="sec2">
+            <div class="section-label">Section 2</div>
+            <div class="section-title">Phone &amp; Technology</div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="phoneSystem">What phone system does your practice use?</label>
+                    <select id="phoneSystem" name="Phone System">
+                        <option value="" disabled selected>Select one</option>
+                        <option>Traditional landline</option>
+                        <option>VoIP</option>
+                        <option>RingCentral</option>
+                        <option>8x8</option>
+                        <option>Weave</option>
+                        <option>GoTo</option>
+                        <option>Mango</option>
+                        <option>Other</option>
+                        <option>Not sure</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="ehrSystem">What scheduling or EHR system do you use?</label>
+                    <select id="ehrSystem" name="EHR / Scheduling System">
+                        <option value="" disabled selected>Select one</option>
+                        <option>Epic</option>
+                        <option>Athena</option>
+                        <option>DrChrono</option>
+                        <option>eClinicalWorks</option>
+                        <option>OpenDental</option>
+                        <option>Dentrix</option>
+                        <option>EagleSoft</option>
+                        <option>NextGen</option>
+                        <option>AdvancedMD</option>
+                        <option>Kareo / Tebra</option>
+                        <option>Practice Fusion</option>
+                        <option>Other</option>
+                        <option>Not sure</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label>Can your phone system forward calls to an external number?</label>
+                <div class="pill-group">
+                    <input type="radio" id="fwd_yes" name="Call Forwarding" value="Yes">
+                    <label for="fwd_yes">Yes</label>
+                    <input type="radio" id="fwd_no" name="Call Forwarding" value="No">
+                    <label for="fwd_no">No</label>
+                    <input type="radio" id="fwd_ns" name="Call Forwarding" value="Not sure">
+                    <label for="fwd_ns">Not sure</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SECTION 3 — CALL VOLUME & HOURS ─── -->
+        <div class="form-section" id="sec3">
+            <div class="section-label">Section 3</div>
+            <div class="section-title">Call Volume &amp; Hours</div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="callsPerDay">Roughly how many inbound calls per day? <span class="req">*</span></label>
+                    <input type="text" id="callsPerDay" name="Inbound Calls Per Day" required placeholder="e.g. 60–80">
+                </div>
+                <div class="field-group">
+                    <label for="officeHours">What are your office hours? <span class="req">*</span></label>
+                    <input type="text" id="officeHours" name="Office Hours" required placeholder="e.g. Mon–Fri 8am–5pm, Sat 9am–1pm">
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label for="afterHours">What happens to calls after hours right now?</label>
+                    <select id="afterHours" name="After-Hours Call Handling">
+                        <option value="" disabled selected>Select one</option>
+                        <option>Goes to voicemail</option>
+                        <option>Forwarded to answering service</option>
+                        <option>Forwarded to on-call provider</option>
+                        <option>Phone just rings</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="field-group">
+                    <label for="afterHoursVolume">Roughly how many after-hours calls per week?</label>
+                    <input type="text" id="afterHoursVolume" name="After-Hours Calls Per Week" placeholder="e.g. 20–30">
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label>During business hours, how often does a call go unanswered?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="miss1" name="Unanswered Call Rate" value="Rarely — under 5%">
+                        <label for="miss1">Rarely — under 5%</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="miss2" name="Unanswered Call Rate" value="Sometimes — 5–15%">
+                        <label for="miss2">Sometimes — 5–15%</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="miss3" name="Unanswered Call Rate" value="Often — 15–30%">
+                        <label for="miss3">Often — 15–30%</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="miss4" name="Unanswered Call Rate" value="Very often — 30%+">
+                        <label for="miss4">Very often — 30%+</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SECTION 4 — PATIENT INTAKE ─── -->
+        <div class="form-section" id="sec4">
+            <div class="section-label">Section 4</div>
+            <div class="section-title">Patient Intake</div>
+
+            <div class="field-group">
+                <label for="newPatientInfo">What info do you need from every new patient on their first call? <span class="req">*</span></label>
+                <textarea id="newPatientInfo" name="New Patient Info Required" required placeholder="e.g. Full name, date of birth, insurance carrier and ID, referring provider, reason for visit, preferred callback number..."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label for="commonQuestions">What are the most common questions patients ask when they call? <span class="req">*</span></label>
+                <textarea id="commonQuestions" name="Most Common Patient Questions" required placeholder="e.g. Do you accept XYZ insurance? What are your hours? Can I reschedule? Do I need a referral? What's the wait time for a new patient appointment?"></textarea>
+            </div>
+
+            <div class="field-group">
+                <label>Are there calls that should always go to a human?</label>
+                <div class="radio-group">
+                    <div class="radio-item">
+                        <input type="radio" id="human1" name="Calls Requiring Human" value="Yes — emergencies only">
+                        <label for="human1">Yes — emergencies only</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="human2" name="Calls Requiring Human" value="Yes — emergencies and urgent existing patients">
+                        <label for="human2">Yes — emergencies and urgent existing patients</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="human3" name="Calls Requiring Human" value="Yes — specific situations (describe below)">
+                        <label for="human3">Yes — specific situations (describe below)</label>
+                    </div>
+                    <div class="radio-item">
+                        <input type="radio" id="human4" name="Calls Requiring Human" value="No — AI can handle initial triage">
+                        <label for="human4">No — AI can handle initial triage</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field-group">
+                <label for="humanCallDetails">If yes, describe which calls should go to a human <span class="opt">(optional)</span></label>
+                <textarea id="humanCallDetails" name="Human Escalation Details" rows="3" placeholder="e.g. Any call about chest pain, any patient reporting post-surgical complications, billing disputes over $500..."></textarea>
+            </div>
+        </div>
+
+        <!-- ─── SECTION 5 — INSURANCE ─── -->
+        <div class="form-section" id="sec5">
+            <div class="section-label">Section 5</div>
+            <div class="section-title">Insurance</div>
+            <div class="skip-note">
+                ℹ️ Skip this section if insurance verification isn't relevant to your practice.
+            </div>
+
+            <div class="field-group">
+                <label for="insurancePlans">What insurance plans does your practice accept? <span class="opt">(optional)</span></label>
+                <textarea id="insurancePlans" name="Insurance Plans Accepted" rows="3" placeholder="e.g. Delta Dental, Aetna, Cigna, United Healthcare, BlueCross BlueShield, Medicare, Medicaid..."></textarea>
+            </div>
+
+            <div class="field-group">
+                <label for="eligibilityTool">What do you currently use for eligibility verification?</label>
+                <select id="eligibilityTool" name="Eligibility Verification Tool">
+                    <option value="" disabled selected>Select one</option>
+                    <option>Availity</option>
+                    <option>Trizetto</option>
+                    <option>pVerify</option>
+                    <option>Built into our EHR</option>
+                    <option>Manual phone calls to insurance</option>
+                    <option>We don't verify before appointments</option>
+                    <option>Other</option>
+                    <option>Not sure</option>
+                </select>
+            </div>
+
+            <div class="field-group">
+                <label>Would you like your AI agent to verify insurance in real-time during calls?</label>
+                <div class="pill-group">
+                    <input type="radio" id="ins_yes" name="Real-Time Insurance Verification Interest" value="Yes">
+                    <label for="ins_yes">Yes</label>
+                    <input type="radio" id="ins_maybe" name="Real-Time Insurance Verification Interest" value="Maybe — tell me more">
+                    <label for="ins_maybe">Maybe — tell me more</label>
+                    <input type="radio" id="ins_no" name="Real-Time Insurance Verification Interest" value="No">
+                    <label for="ins_no">No</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SECTION 6 — FOLLOW-UP PREFERENCES ─── -->
+        <div class="form-section" id="sec6">
+            <div class="section-label">Section 6</div>
+            <div class="section-title">Follow-Up Preferences</div>
+
+            <div class="field-group">
+                <label>How should patients receive appointment confirmations? <span class="opt">(select all that apply)</span></label>
+                <div class="check-group" style="margin-top:.5rem;">
+                    <div class="check-item">
+                        <input type="checkbox" id="conf_sms" name="Confirmation Channels" value="SMS / Text">
+                        <label for="conf_sms">SMS / Text</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="conf_wa" name="Confirmation Channels" value="WhatsApp">
+                        <label for="conf_wa">WhatsApp</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="conf_email" name="Confirmation Channels" value="Email">
+                        <label for="conf_email">Email</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="conf_call" name="Confirmation Channels" value="Phone call">
+                        <label for="conf_call">Phone call</label>
+                    </div>
+                    <div class="check-item">
+                        <input type="checkbox" id="conf_self" name="Confirmation Channels" value="We handle confirmations ourselves">
+                        <label for="conf_self">We handle confirmations ourselves</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field-row">
+                <div class="field-group">
+                    <label>Automated 24-hour appointment reminders?</label>
+                    <div class="pill-group">
+                        <input type="radio" id="rem_yes" name="Automated Reminders" value="Yes">
+                        <label for="rem_yes">Yes</label>
+                        <input type="radio" id="rem_no" name="Automated Reminders" value="No">
+                        <label for="rem_no">No</label>
+                        <input type="radio" id="rem_have" name="Automated Reminders" value="Already have a system">
+                        <label for="rem_have">Already have a system</label>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label>Automated no-show follow-up?</label>
+                    <div class="pill-group">
+                        <input type="radio" id="noshow_yes" name="No-Show Follow-Up" value="Yes">
+                        <label for="noshow_yes">Yes</label>
+                        <input type="radio" id="noshow_no" name="No-Show Follow-Up" value="No">
+                        <label for="noshow_no">No</label>
+                        <input type="radio" id="noshow_have" name="No-Show Follow-Up" value="Already have a system">
+                        <label for="noshow_have">Already have a system</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ─── SECTION 7 — ANYTHING ELSE ─── -->
+        <div class="form-section" id="sec7">
+            <div class="section-label">Section 7</div>
+            <div class="section-title">Anything Else</div>
+
+            <div class="field-group">
+                <label for="additionalNotes">Anything else we should know about your practice or challenges you're facing? <span class="opt">(optional)</span></label>
+                <textarea id="additionalNotes" name="Additional Notes" rows="5" placeholder="e.g. We have a bilingual patient population and need Spanish support. We're struggling most with after-hours missed calls. We just opened a second location and the front desk is overwhelmed..."></textarea>
+            </div>
+        </div>
+
+        <!-- ─── SUBMIT ─── -->
+        <div class="submit-section">
+            <p>By submitting this form you agree to be contacted by the Lemnos AI team regarding your onboarding. All information is kept strictly confidential.</p>
+            <button type="submit" class="btn-submit" id="submitBtn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Submit
+            </button>
+            <div class="submit-note">Our team will follow up within 48 hours.</div>
+        </div>
+
+    </form>
+</div>
+
+<!-- FOOTER -->
+<footer class="form-footer">
+    <a href="https://getlemnos.ai">getlemnos.ai</a> &nbsp;·&nbsp; nick@getlemnos.ai &nbsp;·&nbsp; (917) 275-7123
+    <br>© 2026 Lemnos AI. All information is confidential and HIPAA-protected.
+</footer>
+
+<script>
+// ── Progress tracking ────────────────────────────────────────────────────
+const sections = document.querySelectorAll('.form-section');
+const fill     = document.getElementById('progressFill');
+const label    = document.getElementById('progressLabel');
+const total    = sections.length;
+
+function updateProgress() {
+    let lastVisible = 0;
+    sections.forEach((sec, i) => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.6) lastVisible = i + 1;
+    });
+    const pct = Math.round((lastVisible / total) * 100);
+    fill.style.width = pct + '%';
+    label.textContent = `Section ${Math.min(lastVisible + 1, total)} of ${total}`;
+}
+window.addEventListener('scroll', updateProgress, { passive: true });
+updateProgress();
+
+// ── Check if submitted (after redirect) ─────────────────────────────────
+if (window.location.search.includes('submitted=1')) {
+    document.getElementById('onboardingForm').style.display = 'none';
+    document.getElementById('progressFill').parentElement.style.display = 'none';
+    document.getElementById('progressLabel').style.display = 'none';
+    document.getElementById('successScreen').classList.add('show');
+}
+
+// ── Submit handler — disable button, show loading ────────────────────────
+document.getElementById('onboardingForm').addEventListener('submit', function(e) {
+    const required = this.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(field => {
+        if (!field.value.trim()) {
+            field.style.borderColor = '#DC2626';
+            if (valid) field.focus();
+            valid = false;
+        } else {
+            field.style.borderColor = '';
+        }
+    });
+    if (!valid) {
+        e.preventDefault();
+        return;
+    }
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="animation:spin 1s linear infinite"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+        Submitting...`;
+});
+
+// ── Red-border fix on input ──────────────────────────────────────────────
+document.querySelectorAll('input, select, textarea').forEach(el => {
+    el.addEventListener('input', () => { el.style.borderColor = ''; });
+});
+</script>
+<style>
+@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+</style>
+</body>
+</html>
