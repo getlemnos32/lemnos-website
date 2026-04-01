@@ -126,27 +126,15 @@
 
         /* HERO */
         .hero {
-            min-height: 100vh; display: flex; flex-direction: column;
+            display: flex; flex-direction: column;
             justify-content: center; align-items: center;
-            text-align: center; padding: 10rem 2rem 6rem;
+            text-align: center; padding: 10rem 2rem 7rem;
         }
         .hero h1 { margin-bottom: 1.5rem; }
         .hero h1 em { font-style: italic; color: var(--blue); }
         .hero .sub { margin-bottom: 2.5rem; }
         .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-        .hero-stats {
-            display: grid; grid-template-columns: repeat(4, 1fr);
-            max-width: 1160px; width: 100%;
-            margin-top: 4rem; border: 1px solid var(--border);
-            border-radius: 12px; overflow: hidden;
-        }
-        .hero-stat {
-            text-align: center; padding: 2.2rem 1rem;
-            border-right: 1px solid var(--border);
-        }
-        .hero-stat:last-child { border-right: none; }
-        .hero-stat .num { font-family: var(--font-serif); font-size: 2.2rem; color: var(--black); display: block; }
-        .hero-stat .lbl { font-size: 0.78rem; color: var(--light); margin-top: 0.25rem; }
+
 
         /* CARDS */
         .grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
@@ -352,8 +340,6 @@
         @media (max-width: 768px) {
             .nav-links a:not(.nav-workshop):not(.nav-cta) { display: none; }
             .nav-links { gap: .8rem; }
-            .hero-stats { grid-template-columns: repeat(2,1fr); }
-            .hero-stat:nth-child(2) { border-right: none; }
             .grid-3, .wshop-grid { grid-template-columns: 1fr; }
             .ba-grid, .pricing-grid { grid-template-columns: 1fr; }
             .deploy-steps { grid-template-columns: 1fr; }
@@ -386,12 +372,6 @@
     <div class="hero-ctas">
         <a href="https://calendly.com/nick-getlemnos/30min" class="btn-red">Book a Call</a>
         <a href="#medical" class="btn-ghost">See What We Build</a>
-    </div>
-    <div class="hero-stats">
-        <div class="hero-stat"><span class="num">24/7</span><div class="lbl">Always running</div></div>
-        <div class="hero-stat"><span class="num">$12K</span><div class="lbl">vs an $80K salary</div></div>
-        <div class="hero-stat"><span class="num">52.9%</span><div class="lbl">Cold email open rate</div></div>
-        <div class="hero-stat"><span class="num">10/10</span><div class="lbl">Deliverability score</div></div>
     </div>
 </section>
 
