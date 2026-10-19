@@ -14,7 +14,7 @@ body{font-family:'DM Sans',sans-serif;color:var(--body);line-height:1.6;backgrou
 a{color:inherit}
 .wrap{max-width:1160px;margin:0 auto;padding:6rem 2rem}.tc{text-align:center}
 h1,h2{font-family:var(--serif);font-weight:400;color:var(--black);letter-spacing:-.01em}
-h1{font-size:clamp(2.8rem,6.5vw,5.2rem);line-height:1.02}
+h1{font-size:clamp(2.6rem,6.2vw,5rem);line-height:1.06;text-wrap:balance}h2{text-wrap:balance}
 h2{font-size:clamp(2.1rem,4vw,3.2rem);line-height:1.1;margin-bottom:1rem}
 h1 em,h2 em{font-style:italic;background:linear-gradient(90deg,var(--blue),var(--blue2),var(--cyan),var(--blue));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 8s linear infinite}
 @keyframes shine{to{background-position:300% 0}}
@@ -30,8 +30,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,box
 nav.s{background:rgba(255,255,255,.85);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--border)}
 nav .in{max-width:1160px;margin:0 auto;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}
 .logo{font-family:var(--serif);font-size:1.6rem;color:var(--black);text-decoration:none;display:flex;align-items:center;gap:.5rem}
-.links{display:flex;gap:1.8rem;align-items:center}.links a{text-decoration:none;font-size:.92rem;color:var(--body);font-weight:500}.links a:hover{color:var(--blue)}
-@media(max-width:760px){.links a:not(.btn){display:none}}
+.links{display:flex;gap:1.8rem;align-items:center}.links a{text-decoration:none;font-size:.92rem;color:var(--body);font-weight:500}.links a:not(.btn):hover{color:var(--blue)}.links a.btn{color:#fff}
+@media(max-width:760px){.links a:not(.btn){display:none}.hero .label{font-size:.68rem;letter-spacing:.08em}.hero p.sub{line-height:1.6}.hero .cta-row .btn{width:100%;justify-content:center}}
 /* hero */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;background:#fff}
 .blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.45;animation:float 18s ease-in-out infinite}
@@ -103,7 +103,7 @@ nav .in{max-width:1160px;margin:0 auto;padding:1rem 2rem;display:flex;justify-co
 .card{position:relative;border-radius:20px;padding:2rem;background:#fff;border:1px solid var(--border);overflow:hidden;transition:transform .3s,box-shadow .3s}
 .card::before{content:"";position:absolute;inset:-1px;border-radius:20px;padding:1px;background:linear-gradient(135deg,var(--blue),var(--blue2),var(--cyan));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s}
 .card:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px rgba(37,99,235,.45)}.card:hover::before{opacity:1}
-.card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}.card .top .ico{margin-bottom:0}section[id]{scroll-margin-top:70px}
 .st{font-size:.7rem;font-weight:700;letter-spacing:.1em;padding:.3rem .65rem;border-radius:99px}
 .st.os{background:#D1FAE5;color:#047857}.st.in{background:#EDE9FE;color:#6D28D9}
 .card p{color:var(--muted);font-size:.95rem;margin-bottom:1rem}
@@ -144,7 +144,7 @@ footer a{text-decoration:none;color:#94A3B8;margin-left:1.2rem}footer a:hover{co
   <div class="in">
     <div>
       <span class="label rv">The insurance desk for specialty practices</span>
-      <h1 class="rv d1">We don't sell AI.<br><em>We clear your prior auths.</em></h1>
+      <h1 class="rv d1">We don’t sell AI.<br><em>We clear your prior&nbsp;auths.</em></h1>
       <p class="sub rv d2">Lemnos runs the insurance desk for 1–10-provider specialty practices: eligibility verification, prior authorizations from assembly to approval, and denial appeals. Your staff approves every submission before it goes out.</p>
       <div class="cta-row rv d3"><a class="btn btn-p" href="#contact">Get a free Denial Autopsy →</a><a class="btn btn-g" href="#desk">How the desk works</a></div>
       <p class="tag rv d3">Done for you. No new software for your front desk to learn.</p>
