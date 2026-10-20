@@ -108,7 +108,7 @@ nav .in{max-width:1160px;margin:0 auto;padding:1rem 2rem;display:flex;justify-co
 .lab{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:3.5rem;text-align:left}
 @media(max-width:800px){.lab{grid-template-columns:1fr}}
 .card{position:relative;border-radius:20px;padding:2rem;background:#fff;border:1px solid var(--border);overflow:hidden;transition:transform .3s,box-shadow .3s}
-.card::before{content:"";position:absolute;inset:-1px;border-radius:20px;padding:1px;background:linear-gradient(135deg,var(--blue),var(--blue2),var(--cyan));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s}
+.card::before{content:"";position:absolute;inset:-1px;border-radius:20px;padding:1px;background:linear-gradient(135deg,var(--blue),var(--blue2),var(--cyan));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s;pointer-events:none}
 .card:hover{transform:translateY(-6px);box-shadow:0 24px 50px -24px rgba(37,99,235,.45)}.card:hover::before{opacity:1}
 .card .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}.card .top .ico{margin-bottom:0}section[id]{scroll-margin-top:70px}
 .st{font-size:.7rem;font-weight:700;letter-spacing:.1em;padding:.3rem .65rem;border-radius:99px}
@@ -116,7 +116,7 @@ nav .in{max-width:1160px;margin:0 auto;padding:1rem 2rem;display:flex;justify-co
 .card p{color:var(--muted);font-size:.95rem;margin-bottom:1rem}
 .card ul{list-style:none;font-size:.9rem}.card li{padding:.25rem 0 .25rem 1.2rem;position:relative}
 .card li::before{content:"";position:absolute;left:0;top:.75rem;width:6px;height:6px;border-radius:50%;background:var(--blue)}
-.card a.more{display:inline-block;margin-top:1.2rem;font-weight:600;color:var(--blue);text-decoration:none}
+.card a.more{position:relative;z-index:2;display:inline-block;margin-top:1.2rem;font-weight:600;color:var(--blue);text-decoration:none}
 .card a.more:hover{text-decoration:underline}
 .card .ico{background:linear-gradient(135deg,rgba(37,99,235,.15),rgba(6,182,212,.15))}
 .spin{animation:spin 14s linear infinite;transform-origin:center}@keyframes spin{to{transform:rotate(360deg)}}
